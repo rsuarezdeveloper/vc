@@ -1,0 +1,24 @@
+{% extends '::base.html.twig' %}
+{%block page_header%}Aerol&iacute;neas - Editar{% endblock %}
+{% block body -%}
+    <a href="{{ path('aerolinea') }}" class="btn">
+           Cancelar
+    </a>
+    <form action="{{ path('aerolinea_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+        <input type="hidden" name="_method" value="PUT" />
+        {{ form_widget(edit_form) }}
+        <p>
+            <button type="submit" class="btn">Editar</button>
+        </p>
+    </form>
+
+<!--<ul class="record_actions">
+    <li>
+        <form action="{{ path('aerolinea_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>-->
+{% endblock %}

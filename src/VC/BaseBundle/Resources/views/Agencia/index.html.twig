@@ -1,0 +1,28 @@
+{% extends '::base.html.twig' %}
+{%block page_header%}Maestro de Agencias{% endblock %}
+{% block body -%}
+    <a href="{{ path('agencia_new') }}" class="btn btn-primary">
+               <i class="icon-white icon-file"></i>
+               Crear Nueva
+    </a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Contacto</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.nombre }}</td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.contacto }}</td>
+                <td><a href="{{ path('agencia_edit', { 'id': entity.id }) }}"><i class="icon-pencil"></i></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

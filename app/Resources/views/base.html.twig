@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<title>{% block title %}Vacuum Cooling{% endblock %}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="" />
+		<meta name="author" content="Vacuum Cooling" />
+
+		<!-- required styles -->
+		<link href="{{asset('assets/css/bootstrap.css')}}" rel="stylesheet" />
+		<link href="{{asset('assets/css/bootstrap-responsive.css')}}" rel="stylesheet" />
+		<link href="{{asset('css/styles.css')}}" rel="stylesheet" />
+                <link href="{{asset('plugins/select2/select2.css')}}" rel="stylesheet" />
+		{% block stylesheets %}{% endblock %}
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+	<body>
+		
+		<!-- header -->
+		<div id="header" class="navbar">
+			<div class="navbar-inner">
+				<!-- company or app name -->
+				<a class="brand hidden-phone" href="#">Vacuum Cooling</a>
+				<ul class="nav pull-right">
+					{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                        <!-- dropdown user account -->
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="icon-large icon-user"></i>
+						</a>
+						<ul class="dropdown-menu dropdown-user-account">
+							<li class="account-img-container">
+								<img class="thumb account-img" src="{{asset('images/100/user.png')}}" />
+							</li>
+							<li class="account-info">
+								<h3>{{app.user.nombre }}</h3>
+								<p>Ultimo ingreso:{{app.user.lastlogin|date('Y-m-d H:i:s')}}</p>
+								<p>
+									<a href="{{path('fos_user_profile_edit') }}">Editar</a> | <a href="{{path('fos_user_change_password') }}">Cambiar Clave</a>
+								</p>
+							</li>
+							<li class="account-footer">
+								<div class="row-fluid">
+									<div class="span4 align-right">
+                                                                                
+										<a class="btn btn-small btn-danger btn-flat" href="{{path('fos_user_security_logout') }}"><i class="icon-signout icon-white"></i> Salir</a>
+									</div>
+								</div>									
+							</li>
+						</ul>
+					</li>
+					<!-- ./ dropdown user account -->
+                                        {%endif%}
+				</ul>
+			</div>
+		</div>
+		<!-- end header -->
+		<div id="left_layout">
+			<!-- main content -->
+			<div id="main_content" class="container-fluid">			
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <!-- page heading -->
+				<div class="page-heading">
+					<h2 class="page-title muted">
+					     {%block page_header %}{% endblock %}
+					</h2>
+				</div>
+                                {%endif%}
+				<!-- post wrapper -->				
+				<div class="row-fluid">
+                                    {% block body %}{% endblock %}
+                                </div>
+					
+			</div>
+			<!-- end main content -->
+			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <!-- sidebar -->
+			<ul id="sidebar" class="nav nav-pills nav-stacked">
+				<!--<li class="active">
+					<a href="#">
+						<i class="micon-screen"></i>
+						<span class="hidden-phone">Dashboard</span>
+					</a>
+                                </li> -->
+                                {% if is_granted("ROLE_ADMIN") %}
+                                <li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="micon-database"></i>
+						<span class="hidden-phone">Configuraci&oacute;n</span>
+					</a>
+					<ul class="dropdown-menu">
+						<li id="li_cliente">
+							<a href="{{path("cliente")}}">
+								<i class="icon-large icon-cogs"></i> Clientes
+							</a>
+						</li>
+                                                <li id="li_agencia">
+							<a href="{{path("agencia")}}">
+								<i class="icon-large icon-cogs"></i> Agencias
+							</a>
+						</li>
+                                                <li id="li_aerolinea">
+							<a href="{{path("aerolinea")}}">
+								<i class="icon-large icon-cogs"></i> Aerol&iacute;neas
+							</a>
+						</li>
+						
+					</ul>
+                                </li>
+                                {%endif%}
+                                <li>
+                                    <a href="{{path('reserva')}}">
+                                        <i class="micon-calendar"></i>
+                                        <span class="hidden-phone">Reservas</span>
+                                    </a>
+                                </li>
+                        </ul>
+			<!-- end sidebar -->
+                        {%endif%}
+		</div>	
+		<!-- base -->
+		<script src="{{asset('assets/js/jquery.js')}}"></script>
+		<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+		<!-- addons -->
+                <script src="{{asset('plugins/jquery-ui-1.9.2.custom.min.js')}}"></script>
+		<script src="{{asset('plugins/chart-plugins.js')}}"></script>
+		<script src="{{asset('plugins/jquery-ui-slider.js')}}"></script>
+		<script src="{{asset('plugins/redactor/redactor.min.js')}}"></script>
+		<script src="{{asset('plugins/jmapping/jquery.metadata.js')}}"></script>
+		<script src="{{asset('plugins/jmapping/jquery.jmapping.min.js')}}"></script>
+		<script src="{{asset('plugins/jquery.uniform.js')}}"></script>
+		<script src="{{asset('plugins/chosen.jquery.min.js')}}"></script>
+		<script src="{{asset('plugins/bootstrap-datepicker.js')}}"></script>
+		<script src="{{asset('plugins/date.js')}}"></script>
+                <script src="{{asset('plugins/jquery.timePicker.min.js')}}"></script>
+                <script src="{{asset('plugins/jquery.ui.datepicker-es.js')}}"></script>
+                <script src="{{asset('plugins/select2/select2.js')}}"></script>
+                <script src="{{asset('plugins/select2/select2_locale_es.js')}}"></script>
+                
+		{% block javascripts %}{% endblock %}
+		<!-- plugins loader -->
+		<!--<script src="{{asset('js/loader.js')}}"></script>-->
+	</body>
+</html>

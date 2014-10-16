@@ -1,0 +1,28 @@
+{% extends '::base.html.twig' %}
+{%block page_header%}Aerol&iacute;neas{% endblock %}
+{% block body -%}
+    <a href="{{ path('aerolinea_new') }}" class="btn btn-primary ">
+                <i class="icon-white icon-file"></i>
+                Crear nueva
+            </a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Contacto</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.nombre }}</td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.contacto }}</td>
+                <td><a href="{{ path('aerolinea_edit', { 'id': entity.id }) }}"><i class="icon-pencil"></i></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}

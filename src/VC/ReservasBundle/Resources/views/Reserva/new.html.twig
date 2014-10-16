@@ -1,0 +1,73 @@
+{% extends '::base.html.twig' %}
+{%block page_header%}Nueva Reserva{% endblock %}
+{%block stylesheets%}
+     {{ form_stylesheet(form) }}
+{% endblock %}
+{% block body -%}
+    <form action="{{ path('reserva_create') }}" method="post" {{ form_enctype(form) }} novalidate=novalidate>
+        <table class="table">
+            <tr>
+                
+                <td><label>Cliente</label>
+                    {% if is_granted('ROLE_CUSTOMER') %}
+                        <h4>{{entity.cliente.nombre}}</h4>
+                        <div style="display: none">{{ form_widget(form.cliente) }}</div>
+                    {%else%}
+                        {{ form_widget(form.cliente) }}
+                    {%endif%}
+                </td>
+                <td><label>Fecha de Servicio:</label>{{ form_widget(form.fechaServicio) }}</td>
+                <td><label>Hora de Servicio:</label>{{ form_widget(form.horaServicio) }}</td>
+            </tr>
+            <tr>
+                <td><label>Guia Master:</label>{{ form_widget(form.guiaMaster) }}</td>
+                <td><label>Temperatura Requerida:</label>{{ form_widget(form.temperaturaRequerida) }}</td>
+                <td><label>Contacto:</label>{{ form_widget(form.contacto,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
+            </tr>
+            <tr>
+                <td><label>Agencia:</label>{{ form_widget(form.agencia) }}</td>
+                <td><label>Aerolinea:</label>{{ form_widget(form.aerolinea) }}</td>
+                <td><label>Notas:</label>{{ form_widget(form.notas) }}</td>
+            </tr>
+        </table>
+        {{form_rest(form)}}
+        {{form_errors(form)}}
+        <h3>Productos</h3>
+        <button class="btn btn-small" id="btn-nuevo-producto" type="button"><i class='icon-plus'></i> Agregar Producto</button>
+        <table id="tbl-productos">
+            <tr>
+                <th></th>
+                <th>Producto</th>
+                <th>Piezas</th>
+                <th>FBE</th>
+            </tr>
+        </table>
+        
+        
+        <br clear="all" />
+        <p>
+            <button type="submit" class="btn btn-primary">Crear</button><a href="{{ path('reserva') }}" class="btn">
+            Cancelar
+        </a>
+        </p>
+    </form>
+{% endblock %}
+{% block javascripts%}
+    {{form_javascript(form)}}
+    <script>
+        $(document).ready(function(){
+                var tr_producto='<tr><td><a href="#" class="delete"><i class="icon-trash"></i></a></td><td><input type="text" name="producto_nombre[]" id="producto_nombre[]" placeholder="Nombre Producto"/></td><td><input type="text" name="producto_piezas[]" id="producto_piezas[]" placeholder="0" dir="rtl" class="input-small"/></td><td><input type="text" name="producto_fbe[]" id="producto_fbe[]" placeholder="0" dir="rtl" class="input-small"/></td></tr>';
+                $("#tbl-productos").append(tr_producto);
+                $("#btn-nuevo-producto").click(function(){
+                        $("#tbl-productos").append(tr_producto);
+                });
+                
+                $(".delete").live('click', function(event) {
+                        $(this).parent().parent().remove();
+                });
+                
+                
+            });
+        
+    </script>
+{% endblock%}

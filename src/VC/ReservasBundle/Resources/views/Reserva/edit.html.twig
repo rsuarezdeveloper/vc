@@ -1,0 +1,93 @@
+{% extends '::base.html.twig' %}
+{%block page_header%}Editar Reserva{% endblock %}
+{%block stylesheets%}
+     {{ form_stylesheet(edit_form) }}
+{% endblock %}
+{% block body -%}
+    <form action="{{ path('reserva_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }} novalidate=novalidate>
+        <input type="hidden" name="_method" value="PUT" />
+       <table class="table">
+            <tr>
+                
+                <td><label>Cliente</label>
+                    {% if is_granted('ROLE_CUSTOMER') %}
+                        <h3>{{entity.cliente.nombre}}</h3>
+                        <div style="display: none">{{ form_widget(edit_form.cliente) }}</div>
+                    {%else%}
+                        {{ form_widget(edit_form.cliente) }}
+                    {%endif%}
+                </td>
+                <td><label>Fecha de Servicio:</label>{{ form_widget(edit_form.fechaServicio) }}</td>
+                <td><label>Hora de Servicio:</label>{{ form_widget(edit_form.horaServicio) }}</td>
+            </tr>
+            <tr>
+                <td><label>Guia Master:</label>{{ form_widget(edit_form.guiaMaster) }}</td>
+                <td><label>Temperatura Requerida:</label>{{ form_widget(edit_form.temperaturaRequerida) }}</td>
+                <td><label>Contacto:</label>{{ form_widget(edit_form.contacto,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
+            </tr>
+            <tr>
+                <td><label>Agencia:</label>{{ form_widget(edit_form.agencia) }}</td>
+                <td><label>Aerolinea:</label>{{ form_widget(edit_form.aerolinea) }}</td>
+                <td><label>Notas:</label>{{ form_widget(edit_form.notas) }}</td>
+            </tr>
+        </table>
+        {{form_rest(edit_form)}}
+        {{form_errors(edit_form)}}
+        <hr />
+        <h3>Productos</h3>
+        <button class="btn btn-small" id="btn-nuevo-producto" type="button"><i class='icon-plus'></i> Agregar Producto</button>
+        <br  />
+        <table id="tbl-productos">
+            <tr>
+                <th></th>
+                <th>Producto</th>
+                <th>Piezas</th>
+                <th>FBE</th>
+            </tr>
+            {%for producto in entity.productos%}
+            <tr>
+                <td></td>
+                <td>{{producto.nombreProducto}}</td>
+                <td style="text-align: right">{{producto.piezas}}</td>
+                <td style="text-align: right">{{producto.fbe}}</td>
+            </tr>
+            {%endfor%}
+        </table>
+        
+        
+        <br clear="all" />
+        <p>
+            <button type="submit" class="btn btn-primary"><i class='icon-ok-circle icon-white'></i> Editar</button>
+            <a href="{{ path('reserva') }}" class="btn">
+                <i class="icon-list-ul"></i> 
+                Regresar al listado
+            </a>
+        </p>
+    </form>
+<!--
+        <form action="{{ path('reserva_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+-->
+{% endblock %}
+{% block javascripts%}
+    {{form_javascript(edit_form)}}
+    <script>
+        $(document).ready(function(){
+                var tr_producto='<tr><td><a href="#" class="delete"><i class="icon-trash"></i></a></td><td><input type="text" name="producto_nombre[]" id="producto_nombre[]" placeholder="Nombre Producto"/></td><td><input type="text" name="producto_piezas[]" id="producto_piezas[]" placeholder="0" dir="rtl" class="input-small"/></td><td><input type="text" name="producto_fbe[]" id="producto_fbe[]" placeholder="0" dir="rtl" class="input-small"/></td></tr>';
+                $("#tbl-productos").append(tr_producto);
+                $("#btn-nuevo-producto").click(function(){
+                        $("#tbl-productos").append(tr_producto);
+                });
+                
+                $(".delete").live('click', function(event) {
+                        $(this).parent().parent().remove();
+                });
+                
+                
+            });
+        
+    </script>
+{% endblock%}

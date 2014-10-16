@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+{%block page_header%}Aerol&iacute;neas- Crear Nueva{% endblock %}
+{% block body -%}
+    
+    <form action="{{ path('aerolinea_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <p>
+            <button type="submit" class="btn btn-primary">Crear</button>
+            <a href="{{ path('aerolinea') }}" class="btn ">
+                    Cancelar
+            </a>
+        </p>
+    </form>
+{% endblock %}

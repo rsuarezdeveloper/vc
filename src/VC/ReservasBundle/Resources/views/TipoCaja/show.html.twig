@@ -1,0 +1,47 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Tipo de Caja</h1>
+
+    <table class="record_properties">
+        <tbody>
+			<tr>
+				<th>Descripci&oacute;n</th>
+				<td>{{entity.descripcion}}</td>
+			</tr>
+			<tr>
+				<th>Alto</th>
+				<td>{{entity.alto}}</td>
+			</tr>
+			<tr>
+				<th>Ancho</th>
+				<td>{{entity.ancho}}</td>
+			</tr>
+			<tr>
+				<th>Largo</th>
+				<td>{{entity.largo}}</td>
+			</tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('tipoCaja') }}">
+            Volver a la lista
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('tipoCaja_edit', { 'id': entity.id }) }}">
+            Editar
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('tipoCaja_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}
+

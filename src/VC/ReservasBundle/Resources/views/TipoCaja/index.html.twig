@@ -1,0 +1,59 @@
+{% extends "::base.html.twig" %}
+
+{%block page_header%}Tipo de Caja{%endblock%}
+
+{% block title %}Vacuum Cooling{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/jquery-ui-1.9.2.custom.css') }}" />
+	<link rel="stylesheet" href="{{ asset('css/jquery-ui-1.10.0.custom.css') }}" />
+	<link rel="stylesheet" href="{{ asset('css/ui.jqgrid.css') }}" />
+{% endblock %}
+
+{% block body %}
+
+    <a href="{{ path('tipoCaja_new') }}" class="btn btn-primary">
+        <i class="icon-white icon-file"></i>
+                Crear Nuevo Tipo de Caja
+            </a>
+	<br><br>
+    <table id="list">
+    </table>
+    <div id="pager">
+    </div>
+    <div id="botoneraTemplate"  style="display:none;"><a rel="tooltip" title="Editar tipo de caja" href="{{ path('tipoCaja_edit', {'id': '__id'}) }}" class="btn btn-primary btn-mini"><i class="icon-pencil icon-white"></i></a><a href="{{path('tipoCaja_show',{'id': '__id'}) }}" rel="tooltip" class="btn-mini btn btn-success btn-default" data-toggle="tooltip" title="Borrar tipo de caja"><i class="icon-trash icon-white"></i></a></div>
+{% endblock %}
+{% block javascripts %}
+	<script type="text/javascript" src="{{asset('js/jqgrid/js/jquery.jqGrid.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('js/jqgrid/js/i18n/grid.locale-es.js')}}"></script>
+	<script>
+		$(document).ready(function(){
+			$("#list").jqGrid({
+				url:"{{path('tipoCaja_grid')}}",
+				datatype:"json",
+				colNames:['Descripción','Alto','Ancho','Largo','Acciones'],
+				colModel:[
+					{name:'descripcion',width:300,align:"center",search:true},
+					{name:'alto',width:130,align:"center",search:false},
+					{name:'ancho',width:130,align:"center",search:false},
+					{name:'largo',width:130,align:"center",search:false},
+					{name:'acciones',width:100,jsonmap:"id",align:'center',formatter:botonera,search:false,sortable:false},
+				],
+				pager:"#pager",
+				gridview:true,
+				rowList:[10,20,50],
+				viewrecords:true,
+				viewsortcols:[true,'horizontal',true],
+				height:'100%',
+			});
+			$("#list").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false, defaultSearch:'cn'});
+			});
+			function botonera(cellvalue, options, rowObject)
+			{
+                	var html=$("#botoneraTemplate").html();
+                	html=html.replace(/__id/g,cellvalue);
+		        	return html;
+		    }
+		    $('body').on('mouseover','[rel=tooltip]',function(){$(this).tooltip('show'); });
+	
+	</script>
+{%endblock%}

@@ -1,0 +1,132 @@
+<html>
+	<body>
+			
+			
+			
+			
+			
+			<div style="font-size:1.5em;text-align:center;">{{entity.cliente.nombre}}</div>
+			<style>
+				td
+				{
+					padding:0px 5px;
+					text-align:center;
+				}
+			
+			</style>
+			<br />
+			<table>
+			<tr>
+				<td>Fecha de Servicio: {{entity.fechaServicio|date('d-m-Y')}}</td>
+				<td>Hora de Servicio: {{ entity.horaServicio|date('H:i')}}</td>
+				<td>Estado: {{ entity.status.status }}</td>
+			</tr>
+			</table>
+			<br />
+		<form action="{{path('proceso_create',{'reserva':entity.id})}}" id='frm_new_process' method="post">
+			<table id="tbl_productos" class="table-striped">
+				<thead>
+					<tr>
+						<th>Pallet</th><th>Hora Ingreso</th><th>Hora Salida</th><th>Temp. Ingreso</th><th>Temp. Salida</th>
+					</tr>				
+				</thead>
+				<tbody>			
+			{%set imprimir=false%}
+			{%for producto in productos %}
+					{%set imprimir=true%}
+					<tr>
+						<td style="width:100px;">{{producto.pallet}}</td>
+						<td style="width:100px;">{{producto.hourIn|date("H:i")}}</td>
+						<td style="width:100px;">{{producto.hourOut|date("H:i")}}</td>
+						<td style="width:100px;">{{producto.tempIn}}</td>
+						<td style="width:100px;">{{producto.tempOut}}</td>
+					</tr>
+			{%else%}
+					<tr>
+						<td><input type="text" name="pallet[]" id="pallet[]" style="width:70px;"></td>
+						<td><div class="bootstrap-timepicker"><input type="text" name="hIn[]" id="hIn[]" class="timepicker" style="width:70px;"></div></td>
+						<td><div class="bootstrap-timepicker"><input type="text" name="hOut[]" id="hOut[]" class="timepicker" style="width:70px;"></div></td>
+						<td><input type="text" name="tmpIn[]" id="tmpIn[]" style="width:70px;"></td>
+						<td><input type="text" name="tmpOut[]" id="tmpOut[]" style="width:70px;"></td>
+						<td><div class="btn btn-mini btn-primary" onclick="addTrProducto(this)"><i class="icon-white icon-plus"></i></div></td>
+					</tr>				
+			
+			{% endfor %}
+				</tbody>
+			</table>
+		</form>
+			
+		{%if imprimir%}
+			<a class="btn btn-primary" href="{{path('print_pdf',{'id':entity.id})}}"><i class="icon-white icon-print"></i>Imprimir</a>
+		{%endif%}
+
+		<script>
+			function addTrProducto(el)
+			{
+				var tr=$(el).parents("tr");
+				var valid=true;
+				
+				/* Valida Pallet */
+				
+				if (!tr.find("input[id^=pallet]").val())
+				{
+				tr.addClass('control-group error');
+				valid=false;
+				}
+
+				/* Valida hIn */
+
+				if (!tr.find("input[id^=hIn]").val())
+				{
+				tr.addClass('control-group error');
+				valid=false;
+				}
+				
+				/* Valida Hout  */
+				
+				if (!tr.find("input[id^=hOut]").val())
+				{
+				tr.addClass('control-group error');
+				valid=false;
+				}
+
+				 /* Valida tmpIn */
+				 
+				if (!tr.find("input[id^=tmpIn]").val())
+				{
+				tr.addClass('control-group error');
+				valid=false;
+				}
+				 
+				 /* Valida tmpOut */
+				 
+				if (!tr.find("input[id^=tmpOut]").val())
+				{
+				tr.addClass('control-group error');
+				valid=false;
+				}
+				 
+				 if (valid)
+				 {
+					var row=tr.clone(false);
+					$(row).find("input:text").val("");
+					$(row).find(".timepicker").timepicker({'minuteStep':1,'template':'modal','disableFocus':true,'showInputs':false});
+					$(row).appendTo("#tbl_productos tbody");
+					var icon=$(el).find("i")
+					icon.addClass("icon-trash");
+					icon.removeClass("icon-plus");
+					$(el).removeClass("btn-primary");
+					$(el).addClass('btn-danger');
+					$(el).attr("onClick","delTrProducto(this);");
+				 }
+			}
+			
+			function delTrProducto(el)
+			{
+				$(el).parents("tr").remove();
+			}
+		
+			$(".timepicker").timepicker({'minuteStep':1,'template':'modal','disableFocus':true,'showInputs':false});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<html>
+	<head>
+	</head>
+	<body>
+		
+		<h2>VACUUM COOLING COLOMBIA LTDA.</h2>
+		<p><span style="font-weight:bold;">DATE VC:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+			{{reserva.fechaServicio|date("d/m/Y")}} 
+		</p>
+		<br>
+		<h3 style="text-align:center;">{{reserva.cliente.nombre}}</h3>
+		
+		<table border="1" style="border-collapse:collapse">
+			<thead>
+				<tr>
+					<th>PALLET</th><th>AIRLINE</th><th>AWB</th><th>BOXES</th>
+					<th>KLG</th><th>TEMP &deg;C (IN/OUT)</th><th>HOUR (IN/OUT)</th>
+					<th>TIPO PALLET</th><th>DESTINO</th><th>R.O.</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for producto in productos%}
+					<tr>
+						<td>{{producto.pallet}}</td><td>{{reserva.aerolinea.nombre}}</td>
+						<td>{{reserva.guiaMaster}}</td><td></td><td></td>
+						<td>{{producto.tempIn}} - {{producto.tempOut}}</td>
+						<td>{{producto.hourIn|date("H:i")}} - {{producto.hourOut|date("H:i")}}</td>
+						<td></td><td></td><td></td>
+					</tr>
+				{%endfor%}					
+			</tbody>
+		</table>
+		<br><br>
+		
+		Observaciones:
+		<p style="border:solid 1px black;width:10cm;display:inline-block;">{{reserva.notas}}</p>
+		
+		<p style="border:solid 1px black;">
+			T-IN = temperatures (average per pallet) registered before the vacuum cooling process.
+		</p>
+		<p style="border:solid 1px black;">
+			T-OUT = temperatures (average per pallet) registered after the vacuum cooling process.
+		</p>
+	</body>
+</html>

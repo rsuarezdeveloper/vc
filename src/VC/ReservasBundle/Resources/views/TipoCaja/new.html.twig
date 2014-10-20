@@ -1,0 +1,38 @@
+{% extends "::base.html.twig" %}
+
+{%block page_header%}Nuevo Tipo de Caja{%endblock%}
+
+
+
+{% block title %}Vacuum Cooling{% endblock %}
+{%block body%}
+<style>
+	th, td
+	{
+		padding:30px 10px;
+	}
+</style>
+	<div class="container">
+    <form action="{{ path('tipoCaja_create') }}" method="post" {{ form_enctype(form) }}>
+	<table>
+		<tr>
+			<th>Descripcion:</th><td>{{ form_widget(form.descripcion) }}</td>
+			<th>Sigla:</th><td>{{form_widget(form.sigla)}}</td>
+			<th>FBE:</th><td>{{form_widget(form.fbe)}}</td>
+		</tr>
+		<tr>
+			<th>Largo:</th><td>{{form_widget(form.largo)}}</td>
+			<th>Ancho:</th><td>{{form_widget(form.ancho)}}</td>
+			<th>Alto</th><td>{{form_widget(form.alto)}}</td>
+		</tr>		
+	</table>
+
+        <p>
+            <button type="submit" class="btn btn-primary">Crear</button>
+            <a href="{{ path('tipoCaja') }}" class="btn">
+                Cancelar
+            </a>
+        </p>
+    </form>
+    </div>
+{%endblock%}

@@ -63,7 +63,7 @@ class Twig_Tests_Node_SandboxedModuleTest extends Twig_Test_NodeTestCase
 <?php
 
 /* foo.twig */
-class __TwigTemplate_be925a7b06dda0dfdbd18a1509f7eb34 extends Twig_Template
+class __TwigTemplate_a2bfbf7dd6ab85666684fe9297f69363a3fc2046d90f22a317d380c18638df0d extends Twig_Template
 {
     public function __construct(Twig_Environment \$env)
     {
@@ -84,11 +84,29 @@ class __TwigTemplate_be925a7b06dda0dfdbd18a1509f7eb34 extends Twig_Template
 
     protected function checkSecurity()
     {
-        \$this->env->getExtension('sandbox')->checkSecurity(
-            array('upper'),
-            array('for'),
-            array('cycle')
-        );
+        \$tags = array();
+        \$filters = array();
+        \$functions = array();
+
+        try {
+            \$this->env->getExtension('sandbox')->checkSecurity(
+                array('upper'),
+                array('for'),
+                array('cycle')
+            );
+        } catch (Twig_Sandbox_SecurityError \$e) {
+            \$e->setTemplateFile(\$this->getTemplateName());
+
+            if (\$e instanceof Twig_Sandbox_SecurityNotAllowedTagError && isset(\$tags[\$e->getTagName()])) {
+                \$e->setTemplateLine(\$tags[\$e->getTagName()]);
+            } elseif (\$e instanceof Twig_Sandbox_SecurityNotAllowedFilterError && isset(\$filters[\$e->getFilterName()])) {
+                \$e->setTemplateLine(\$filters[\$e->getFilterName()]);
+            } elseif (\$e instanceof Twig_Sandbox_SecurityNotAllowedFunctionError && isset(\$functions[\$e->getFunctionName()])) {
+                \$e->setTemplateLine(\$functions[\$e->getFunctionName()]);
+            }
+
+            throw \$e;
+        }
     }
 
     public function getTemplateName()
@@ -118,7 +136,7 @@ EOF
 <?php
 
 /* foo.twig */
-class __TwigTemplate_be925a7b06dda0dfdbd18a1509f7eb34 extends Twig_Template
+class __TwigTemplate_a2bfbf7dd6ab85666684fe9297f69363a3fc2046d90f22a317d380c18638df0d extends Twig_Template
 {
     public function __construct(Twig_Environment \$env)
     {
@@ -143,11 +161,29 @@ class __TwigTemplate_be925a7b06dda0dfdbd18a1509f7eb34 extends Twig_Template
 
     protected function checkSecurity()
     {
-        \$this->env->getExtension('sandbox')->checkSecurity(
-            array('upper'),
-            array('for'),
-            array('cycle')
-        );
+        \$tags = array();
+        \$filters = array();
+        \$functions = array();
+
+        try {
+            \$this->env->getExtension('sandbox')->checkSecurity(
+                array('upper'),
+                array('for'),
+                array('cycle')
+            );
+        } catch (Twig_Sandbox_SecurityError \$e) {
+            \$e->setTemplateFile(\$this->getTemplateName());
+
+            if (\$e instanceof Twig_Sandbox_SecurityNotAllowedTagError && isset(\$tags[\$e->getTagName()])) {
+                \$e->setTemplateLine(\$tags[\$e->getTagName()]);
+            } elseif (\$e instanceof Twig_Sandbox_SecurityNotAllowedFilterError && isset(\$filters[\$e->getFilterName()])) {
+                \$e->setTemplateLine(\$filters[\$e->getFilterName()]);
+            } elseif (\$e instanceof Twig_Sandbox_SecurityNotAllowedFunctionError && isset(\$functions[\$e->getFunctionName()])) {
+                \$e->setTemplateLine(\$functions[\$e->getFunctionName()]);
+            }
+
+            throw \$e;
+        }
     }
 
     public function getTemplateName()

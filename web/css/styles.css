@@ -1,5 +1,5 @@
 @import url(fontface.css);
-@import url(font-awesome.css);
+/*@import url(font-awesome.css);*/
 @import url(icomoon.css);
 @import url(base.css);
 @import url(header.css);
@@ -10,7 +10,7 @@
 @import url(pagination.css);
 @import url(alert-messages.css);
 @import url(gradients.css);
-@import url(buttons.css);
+/*@import url(buttons.css);*/
 @import url(dropdowns.css);
 @import url(tabs.css);
 @import url(form.css);

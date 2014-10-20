@@ -227,7 +227,7 @@ class Twig_Test_EscapingTest extends PHPUnit_Framework_TestCase
     /**
      * Convert a Unicode Codepoint to a literal UTF-8 character.
      *
-     * @param int Unicode codepoint in hex notation
+     * @param int $codepoint Unicode codepoint in hex notation
      * @return string UTF-8 literal string
      */
     protected function codepointToUtf8($codepoint)
@@ -237,18 +237,18 @@ class Twig_Test_EscapingTest extends PHPUnit_Framework_TestCase
         }
         if ($codepoint < 0x800) {
             return chr($codepoint >> 6 & 0x3f | 0xc0)
-                . chr($codepoint & 0x3f | 0x80);
+                .chr($codepoint & 0x3f | 0x80);
         }
         if ($codepoint < 0x10000) {
             return chr($codepoint >> 12 & 0x0f | 0xe0)
-                . chr($codepoint >> 6 & 0x3f | 0x80)
-                . chr($codepoint & 0x3f | 0x80);
+                .chr($codepoint >> 6 & 0x3f | 0x80)
+                .chr($codepoint & 0x3f | 0x80);
         }
         if ($codepoint < 0x110000) {
             return chr($codepoint >> 18 & 0x07 | 0xf0)
-                . chr($codepoint >> 12 & 0x3f | 0x80)
-                . chr($codepoint >> 6 & 0x3f | 0x80)
-                . chr($codepoint & 0x3f | 0x80);
+                .chr($codepoint >> 12 & 0x3f | 0x80)
+                .chr($codepoint >> 6 & 0x3f | 0x80)
+                .chr($codepoint & 0x3f | 0x80);
         }
         throw new Exception('Codepoint requested outside of Unicode range');
     }
@@ -301,7 +301,7 @@ class Twig_Test_EscapingTest extends PHPUnit_Framework_TestCase
 
     public function testCssEscapingEscapesOwaspRecommendedRanges()
     {
-        $immune = array(); // CSS has no exceptions to escaping ranges
+        // CSS has no exceptions to escaping ranges
         for ($chr=0; $chr < 0xFF; $chr++) {
             if ($chr >= 0x30 && $chr <= 0x39
             || $chr >= 0x41 && $chr <= 0x5A

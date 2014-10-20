@@ -16,7 +16,6 @@
       <parameter key="AsseticBundle">Symfony\Bundle\AsseticBundle\AsseticBundle</parameter>
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
-      <parameter key="GenemuFormBundle">Genemu\Bundle\FormBundle\GenemuFormBundle</parameter>
       <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
       <parameter key="FOSUserBundle">FOS\UserBundle\FOSUserBundle</parameter>
       <parameter key="UserBundle">VC\UserBundle\UserBundle</parameter>
@@ -31,10 +30,10 @@
     <parameter key="kernel.container_class">appDevDebugProjectContainer</parameter>
     <parameter key="database_driver">pdo_mysql</parameter>
     <parameter key="database_host">127.0.0.1</parameter>
-    <parameter key="database_port">8889</parameter>
+    <parameter key="database_port">3306</parameter>
     <parameter key="database_name">vc</parameter>
     <parameter key="database_user">root</parameter>
-    <parameter key="database_password">root</parameter>
+    <parameter key="database_password">esemp75</parameter>
     <parameter key="mailer_transport">smtp</parameter>
     <parameter key="mailer_host">127.0.0.1</parameter>
     <parameter key="mailer_user">null</parameter>
@@ -91,6 +90,7 @@
     <parameter key="debug.controller_resolver.class">Symfony\Component\HttpKernel\Controller\TraceableControllerResolver</parameter>
     <parameter key="kernel.secret">VacuumCooling2013RS</parameter>
     <parameter key="kernel.http_method_override">true</parameter>
+    <parameter key="kernel.trusted_hosts" type="collection"/>
     <parameter key="kernel.trusted_proxies" type="collection"/>
     <parameter key="kernel.default_locale">es</parameter>
     <parameter key="session.class">Symfony\Component\HttpFoundation\Session\Session</parameter>
@@ -159,8 +159,8 @@
     <parameter key="validator.validator_factory.class">Symfony\Bundle\FrameworkBundle\Validator\ConstraintValidatorFactory</parameter>
     <parameter key="validator.mapping.loader.xml_files_loader.mapping_files" type="collection">
       <parameter>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml</parameter>
-      <parameter>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/validation.xml</parameter>
-      <parameter>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/validation/orm.xml</parameter>
+      <parameter>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/config/validation.xml</parameter>
+      <parameter>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/config/validation/orm.xml</parameter>
     </parameter>
     <parameter key="validator.mapping.loader.yaml_files_loader.mapping_files" type="collection"/>
     <parameter key="validator.translation_domain">validators</parameter>
@@ -303,9 +303,6 @@
     <parameter key="twig.exception_listener.controller">twig.controller.exception:showAction</parameter>
     <parameter key="twig.form.resources" type="collection">
       <parameter>form_div_layout.html.twig</parameter>
-      <parameter>GenemuFormBundle:Form:div_layout.html.twig</parameter>
-      <parameter>GenemuFormBundle:Form:jquery_layout.html.twig</parameter>
-      <parameter>GenemuFormBundle:Form:stylesheet_layout.html.twig</parameter>
     </parameter>
     <parameter key="debug.templating.engine.twig.class">Symfony\Bundle\TwigBundle\Debug\TimedTwigEngine</parameter>
     <parameter key="twig.options" type="collection">
@@ -351,26 +348,33 @@
     <parameter key="swiftmailer.plugin.impersonate.class">Swift_Plugins_ImpersonatePlugin</parameter>
     <parameter key="swiftmailer.plugin.messagelogger.class">Swift_Plugins_MessageLogger</parameter>
     <parameter key="swiftmailer.plugin.antiflood.class">Swift_Plugins_AntiFloodPlugin</parameter>
-    <parameter key="swiftmailer.plugin.antiflood.threshold">99</parameter>
-    <parameter key="swiftmailer.plugin.antiflood.sleep">0</parameter>
-    <parameter key="swiftmailer.data_collector.class">Symfony\Bridge\Swiftmailer\DataCollector\MessageDataCollector</parameter>
     <parameter key="swiftmailer.transport.smtp.class">Swift_Transport_EsmtpTransport</parameter>
-    <parameter key="swiftmailer.transport.smtp.encryption">null</parameter>
-    <parameter key="swiftmailer.transport.smtp.port">25</parameter>
-    <parameter key="swiftmailer.transport.smtp.host">127.0.0.1</parameter>
-    <parameter key="swiftmailer.transport.smtp.username">null</parameter>
-    <parameter key="swiftmailer.transport.smtp.password">null</parameter>
-    <parameter key="swiftmailer.transport.smtp.auth_mode">null</parameter>
-    <parameter key="swiftmailer.transport.smtp.timeout">30</parameter>
-    <parameter key="swiftmailer.transport.smtp.source_ip">null</parameter>
     <parameter key="swiftmailer.plugin.blackhole.class">Swift_Plugins_BlackholePlugin</parameter>
+    <parameter key="swiftmailer.spool.file.class">Swift_FileSpool</parameter>
     <parameter key="swiftmailer.spool.memory.class">Swift_MemorySpool</parameter>
     <parameter key="swiftmailer.email_sender.listener.class">Symfony\Bundle\SwiftmailerBundle\EventListener\EmailSenderListener</parameter>
-    <parameter key="swiftmailer.spool.memory.path">/Applications/MAMP/htdocs/vc/app/cache/dev/swiftmailer/spool</parameter>
+    <parameter key="swiftmailer.data_collector.class">Symfony\Bundle\SwiftmailerBundle\DataCollector\MessageDataCollector</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.name">smtp</parameter>
+    <parameter key="swiftmailer.mailer.default.delivery.enabled">true</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.encryption">null</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.port">25</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.host">127.0.0.1</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.username">null</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.password">null</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.auth_mode">null</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.timeout">30</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.source_ip">null</parameter>
+    <parameter key="swiftmailer.spool.default.memory.path">/Applications/MAMP/htdocs/vc/app/cache/dev/swiftmailer/spool/default</parameter>
+    <parameter key="swiftmailer.mailer.default.spool.enabled">true</parameter>
+    <parameter key="swiftmailer.mailer.default.plugin.impersonate">null</parameter>
+    <parameter key="swiftmailer.mailer.default.single_address">null</parameter>
     <parameter key="swiftmailer.spool.enabled">true</parameter>
-    <parameter key="swiftmailer.sender_address">null</parameter>
+    <parameter key="swiftmailer.delivery.enabled">true</parameter>
     <parameter key="swiftmailer.single_address">null</parameter>
-    <parameter key="swiftmailer.delivery_whitelist" type="collection"/>
+    <parameter key="swiftmailer.mailers" type="collection">
+      <parameter key="default">swiftmailer.mailer.default</parameter>
+    </parameter>
+    <parameter key="swiftmailer.default_mailer">default</parameter>
     <parameter key="assetic.asset_factory.class">Symfony\Bundle\AsseticBundle\Factory\AssetFactory</parameter>
     <parameter key="assetic.asset_manager.class">Assetic\Factory\LazyAssetManager</parameter>
     <parameter key="assetic.asset_manager_cache_warmer.class">Symfony\Bundle\AsseticBundle\CacheWarmer\AssetManagerCacheWarmer</parameter>
@@ -398,7 +402,7 @@
     <parameter key="assetic.write_to">/Applications/MAMP/htdocs/vc/app/../web</parameter>
     <parameter key="assetic.variables" type="collection"/>
     <parameter key="assetic.java.bin">/usr/bin/java</parameter>
-    <parameter key="assetic.node.bin">/usr/bin/node</parameter>
+    <parameter key="assetic.node.bin">/usr/local/bin/node</parameter>
     <parameter key="assetic.ruby.bin">/usr/bin/ruby</parameter>
     <parameter key="assetic.sass.bin">/usr/bin/sass</parameter>
     <parameter key="assetic.filter.cssrewrite.class">Assetic\Filter\CssRewriteFilter</parameter>
@@ -474,67 +478,6 @@
     <parameter key="sensio_framework_extra.converter.doctrine.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter</parameter>
     <parameter key="sensio_framework_extra.converter.datetime.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DateTimeParamConverter</parameter>
     <parameter key="sensio_framework_extra.view.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener</parameter>
-    <parameter key="genemu.form.recaptcha.public_key"></parameter>
-    <parameter key="genemu.form.recaptcha.private_key"></parameter>
-    <parameter key="genemu.form.recaptcha.server_url"></parameter>
-    <parameter key="genemu.form.recaptcha.code"></parameter>
-    <parameter key="genemu.form.recaptcha.options" type="collection"/>
-    <parameter key="genemu.form.recaptcha.validation.options" type="collection"/>
-    <parameter key="genemu.form.captcha.options" type="collection">
-      <parameter key="enabled">true</parameter>
-      <parameter key="driver">gd</parameter>
-      <parameter key="width">100</parameter>
-      <parameter key="height">30</parameter>
-      <parameter key="length">4</parameter>
-      <parameter key="format">png</parameter>
-      <parameter key="chars" type="collection">
-        <parameter>0</parameter>
-        <parameter>1</parameter>
-        <parameter>2</parameter>
-        <parameter>3</parameter>
-        <parameter>4</parameter>
-        <parameter>5</parameter>
-        <parameter>6</parameter>
-        <parameter>7</parameter>
-        <parameter>8</parameter>
-        <parameter>9</parameter>
-      </parameter>
-      <parameter key="font_size">18</parameter>
-      <parameter key="grayscale">false</parameter>
-      <parameter key="font_color" type="collection">
-        <parameter>252525</parameter>
-        <parameter>8B8787</parameter>
-        <parameter>550707</parameter>
-        <parameter>3526E6</parameter>
-        <parameter>88531E</parameter>
-      </parameter>
-      <parameter key="fonts" type="collection">
-        <parameter>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/akbar.ttf</parameter>
-        <parameter>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/brushcut.ttf</parameter>
-        <parameter>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/molten.ttf</parameter>
-        <parameter>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/planetbe.ttf</parameter>
-        <parameter>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/whoobub.ttf</parameter>
-      </parameter>
-      <parameter key="background_color">DDDDDD</parameter>
-      <parameter key="border_color">000000</parameter>
-      <parameter key="code">null</parameter>
-    </parameter>
-    <parameter key="genemu.form.tinymce.configs" type="collection">
-      <parameter key="theme">advanced</parameter>
-    </parameter>
-    <parameter key="genemu.form.color.options" type="collection"/>
-    <parameter key="genemu.form.date.options" type="collection">
-      <parameter key="dateFormat">Y-m-d</parameter>
-      <parameter key="locale">es</parameter>
-    </parameter>
-    <parameter key="genemu.form.rating.options" type="collection"/>
-    <parameter key="genemu.form.file.root_dir">/Applications/MAMP/htdocs/vc/app/../web</parameter>
-    <parameter key="genemu.form.file.folder">/upload</parameter>
-    <parameter key="genemu.form.file.upload_dir">/Applications/MAMP/htdocs/vc/app/../web/upload</parameter>
-    <parameter key="genemu.form.file.options" type="collection"/>
-    <parameter key="genemu.form.image.selected"></parameter>
-    <parameter key="genemu.form.image.thumbnails" type="collection"/>
-    <parameter key="genemu.form.image.filters" type="collection"/>
     <parameter key="knp_paginator.class">Knp\Component\Pager\Paginator</parameter>
     <parameter key="knp_paginator.templating.helper.pagination.class">Knp\Bundle\PaginatorBundle\Templating\PaginationHelper</parameter>
     <parameter key="knp_paginator.helper.processor.class">Knp\Bundle\PaginatorBundle\Helper\Processor</parameter>
@@ -543,8 +486,6 @@
     <parameter key="knp_paginator.template.sortable">KnpPaginatorBundle:Pagination:sortable_link.html.twig</parameter>
     <parameter key="knp_paginator.page_range">5</parameter>
     <parameter key="fos_user.backend_type_orm">true</parameter>
-    <parameter key="fos_user.validator.password.class">FOS\UserBundle\Validator\PasswordValidator</parameter>
-    <parameter key="fos_user.validator.unique.class">FOS\UserBundle\Validator\UniqueValidator</parameter>
     <parameter key="fos_user.security.interactive_login_listener.class">FOS\UserBundle\EventListener\LastLoginListener</parameter>
     <parameter key="fos_user.security.login_manager.class">FOS\UserBundle\Security\LoginManager</parameter>
     <parameter key="fos_user.resetting.email.template">FOSUserBundle:Resetting:email.txt.twig</parameter>
@@ -553,7 +494,6 @@
     <parameter key="fos_user.firewall_name">main</parameter>
     <parameter key="fos_user.model_manager_name">null</parameter>
     <parameter key="fos_user.model.user.class">VC\UserBundle\Entity\User</parameter>
-    <parameter key="fos_user.template.engine">twig</parameter>
     <parameter key="fos_user.profile.form.type">fos_user_profile</parameter>
     <parameter key="fos_user.profile.form.name">fos_user_profile_form</parameter>
     <parameter key="fos_user.profile.form.validation_groups" type="collection">
@@ -633,7 +573,7 @@
       </parameter>
       <parameter key="swiftmailer.data_collector" type="collection">
         <parameter>swiftmailer</parameter>
-        <parameter>SwiftmailerBundle:Collector:swiftmailer</parameter>
+        <parameter>@Swiftmailer/Collector/swiftmailer.html.twig</parameter>
       </parameter>
       <parameter key="data_collector.doctrine" type="collection">
         <parameter>db</parameter>
@@ -663,46 +603,6 @@
     </service>
     <service id="event_dispatcher" class="Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher">
       <argument type="service" id="service_container"/>
-      <call method="addListenerService">
-        <argument>knp_pager.before</argument>
-        <argument type="collection">
-          <argument>knp_paginator.subscriber.paginate</argument>
-          <argument>before</argument>
-        </argument>
-        <argument>0</argument>
-      </call>
-      <call method="addListenerService">
-        <argument>knp_pager.pagination</argument>
-        <argument type="collection">
-          <argument>knp_paginator.subscriber.paginate</argument>
-          <argument>pagination</argument>
-        </argument>
-        <argument>0</argument>
-      </call>
-      <call method="addListenerService">
-        <argument>knp_pager.before</argument>
-        <argument type="collection">
-          <argument>knp_paginator.subscriber.sortable</argument>
-          <argument>before</argument>
-        </argument>
-        <argument>1</argument>
-      </call>
-      <call method="addListenerService">
-        <argument>knp_pager.before</argument>
-        <argument type="collection">
-          <argument>knp_paginator.subscriber.filtration</argument>
-          <argument>before</argument>
-        </argument>
-        <argument>1</argument>
-      </call>
-      <call method="addListenerService">
-        <argument>knp_pager.pagination</argument>
-        <argument type="collection">
-          <argument>knp_paginator.subscriber.sliding_pagination</argument>
-          <argument>pagination</argument>
-        </argument>
-        <argument>1</argument>
-      </call>
       <call method="addListenerService">
         <argument>kernel.controller</argument>
         <argument type="collection">
@@ -834,6 +734,46 @@
       <call method="addSubscriberService">
         <argument>web_profiler.debug_toolbar</argument>
         <argument>Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.paginate</argument>
+          <argument>before</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>knp_pager.pagination</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.paginate</argument>
+          <argument>pagination</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.sortable</argument>
+          <argument>before</argument>
+        </argument>
+        <argument>1</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>knp_pager.before</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.filtration</argument>
+          <argument>before</argument>
+        </argument>
+        <argument>1</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>knp_pager.pagination</argument>
+        <argument type="collection">
+          <argument>knp_paginator.subscriber.sliding_pagination</argument>
+          <argument>pagination</argument>
+        </argument>
+        <argument>1</argument>
       </call>
     </service>
     <service id="http_kernel" class="Symfony\Component\HttpKernel\DependencyInjection\ContainerAwareHttpKernel">
@@ -1228,6 +1168,12 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.th.xlf</argument>
+        <argument>th</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
         <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.tr.xlf</argument>
         <argument>tr</argument>
         <argument>validators</argument>
@@ -1240,8 +1186,20 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.vi.xlf</argument>
+        <argument>vi</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
         <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.zh_CN.xlf</argument>
         <argument>zh_CN</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.zh_TW.xlf</argument>
+        <argument>zh_TW</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
@@ -1474,8 +1432,8 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ua.xlf</argument>
-        <argument>ua</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.uk.xlf</argument>
+        <argument>uk</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
@@ -1488,6 +1446,12 @@
         <argument>xlf</argument>
         <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../../Resources/translations/security.ar.xlf</argument>
         <argument>ar</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../../Resources/translations/security.bg.xlf</argument>
+        <argument>bg</argument>
         <argument>security</argument>
       </call>
       <call method="addResource">
@@ -1512,6 +1476,12 @@
         <argument>xlf</argument>
         <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../../Resources/translations/security.de.xlf</argument>
         <argument>de</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../../Resources/translations/security.el.xlf</argument>
+        <argument>el</argument>
         <argument>security</argument>
       </call>
       <call method="addResource">
@@ -1546,14 +1516,32 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../../Resources/translations/security.hr.xlf</argument>
+        <argument>hr</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
         <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../../Resources/translations/security.hu.xlf</argument>
         <argument>hu</argument>
         <argument>security</argument>
       </call>
       <call method="addResource">
         <argument>xlf</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../../Resources/translations/security.id.xlf</argument>
+        <argument>id</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
         <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../../Resources/translations/security.it.xlf</argument>
         <argument>it</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../../Resources/translations/security.ja.xlf</argument>
+        <argument>ja</argument>
         <argument>security</argument>
       </call>
       <call method="addResource">
@@ -1636,6 +1624,12 @@
       </call>
       <call method="addResource">
         <argument>xlf</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../../Resources/translations/security.th.xlf</argument>
+        <argument>th</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
         <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../../Resources/translations/security.tr.xlf</argument>
         <argument>tr</argument>
         <argument>security</argument>
@@ -1647,410 +1641,458 @@
         <argument>security</argument>
       </call>
       <call method="addResource">
-        <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/genemu/form-bundle/Genemu/Bundle/FormBundle/Resources/translations/validators.de.yml</argument>
-        <argument>de</argument>
-        <argument>validators</argument>
+        <argument>xlf</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../../Resources/translations/security.vi.xlf</argument>
+        <argument>vi</argument>
+        <argument>security</argument>
+      </call>
+      <call method="addResource">
+        <argument>xlf</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../../Resources/translations/security.zh_CN.xlf</argument>
+        <argument>zh_CN</argument>
+        <argument>security</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/genemu/form-bundle/Genemu/Bundle/FormBundle/Resources/translations/validators.en.yml</argument>
-        <argument>en</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/genemu/form-bundle/Genemu/Bundle/FormBundle/Resources/translations/validators.fr.yml</argument>
-        <argument>fr</argument>
-        <argument>validators</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.ar.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ar.yml</argument>
         <argument>ar</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.bg.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.bg.yml</argument>
         <argument>bg</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.ca.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ca.yml</argument>
         <argument>ca</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.cs.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.cs.yml</argument>
         <argument>cs</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.da.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.da.yml</argument>
         <argument>da</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.de.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.de.yml</argument>
         <argument>de</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.en.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.el.yml</argument>
+        <argument>el</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.en.yml</argument>
         <argument>en</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.es.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.es.yml</argument>
         <argument>es</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.et.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.et.yml</argument>
         <argument>et</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.fa.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fa.yml</argument>
         <argument>fa</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.fi.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fi.yml</argument>
         <argument>fi</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.fr.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fr.yml</argument>
         <argument>fr</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.hr.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.he.yml</argument>
+        <argument>he</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.hr.yml</argument>
         <argument>hr</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.hu.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.hu.yml</argument>
         <argument>hu</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.id.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.id.yml</argument>
         <argument>id</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.it.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.it.yml</argument>
         <argument>it</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.ja.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ja.yml</argument>
         <argument>ja</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.lb.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.lb.yml</argument>
         <argument>lb</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.lt.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.lt.yml</argument>
         <argument>lt</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.lv.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.lv.yml</argument>
         <argument>lv</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.nb.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.nb.yml</argument>
         <argument>nb</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.nl.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.nl.yml</argument>
         <argument>nl</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.pl.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.pl.yml</argument>
         <argument>pl</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.pt_BR.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.pt.yml</argument>
+        <argument>pt</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.pt_BR.yml</argument>
         <argument>pt_BR</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.pt_PT.yml</argument>
-        <argument>pt_PT</argument>
-        <argument>FOSUserBundle</argument>
-      </call>
-      <call method="addResource">
-        <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.ro.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ro.yml</argument>
         <argument>ro</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.ru.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ru.yml</argument>
         <argument>ru</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.sk.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sk.yml</argument>
         <argument>sk</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.sl.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sl.yml</argument>
         <argument>sl</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.sr_Latn.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sr_Latn.yml</argument>
         <argument>sr_Latn</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.sv.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sv.yml</argument>
         <argument>sv</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.tr.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.th.yml</argument>
+        <argument>th</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.tr.yml</argument>
         <argument>tr</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.uk.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.uk.yml</argument>
         <argument>uk</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/FOSUserBundle.zh_CN.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.vi.yml</argument>
+        <argument>vi</argument>
+        <argument>FOSUserBundle</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.zh_CN.yml</argument>
         <argument>zh_CN</argument>
         <argument>FOSUserBundle</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.ar.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ar.yml</argument>
         <argument>ar</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.bg.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.bg.yml</argument>
         <argument>bg</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.cs.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ca.yml</argument>
+        <argument>ca</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.cs.yml</argument>
         <argument>cs</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.da.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.da.yml</argument>
         <argument>da</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.de.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.de.yml</argument>
         <argument>de</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.en.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.el.yml</argument>
+        <argument>el</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.en.yml</argument>
         <argument>en</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.es.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.es.yml</argument>
         <argument>es</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.fa.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.fa.yml</argument>
         <argument>fa</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.fi.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.fi.yml</argument>
         <argument>fi</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.fr.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.fr.yml</argument>
         <argument>fr</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.hr.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.he.yml</argument>
+        <argument>he</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.hr.yml</argument>
         <argument>hr</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.hu.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.hu.yml</argument>
         <argument>hu</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.id.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.id.yml</argument>
         <argument>id</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.it.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.it.yml</argument>
         <argument>it</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.ja.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ja.yml</argument>
         <argument>ja</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.lt.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.lt.yml</argument>
         <argument>lt</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.lv.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.lv.yml</argument>
         <argument>lv</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.nb.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.nb.yml</argument>
         <argument>nb</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.nl.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.nl.yml</argument>
         <argument>nl</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.pl.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.pl.yml</argument>
         <argument>pl</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.pt.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.pt.yml</argument>
         <argument>pt</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.pt_BR.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.pt_BR.yml</argument>
         <argument>pt_BR</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.ro.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ro.yml</argument>
         <argument>ro</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.ru.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ru.yml</argument>
         <argument>ru</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.sk.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sk.yml</argument>
         <argument>sk</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.sl.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sl.yml</argument>
         <argument>sl</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.sr_Latn.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sr_Latn.yml</argument>
         <argument>sr_Latn</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.sv.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sv.yml</argument>
         <argument>sv</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.tr.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.th.yml</argument>
+        <argument>th</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.tr.yml</argument>
         <argument>tr</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.uk.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.uk.yml</argument>
         <argument>uk</argument>
         <argument>validators</argument>
       </call>
       <call method="addResource">
         <argument>yml</argument>
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/translations/validators.zh_CN.yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.vi.yml</argument>
+        <argument>vi</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.zh_CN.yml</argument>
         <argument>zh_CN</argument>
         <argument>validators</argument>
       </call>
@@ -2080,7 +2122,7 @@
       <tag name="translation.loader" alias="yml"/>
     </service>
     <service id="translation.loader.xliff" class="Symfony\Component\Translation\Loader\XliffFileLoader">
-      <tag name="translation.loader" alias="xlf" legacy-alias="xliff"/>
+      <tag name="translation.loader" alias="xlf" legacy_alias="xliff" legacy-alias="xliff"/>
     </service>
     <service id="translation.loader.po" class="Symfony\Component\Translation\Loader\PoFileLoader">
       <tag name="translation.loader" alias="po"/>
@@ -2097,7 +2139,7 @@
     <service id="translation.loader.res" class="Symfony\Component\Translation\Loader\IcuResFileLoader">
       <tag name="translation.loader" alias="res"/>
     </service>
-    <service id="translation.loader.dat" class="Symfony\Component\Translation\Loader\IcuResFileLoader">
+    <service id="translation.loader.dat" class="Symfony\Component\Translation\Loader\IcuDatFileLoader">
       <tag name="translation.loader" alias="dat"/>
     </service>
     <service id="translation.loader.ini" class="Symfony\Component\Translation\Loader\IniFileLoader">
@@ -2318,55 +2360,6 @@
               <argument key="reset">form.type.reset</argument>
               <argument key="currency">form.type.currency</argument>
               <argument key="entity">form.type.entity</argument>
-              <argument key="genemu_recaptcha">genemu.form.core.type.recaptcha</argument>
-              <argument key="genemu_captcha">genemu.form.core.type.captcha</argument>
-              <argument key="genemu_plain">genemu.form.core.type.plain</argument>
-              <argument key="genemu_tinymce">genemu.form.core.type.tinymce</argument>
-              <argument key="genemu_ajaxmodel">genemu.form.model.type.ajaxmodel</argument>
-              <argument key="genemu_jquerycolor">genemu.form.jquery.type.color</argument>
-              <argument key="genemu_jquerydate">genemu.form.jquery.type.date</argument>
-              <argument key="genemu_jqueryfile">genemu.form.jquery.type.file</argument>
-              <argument key="genemu_jquerygeolocation">genemu.form.jquery.type.geolocation</argument>
-              <argument key="genemu_jqueryimage">genemu.form.jquery.type.image</argument>
-              <argument key="genemu_jqueryrating">genemu.form.jquery.type.rating</argument>
-              <argument key="genemu_jqueryslider">genemu.form.jquery.type.slider</argument>
-              <argument key="genemu_ajaxentity">genemu.form.entity.type.ajaxentity</argument>
-              <argument key="genemu_jqueryautocomplete_text">genemu.form.jquery.type.autocomplete.text</argument>
-              <argument key="genemu_jqueryautocomplete_entity">genemu.form.jquery.type.autocomplete.entity</argument>
-              <argument key="genemu_jqueryautocomplete_document">genemu.form.jquery.type.autocomplete.document</argument>
-              <argument key="genemu_jqueryselect2_choice">genemu.form.jquery.type.select2.choice</argument>
-              <argument key="genemu_jqueryselect2_language">genemu.form.jquery.type.select2.language</argument>
-              <argument key="genemu_jqueryselect2_country">genemu.form.jquery.type.select2.country</argument>
-              <argument key="genemu_jqueryselect2_timezone">genemu.form.jquery.type.select2.timezone</argument>
-              <argument key="genemu_jqueryselect2_locale">genemu.form.jquery.type.select2.locale</argument>
-              <argument key="genemu_jqueryselect2_entity">genemu.form.jquery.type.select2.entity</argument>
-              <argument key="genemu_jqueryselect2_document">genemu.form.jquery.type.select2.document</argument>
-              <argument key="genemu_jqueryselect2_model">genemu.form.jquery.type.select2.model</argument>
-              <argument key="genemu_jqueryselect2_hidden">genemu.form.jquery.type.select2.hidden</argument>
-              <argument key="genemu_jquerychosen_choice">genemu.form.jquery.type.chosen.choice</argument>
-              <argument key="genemu_jquerychosen_language">genemu.form.jquery.type.chosen.language</argument>
-              <argument key="genemu_jquerychosen_country">genemu.form.jquery.type.chosen.country</argument>
-              <argument key="genemu_jquerychosen_timezone">genemu.form.jquery.type.chosen.timezone</argument>
-              <argument key="genemu_jquerychosen_locale">genemu.form.jquery.type.chosen.locale</argument>
-              <argument key="genemu_jquerychosen_entity">genemu.form.jquery.type.chosen.entity</argument>
-              <argument key="genemu_jquerychosen_document">genemu.form.jquery.type.chosen.document</argument>
-              <argument key="genemu_jquerychosen_model">genemu.form.jquery.type.chosen.model</argument>
-              <argument key="genemu_jqueryautocompleter_choice">genemu.form.jquery.type.autocompleter.choice</argument>
-              <argument key="genemu_jqueryautocompleter_language">genemu.form.jquery.type.autocompleter.language</argument>
-              <argument key="genemu_jqueryautocompleter_country">genemu.form.jquery.type.autocompleter.country</argument>
-              <argument key="genemu_jqueryautocompleter_timezone">genemu.form.jquery.type.autocompleter.timezone</argument>
-              <argument key="genemu_jqueryautocompleter_locale">genemu.form.jquery.type.autocompleter.locale</argument>
-              <argument key="genemu_jqueryautocompleter_entity">genemu.form.jquery.type.autocompleter.entity</argument>
-              <argument key="genemu_jqueryautocompleter_document">genemu.form.jquery.type.autocompleter.document</argument>
-              <argument key="genemu_jqueryautocompleter_model">genemu.form.jquery.type.autocompleter.model</argument>
-              <argument key="genemu_jquerytokeninput_choice">genemu.form.jquery.type.tokeninput.choice</argument>
-              <argument key="genemu_jquerytokeninput_language">genemu.form.jquery.type.tokeninput.language</argument>
-              <argument key="genemu_jquerytokeninput_country">genemu.form.jquery.type.tokeninput.country</argument>
-              <argument key="genemu_jquerytokeninput_timezone">genemu.form.jquery.type.tokeninput.timezone</argument>
-              <argument key="genemu_jquerytokeninput_locale">genemu.form.jquery.type.tokeninput.locale</argument>
-              <argument key="genemu_jquerytokeninput_entity">genemu.form.jquery.type.tokeninput.entity</argument>
-              <argument key="genemu_jquerytokeninput_document">genemu.form.jquery.type.tokeninput.document</argument>
-              <argument key="genemu_jquerytokeninput_model">genemu.form.jquery.type.tokeninput.model</argument>
               <argument key="fos_user_username">fos_user.username_form_type</argument>
               <argument key="fos_user_profile">fos_user.profile.form.type</argument>
               <argument key="fos_user_registration">fos_user.registration.form.type</argument>
@@ -2629,8 +2622,8 @@
               <service class="Symfony\Component\Validator\Mapping\Loader\XmlFilesLoader" public="false">
                 <argument type="collection">
                   <argument>/Applications/MAMP/htdocs/vc/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml</argument>
-                  <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/validation.xml</argument>
-                  <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/validation/orm.xml</argument>
+                  <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/config/validation.xml</argument>
+                  <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/config/validation/orm.xml</argument>
                 </argument>
               </service>
             </argument>
@@ -2724,10 +2717,9 @@
       </call>
       <call method="add">
         <argument type="service">
-          <service class="Symfony\Bridge\Swiftmailer\DataCollector\MessageDataCollector" public="false">
-            <tag name="data_collector" template="SwiftmailerBundle:Collector:swiftmailer" id="swiftmailer"/>
+          <service class="Symfony\Bundle\SwiftmailerBundle\DataCollector\MessageDataCollector" public="false">
+            <tag name="data_collector" template="@Swiftmailer/Collector/swiftmailer.html.twig" id="swiftmailer"/>
             <argument type="service" id="service_container"/>
-            <argument>true</argument>
           </service>
         </argument>
       </call>
@@ -2872,7 +2864,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>51f5ccd5d9d18</argument>
+            <argument>544567f148bb3</argument>
           </service>
         </argument>
       </argument>
@@ -3137,7 +3129,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>51f5ccd5d9d18</argument>
+            <argument>544567f148bb3</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -3195,7 +3187,6 @@
               </service>
             </argument>
             <argument type="service" id="security.authentication.manager"/>
-            <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
       </argument>
@@ -3318,7 +3309,18 @@
         <argument type="service">
           <service class="Symfony\Bridge\Twig\Extension\FormExtension" public="false">
             <tag name="twig.extension"/>
-            <argument type="service" id="twig.form.renderer"/>
+            <argument type="service">
+              <service class="Symfony\Bridge\Twig\Form\TwigRenderer" public="false">
+                <argument type="service">
+                  <service class="Symfony\Bridge\Twig\Form\TwigRendererEngine" public="false">
+                    <argument type="collection">
+                      <argument>form_div_layout.html.twig</argument>
+                    </argument>
+                  </service>
+                </argument>
+                <argument type="service" id="form.csrf_provider" on-invalid="null"/>
+              </service>
+            </argument>
           </service>
         </argument>
       </call>
@@ -3351,28 +3353,12 @@
         </argument>
       </call>
       <call method="addExtension">
-        <argument type="service" id="genemu.twig.extension.form"/>
-      </call>
-      <call method="addExtension">
         <argument type="service" id="knp_paginator.twig.extension.pagination"/>
       </call>
       <call method="addGlobal">
         <argument>app</argument>
         <argument type="service" id="templating.globals"/>
       </call>
-    </service>
-    <service id="twig.form.renderer" class="Symfony\Bridge\Twig\Form\TwigRenderer" public="false">
-      <argument type="service">
-        <service class="Symfony\Bridge\Twig\Form\TwigRendererEngine" public="false">
-          <argument type="collection">
-            <argument>form_div_layout.html.twig</argument>
-            <argument>GenemuFormBundle:Form:div_layout.html.twig</argument>
-            <argument>GenemuFormBundle:Form:jquery_layout.html.twig</argument>
-            <argument>GenemuFormBundle:Form:stylesheet_layout.html.twig</argument>
-          </argument>
-        </service>
-      </argument>
-      <argument type="service" id="form.csrf_provider" on-invalid="null"/>
     </service>
     <service id="twig.translation.extractor" class="Symfony\Bridge\Twig\Translation\TwigExtractor">
       <tag name="translation.extractor" alias="twig"/>
@@ -3403,13 +3389,16 @@
       <argument>200</argument>
       <argument>true</argument>
     </service>
-    <service id="swiftmailer.transport.eventdispatcher" class="Swift_Events_SimpleEventDispatcher" public="false"/>
-    <service id="swiftmailer.plugin.messagelogger" class="Swift_Plugins_MessageLogger">
-      <tag name="swiftmailer.plugin"/>
-    </service>
     <service id="swiftmailer.email_sender.listener" class="Symfony\Bundle\SwiftmailerBundle\EventListener\EmailSenderListener">
       <tag name="kernel.event_subscriber"/>
       <argument type="service" id="service_container"/>
+    </service>
+    <service id="swiftmailer.mailer.default.transport.eventdispatcher" class="Swift_Events_SimpleEventDispatcher" public="false"/>
+    <service id="swiftmailer.mailer.default" class="Swift_Mailer">
+      <argument type="service" id="swiftmailer.mailer.default.transport"/>
+    </service>
+    <service id="swiftmailer.mailer.default.plugin.messagelogger" class="Swift_Plugins_MessageLogger">
+      <tag name="swiftmailer.default.plugin"/>
     </service>
     <service id="assetic.filter_manager" class="Symfony\Bundle\AsseticBundle\FilterManager">
       <argument type="service" id="service_container"/>
@@ -3508,13 +3497,13 @@
     <service id="doctrine.dbal.logger.profiling.default" class="Doctrine\DBAL\Logging\DebugStack" public="false"/>
     <service id="doctrine.dbal.default_connection" class="stdClass" factory-method="createConnection" factory-service="doctrine.dbal.connection_factory">
       <argument type="collection">
-        <argument key="dbname">vc</argument>
-        <argument key="host">127.0.0.1</argument>
-        <argument key="port">8889</argument>
-        <argument key="user">root</argument>
-        <argument key="password">root</argument>
-        <argument key="charset">UTF8</argument>
         <argument key="driver">pdo_mysql</argument>
+        <argument key="host">127.0.0.1</argument>
+        <argument key="port">3306</argument>
+        <argument key="dbname">vc</argument>
+        <argument key="user">root</argument>
+        <argument key="password">esemp75</argument>
+        <argument key="charset">UTF8</argument>
         <argument key="driverOptions" type="collection"/>
       </argument>
       <argument type="service">
@@ -3574,13 +3563,12 @@
       <argument type="collection"/>
       <argument type="collection"/>
     </service>
-    <service id="doctrine.orm.default_entity_manager" class="Doctrine\ORM\EntityManager" factory-method="create">
+    <service id="doctrine.orm.default_entity_manager" class="Doctrine\ORM\EntityManager" factory-method="create" factory-class="%doctrine.orm.entity_manager.class%">
       <argument type="service" id="doctrine.dbal.default_connection"/>
       <argument type="service">
         <service class="Doctrine\ORM\Configuration" public="false">
           <call method="setEntityNamespaces">
             <argument type="collection">
-              <argument key="FOSUserBundle">FOS\UserBundle\Entity</argument>
               <argument key="UserBundle">VC\UserBundle\Entity</argument>
               <argument key="VCReservasBundle">VC\ReservasBundle\Entity</argument>
               <argument key="VCBaseBundle">VC\BaseBundle\Entity</argument>
@@ -3616,19 +3604,6 @@
           <call method="setMetadataDriverImpl">
             <argument type="service">
               <service class="Doctrine\ORM\Mapping\Driver\DriverChain" public="false">
-                <call method="addDriver">
-                  <argument type="service">
-                    <service class="Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver" public="false">
-                      <argument type="collection">
-                        <argument key="/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/doctrine">FOS\UserBundle\Entity</argument>
-                      </argument>
-                      <call method="setGlobalBasename">
-                        <argument>mapping</argument>
-                      </call>
-                    </service>
-                  </argument>
-                  <argument>FOS\UserBundle\Entity</argument>
-                </call>
                 <call method="addDriver">
                   <argument type="service">
                     <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
@@ -3674,7 +3649,7 @@
                       <argument type="service">
                         <service class="Doctrine\Common\Persistence\Mapping\Driver\SymfonyFileLocator">
                           <argument type="collection">
-                            <argument key="/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/config/doctrine/model">FOS\UserBundle\Model</argument>
+                            <argument key="/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/config/doctrine/model">FOS\UserBundle\Model</argument>
                           </argument>
                           <argument>.orm.xml</argument>
                         </service>
@@ -3746,263 +3721,6 @@
     </service>
     <service id="sensio_framework_extra.cache.listener" class="Sensio\Bundle\FrameworkExtraBundle\EventListener\CacheListener">
       <tag name="kernel.event_subscriber"/>
-    </service>
-    <service id="genemu.twig.extension.form" class="Genemu\Bundle\FormBundle\Twig\Extension\FormExtension">
-      <tag name="twig.extension"/>
-      <argument type="service" id="twig.form.renderer"/>
-    </service>
-    <service id="genemu.gd.captcha" class="Genemu\Bundle\FormBundle\Gd\Type\Captcha">
-      <argument type="service" id="session"/>
-      <argument>VacuumCooling2013RS</argument>
-    </service>
-    <service id="genemu.form.type_recaptcha.validator" class="Genemu\Bundle\FormBundle\Form\Core\Validator\ReCaptchaValidator">
-      <argument type="service" id="request" strict="false"/>
-      <argument></argument>
-      <argument type="collection"/>
-    </service>
-    <service id="genemu.form.core.type.recaptcha" class="Genemu\Bundle\FormBundle\Form\Core\Type\ReCaptchaType">
-      <tag name="form.type" alias="genemu_recaptcha"/>
-      <argument type="service" id="genemu.form.type_recaptcha.validator"/>
-      <argument></argument>
-      <argument></argument>
-      <argument type="collection"/>
-    </service>
-    <service id="genemu.form.core.type.captcha" class="Genemu\Bundle\FormBundle\Form\Core\Type\CaptchaType">
-      <tag name="form.type" alias="genemu_captcha"/>
-      <argument type="service" id="genemu.gd.captcha"/>
-      <argument type="collection">
-        <argument key="enabled">true</argument>
-        <argument key="driver">gd</argument>
-        <argument key="width">100</argument>
-        <argument key="height">30</argument>
-        <argument key="length">4</argument>
-        <argument key="format">png</argument>
-        <argument key="chars" type="collection">
-          <argument>0</argument>
-          <argument>1</argument>
-          <argument>2</argument>
-          <argument>3</argument>
-          <argument>4</argument>
-          <argument>5</argument>
-          <argument>6</argument>
-          <argument>7</argument>
-          <argument>8</argument>
-          <argument>9</argument>
-        </argument>
-        <argument key="font_size">18</argument>
-        <argument key="grayscale">false</argument>
-        <argument key="font_color" type="collection">
-          <argument>252525</argument>
-          <argument>8B8787</argument>
-          <argument>550707</argument>
-          <argument>3526E6</argument>
-          <argument>88531E</argument>
-        </argument>
-        <argument key="fonts" type="collection">
-          <argument>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/akbar.ttf</argument>
-          <argument>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/brushcut.ttf</argument>
-          <argument>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/molten.ttf</argument>
-          <argument>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/planetbe.ttf</argument>
-          <argument>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/whoobub.ttf</argument>
-        </argument>
-        <argument key="background_color">DDDDDD</argument>
-        <argument key="border_color">000000</argument>
-        <argument key="code">null</argument>
-      </argument>
-    </service>
-    <service id="genemu.form.core.type.plain" class="Genemu\Bundle\FormBundle\Form\Core\Type\PlainType">
-      <tag name="form.type" alias="genemu_plain"/>
-    </service>
-    <service id="genemu.form.core.type.tinymce" class="Genemu\Bundle\FormBundle\Form\Core\Type\TinymceType">
-      <tag name="form.type" alias="genemu_tinymce"/>
-      <argument type="collection">
-        <argument key="theme">advanced</argument>
-      </argument>
-    </service>
-    <service id="genemu.form.model.type.ajaxmodel" class="Genemu\Bundle\FormBundle\Form\Model\Type\AjaxModelType">
-      <tag name="form.type" alias="genemu_ajaxmodel"/>
-    </service>
-    <service id="genemu.form.jquery.type.color" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ColorType">
-      <tag name="form.type" alias="genemu_jquerycolor"/>
-      <argument type="collection"/>
-    </service>
-    <service id="genemu.form.jquery.type.date" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\DateType">
-      <tag name="form.type" alias="genemu_jquerydate"/>
-      <argument type="collection">
-        <argument key="dateFormat">Y-m-d</argument>
-        <argument key="locale">es</argument>
-      </argument>
-    </service>
-    <service id="genemu.form.jquery.type.file" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\FileType">
-      <tag name="form.type" alias="genemu_jqueryfile"/>
-      <argument type="collection"/>
-      <argument>/Applications/MAMP/htdocs/vc/app/../web</argument>
-    </service>
-    <service id="genemu.form.jquery.type.geolocation" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\GeolocationType">
-      <tag name="form.type" alias="genemu_jquerygeolocation"/>
-    </service>
-    <service id="genemu.form.jquery.type.image" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ImageType">
-      <tag name="form.type" alias="genemu_jqueryimage"/>
-      <argument></argument>
-      <argument type="collection"/>
-      <argument type="collection"/>
-    </service>
-    <service id="genemu.form.jquery.type.rating" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\RatingType">
-      <tag name="form.type" alias="genemu_jqueryrating"/>
-      <argument type="collection"/>
-    </service>
-    <service id="genemu.form.jquery.type.slider" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\SliderType">
-      <tag name="form.type" alias="genemu_jqueryslider"/>
-    </service>
-    <service id="genemu.form.entity.type.ajaxentity" class="Genemu\Bundle\FormBundle\Form\Doctrine\Type\AjaxEntityType">
-      <tag name="form.type" alias="genemu_ajaxentity"/>
-      <argument type="service" id="doctrine" on-invalid="ignore"/>
-    </service>
-    <service id="genemu.form.jquery.type.autocomplete.text" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleteType">
-      <tag name="form.type" alias="genemu_jqueryautocomplete_text"/>
-      <argument>text</argument>
-    </service>
-    <service id="genemu.form.jquery.type.autocomplete.entity" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleteType">
-      <tag name="form.type" alias="genemu_jqueryautocomplete_entity"/>
-      <argument>entity</argument>
-      <argument type="service" id="doctrine" on-invalid="null"/>
-    </service>
-    <service id="genemu.form.jquery.type.autocomplete.document" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleteType">
-      <tag name="form.type" alias="genemu_jqueryautocomplete_document"/>
-      <argument>document</argument>
-      <argument>null</argument>
-    </service>
-    <service id="genemu.form.jquery.type.select2.choice" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
-      <tag name="form.type" alias="genemu_jqueryselect2_choice"/>
-      <argument>choice</argument>
-    </service>
-    <service id="genemu.form.jquery.type.select2.language" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
-      <tag name="form.type" alias="genemu_jqueryselect2_language"/>
-      <argument>language</argument>
-    </service>
-    <service id="genemu.form.jquery.type.select2.country" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
-      <tag name="form.type" alias="genemu_jqueryselect2_country"/>
-      <argument>country</argument>
-    </service>
-    <service id="genemu.form.jquery.type.select2.timezone" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
-      <tag name="form.type" alias="genemu_jqueryselect2_timezone"/>
-      <argument>timezone</argument>
-    </service>
-    <service id="genemu.form.jquery.type.select2.locale" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
-      <tag name="form.type" alias="genemu_jqueryselect2_locale"/>
-      <argument>locale</argument>
-    </service>
-    <service id="genemu.form.jquery.type.select2.entity" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
-      <tag name="form.type" alias="genemu_jqueryselect2_entity"/>
-      <argument>entity</argument>
-    </service>
-    <service id="genemu.form.jquery.type.select2.document" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
-      <tag name="form.type" alias="genemu_jqueryselect2_document"/>
-      <argument>document</argument>
-    </service>
-    <service id="genemu.form.jquery.type.select2.model" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
-      <tag name="form.type" alias="genemu_jqueryselect2_model"/>
-      <argument>model</argument>
-    </service>
-    <service id="genemu.form.jquery.type.select2.hidden" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
-      <tag name="form.type" alias="genemu_jqueryselect2_hidden"/>
-      <argument>hidden</argument>
-    </service>
-    <service id="genemu.form.jquery.type.chosen.choice" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ChosenType">
-      <tag name="form.type" alias="genemu_jquerychosen_choice"/>
-      <argument>choice</argument>
-    </service>
-    <service id="genemu.form.jquery.type.chosen.language" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ChosenType">
-      <tag name="form.type" alias="genemu_jquerychosen_language"/>
-      <argument>language</argument>
-    </service>
-    <service id="genemu.form.jquery.type.chosen.country" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ChosenType">
-      <tag name="form.type" alias="genemu_jquerychosen_country"/>
-      <argument>country</argument>
-    </service>
-    <service id="genemu.form.jquery.type.chosen.timezone" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ChosenType">
-      <tag name="form.type" alias="genemu_jquerychosen_timezone"/>
-      <argument>timezone</argument>
-    </service>
-    <service id="genemu.form.jquery.type.chosen.locale" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ChosenType">
-      <tag name="form.type" alias="genemu_jquerychosen_locale"/>
-      <argument>locale</argument>
-    </service>
-    <service id="genemu.form.jquery.type.chosen.entity" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ChosenType">
-      <tag name="form.type" alias="genemu_jquerychosen_entity"/>
-      <argument>entity</argument>
-    </service>
-    <service id="genemu.form.jquery.type.chosen.document" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ChosenType">
-      <tag name="form.type" alias="genemu_jquerychosen_document"/>
-      <argument>document</argument>
-    </service>
-    <service id="genemu.form.jquery.type.chosen.model" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ChosenType">
-      <tag name="form.type" alias="genemu_jquerychosen_model"/>
-      <argument>model</argument>
-    </service>
-    <service id="genemu.form.jquery.type.autocompleter.choice" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleterType">
-      <tag name="form.type" alias="genemu_jqueryautocompleter_choice"/>
-      <argument>choice</argument>
-    </service>
-    <service id="genemu.form.jquery.type.autocompleter.language" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleterType">
-      <tag name="form.type" alias="genemu_jqueryautocompleter_language"/>
-      <argument>language</argument>
-    </service>
-    <service id="genemu.form.jquery.type.autocompleter.country" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleterType">
-      <tag name="form.type" alias="genemu_jqueryautocompleter_country"/>
-      <argument>country</argument>
-    </service>
-    <service id="genemu.form.jquery.type.autocompleter.timezone" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleterType">
-      <tag name="form.type" alias="genemu_jqueryautocompleter_timezone"/>
-      <argument>timezone</argument>
-    </service>
-    <service id="genemu.form.jquery.type.autocompleter.locale" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleterType">
-      <tag name="form.type" alias="genemu_jqueryautocompleter_locale"/>
-      <argument>locale</argument>
-    </service>
-    <service id="genemu.form.jquery.type.autocompleter.entity" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleterType">
-      <tag name="form.type" alias="genemu_jqueryautocompleter_entity"/>
-      <argument>entity</argument>
-    </service>
-    <service id="genemu.form.jquery.type.autocompleter.document" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleterType">
-      <tag name="form.type" alias="genemu_jqueryautocompleter_document"/>
-      <argument>document</argument>
-    </service>
-    <service id="genemu.form.jquery.type.autocompleter.model" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleterType">
-      <tag name="form.type" alias="genemu_jqueryautocompleter_model"/>
-      <argument>model</argument>
-    </service>
-    <service id="genemu.form.jquery.type.tokeninput.choice" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\TokeninputType">
-      <tag name="form.type" alias="genemu_jquerytokeninput_choice"/>
-      <argument>choice</argument>
-    </service>
-    <service id="genemu.form.jquery.type.tokeninput.language" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\TokeninputType">
-      <tag name="form.type" alias="genemu_jquerytokeninput_language"/>
-      <argument>language</argument>
-    </service>
-    <service id="genemu.form.jquery.type.tokeninput.country" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\TokeninputType">
-      <tag name="form.type" alias="genemu_jquerytokeninput_country"/>
-      <argument>country</argument>
-    </service>
-    <service id="genemu.form.jquery.type.tokeninput.timezone" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\TokeninputType">
-      <tag name="form.type" alias="genemu_jquerytokeninput_timezone"/>
-      <argument>timezone</argument>
-    </service>
-    <service id="genemu.form.jquery.type.tokeninput.locale" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\TokeninputType">
-      <tag name="form.type" alias="genemu_jquerytokeninput_locale"/>
-      <argument>locale</argument>
-    </service>
-    <service id="genemu.form.jquery.type.tokeninput.entity" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\TokeninputType">
-      <tag name="form.type" alias="genemu_jquerytokeninput_entity"/>
-      <argument>entity</argument>
-    </service>
-    <service id="genemu.form.jquery.type.tokeninput.document" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\TokeninputType">
-      <tag name="form.type" alias="genemu_jquerytokeninput_document"/>
-      <argument>document</argument>
-    </service>
-    <service id="genemu.form.jquery.type.tokeninput.model" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\TokeninputType">
-      <tag name="form.type" alias="genemu_jquerytokeninput_model"/>
-      <argument>model</argument>
     </service>
     <service id="knp_paginator" class="Knp\Component\Pager\Paginator">
       <argument type="service" id="event_dispatcher"/>
@@ -4180,7 +3898,7 @@
         </argument>
         <argument key="swiftmailer.data_collector" type="collection">
           <argument>swiftmailer</argument>
-          <argument>SwiftmailerBundle:Collector:swiftmailer</argument>
+          <argument>@Swiftmailer/Collector/swiftmailer.html.twig</argument>
         </argument>
         <argument key="data_collector.doctrine" type="collection">
           <argument>db</argument>
@@ -4363,6 +4081,9 @@
       <argument type="service" id="templating.loader"/>
       <argument type="service" id="debug.stopwatch"/>
       <argument type="service" id="templating.globals"/>
+      <call method="setCharset">
+        <argument>UTF-8</argument>
+      </call>
       <call method="setHelpers">
         <argument type="collection">
           <argument key="slots">templating.helper.slots</argument>
@@ -4386,7 +4107,6 @@
       <argument type="service" id="templating.name_parser"/>
       <argument type="service" id="templating.locator"/>
       <argument type="service" id="debug.stopwatch"/>
-      <argument type="service" id="templating.globals"/>
       <call method="setDefaultEscapingStrategy">
         <argument type="collection">
           <argument type="service" id="templating"/>
@@ -4458,15 +4178,11 @@
         <argument>Doctrine</argument>
       </call>
       <call method="addPath">
-        <argument>/Applications/MAMP/htdocs/vc/vendor/genemu/form-bundle/Genemu/Bundle/FormBundle/Resources/views</argument>
-        <argument>GenemuForm</argument>
-      </call>
-      <call method="addPath">
         <argument>/Applications/MAMP/htdocs/vc/vendor/knplabs/knp-paginator-bundle/Knp/Bundle/PaginatorBundle/Resources/views</argument>
         <argument>KnpPaginator</argument>
       </call>
       <call method="addPath">
-        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/views</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/views</argument>
         <argument>FOSUser</argument>
       </call>
       <call method="addPath">
@@ -4515,17 +4231,15 @@
         <argument type="service" id="monolog.handler.debug"/>
       </call>
     </service>
-    <service id="swiftmailer.transport" class="Swift_Transport_SpoolTransport">
-      <argument type="service" id="swiftmailer.transport.eventdispatcher"/>
-      <argument type="service" id="swiftmailer.spool"/>
+    <service id="swiftmailer.mailer.default.transport" class="Swift_Transport_SpoolTransport">
+      <argument type="service" id="swiftmailer.mailer.default.transport.eventdispatcher"/>
+      <argument type="service" id="swiftmailer.mailer.default.spool"/>
       <call method="registerPlugin">
-        <argument type="service" id="swiftmailer.plugin.messagelogger"/>
+        <argument type="service" id="swiftmailer.mailer.default.plugin.messagelogger"/>
       </call>
     </service>
-    <service id="mailer" class="Swift_Mailer">
-      <argument type="service" id="swiftmailer.transport"/>
-    </service>
-    <service id="swiftmailer.transport.real" class="Swift_Transport_EsmtpTransport">
+    <service id="swiftmailer.mailer.default.spool" class="Swift_MemorySpool"/>
+    <service id="swiftmailer.mailer.default.transport.real" class="Swift_Transport_EsmtpTransport">
       <argument type="service">
         <service class="Swift_Transport_StreamBuffer" public="false">
           <argument type="service">
@@ -4547,10 +4261,19 @@
                 <service class="Swift_Transport_Esmtp_Auth_PlainAuthenticator" public="false"/>
               </argument>
             </argument>
+            <call method="setUsername">
+              <argument>null</argument>
+            </call>
+            <call method="setPassword">
+              <argument>null</argument>
+            </call>
+            <call method="setAuthMode">
+              <argument>null</argument>
+            </call>
           </service>
         </argument>
       </argument>
-      <argument type="service" id="swiftmailer.transport.eventdispatcher"/>
+      <argument type="service" id="swiftmailer.mailer.default.transport.eventdispatcher"/>
       <call method="setHost">
         <argument>127.0.0.1</argument>
       </call>
@@ -4560,15 +4283,6 @@
       <call method="setEncryption">
         <argument>null</argument>
       </call>
-      <call method="setUsername">
-        <argument>null</argument>
-      </call>
-      <call method="setPassword">
-        <argument>null</argument>
-      </call>
-      <call method="setAuthMode">
-        <argument>null</argument>
-      </call>
       <call method="setTimeout">
         <argument>30</argument>
       </call>
@@ -4576,9 +4290,8 @@
         <argument>null</argument>
       </call>
     </service>
-    <service id="swiftmailer.spool" class="Swift_MemorySpool"/>
     <service id="fos_user.mailer" class="FOS\UserBundle\Mailer\Mailer">
-      <argument type="service" id="mailer"/>
+      <argument type="service" id="swiftmailer.mailer.default"/>
       <argument type="service" id="router"/>
       <argument type="service" id="templating"/>
       <argument type="collection">
@@ -4612,6 +4325,12 @@
     <service id="session.storage" alias="session.storage.native"/>
     <service id="translator" alias="translator.default"/>
     <service id="debug.templating.engine.twig" alias="templating"/>
+    <service id="swiftmailer.spool" alias="swiftmailer.mailer.default.spool"/>
+    <service id="swiftmailer.transport.real" alias="swiftmailer.mailer.default.transport.real"/>
+    <service id="swiftmailer.plugin.messagelogger" alias="swiftmailer.mailer.default.plugin.messagelogger"/>
+    <service id="swiftmailer.mailer" alias="swiftmailer.mailer.default"/>
+    <service id="swiftmailer.transport" alias="swiftmailer.mailer.default.transport"/>
+    <service id="mailer" alias="swiftmailer.mailer.default"/>
     <service id="database_connection" alias="doctrine.dbal.default_connection"/>
     <service id="doctrine.orm.entity_manager" alias="doctrine.orm.default_entity_manager"/>
     <service id="fos_user.util.username_canonicalizer" alias="fos_user.util.email_canonicalizer"/>

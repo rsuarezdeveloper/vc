@@ -1,4 +1,12 @@
 {% extends '::base.html.twig' %}
+{%block stylesheets %}
+<style>
+table.record_properties td
+{
+	padding:2px 10px;
+}
+</style>
+{%endblock%}
 
 {% block body -%}
     <h1>Reserva</h1>
@@ -14,20 +22,20 @@
                 <td>{{ entity.creacion|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Fechaservicio</th>
-                <td>{{ entity.fechaServicio|date('Y-m-d H:i:s') }}</td>
+                <th>Fecha servicio</th>
+                <td>{{ entity.fechaServicio|date('Y-m-d') }}</td>
             </tr>
             <tr>
                 <th>Guiamaster</th>
                 <td>{{ entity.guiaMaster }}</td>
             </tr>
             <tr>
-                <th>Horaservicio</th>
-                <td>{{ entity.horaServicio }}</td>
+                <th>Hora servicio</th>
+                <td>{{ entity.horaServicio|date('H:i') }}</td>
             </tr>
             <tr>
-                <th>Temperaturarequerida</th>
-                <td>{{ entity.temperaturaRequerida }}</td>
+                <th>Temperatura requerida</th>
+                <td>{{ entity.temperaturaRequerida|number_format(2) }}</td>
             </tr>
             <tr>
                 <th>Contacto</th>

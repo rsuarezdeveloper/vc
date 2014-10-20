@@ -183,10 +183,88 @@ class Reserva extends \VC\ReservasBundle\Entity\Reserva implements \Doctrine\ORM
         return parent::getCliente();
     }
 
+    public function addProducto(\VC\ReservasBundle\Entity\ReservaProducto $productos)
+    {
+        $this->__load();
+        return parent::addProducto($productos);
+    }
+
+    public function removeProducto(\VC\ReservasBundle\Entity\ReservaProducto $productos)
+    {
+        $this->__load();
+        return parent::removeProducto($productos);
+    }
+
+    public function getProductos()
+    {
+        $this->__load();
+        return parent::getProductos();
+    }
+
+    public function setLargo($largo)
+    {
+        $this->__load();
+        return parent::setLargo($largo);
+    }
+
+    public function getLargo()
+    {
+        $this->__load();
+        return parent::getLargo();
+    }
+
+    public function setAncho($ancho)
+    {
+        $this->__load();
+        return parent::setAncho($ancho);
+    }
+
+    public function getAncho()
+    {
+        $this->__load();
+        return parent::getAncho();
+    }
+
+    public function setAlto($alto)
+    {
+        $this->__load();
+        return parent::setAlto($alto);
+    }
+
+    public function getAlto()
+    {
+        $this->__load();
+        return parent::getAlto();
+    }
+
+    public function setStatus(\VC\BaseBundle\Entity\Status $status = NULL)
+    {
+        $this->__load();
+        return parent::setStatus($status);
+    }
+
+    public function getStatus()
+    {
+        $this->__load();
+        return parent::getStatus();
+    }
+
+    public function setMailContacto($mailContacto)
+    {
+        $this->__load();
+        return parent::setMailContacto($mailContacto);
+    }
+
+    public function getMailContacto()
+    {
+        $this->__load();
+        return parent::getMailContacto();
+    }
+
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'creacion', 'fechaServicio', 'guiaMaster', 'horaServicio', 'temperaturaRequerida', 'contacto', 'notas', 'agencia', 'aerolinea', 'cliente', 'creado_por');
+        return array('__isInitialized__', 'id', 'creacion', 'fechaServicio', 'guiaMaster', 'horaServicio', 'temperaturaRequerida', 'contacto', 'mailContacto', 'notas', 'agencia', 'aerolinea', 'cliente', 'status', 'creado_por', 'productos');
     }
 
     public function __clone()

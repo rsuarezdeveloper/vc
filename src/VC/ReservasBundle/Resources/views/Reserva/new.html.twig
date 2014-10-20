@@ -2,6 +2,7 @@
 {%block page_header%}Nueva Reserva{% endblock %}
 {%block stylesheets%}
      {{ form_stylesheet(form) }}
+     <link rel="stylesheet" href="{{ asset('css/jquery.timepicker.css') }}"/>
 {% endblock %}
 {% block body -%}
     <form action="{{ path('reserva_create') }}" method="post" {{ form_enctype(form) }} novalidate=novalidate>
@@ -17,7 +18,9 @@
                     {%endif%}
                 </td>
                 <td><label>Fecha de Servicio:</label>{{ form_widget(form.fechaServicio) }}</td>
-                <td><label>Hora de Servicio:</label>{{ form_widget(form.horaServicio) }}</td>
+                <td><label>Hora de Servicio:</label><div class="bootstrap-timepicker">
+					{{ form_widget(form.horaServicio) }}</div>
+				</td>
             </tr>
             <tr>
                 <td><label>Guia Master:</label>{{ form_widget(form.guiaMaster) }}</td>
@@ -28,6 +31,9 @@
                 <td><label>Agencia:</label>{{ form_widget(form.agencia) }}</td>
                 <td><label>Aerolinea:</label>{{ form_widget(form.aerolinea) }}</td>
                 <td><label>Notas:</label>{{ form_widget(form.notas) }}</td>
+            </tr>
+            <tr>
+
             </tr>
         </table>
         {{form_rest(form)}}
@@ -54,6 +60,7 @@
 {% endblock %}
 {% block javascripts%}
     {{form_javascript(form)}}
+
     <script>
         $(document).ready(function(){
                 var tr_producto='<tr><td><a href="#" class="delete"><i class="icon-trash"></i></a></td><td><input type="text" name="producto_nombre[]" id="producto_nombre[]" placeholder="Nombre Producto"/></td><td><input type="text" name="producto_piezas[]" id="producto_piezas[]" placeholder="0" dir="rtl" class="input-small"/></td><td><input type="text" name="producto_fbe[]" id="producto_fbe[]" placeholder="0" dir="rtl" class="input-small"/></td></tr>';
@@ -65,7 +72,11 @@
                 $(".delete").live('click', function(event) {
                         $(this).parent().parent().remove();
                 });
-                
+              $('#vc_reservasbundle_reservatype_horaServicio').timepicker({
+				  showInputs:false,
+				  
+				  minuteStep:1
+				  });
                 
             });
         

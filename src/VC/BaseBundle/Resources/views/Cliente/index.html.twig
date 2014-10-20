@@ -1,35 +1,59 @@
 {% extends '::base.html.twig' %}
 {%block page_header%}Maestro de Clientes{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/jquery-ui-1.9.2.custom.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/jquery-ui-1.10.0.custom.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/ui.jqgrid.css') }}" />
+
+{% endblock %}
 {% block body -%}
+
     <a href="{{ path('cliente_new') }}" class="btn btn-primary ">
                 <i class="icon-white icon-file"></i>
                 Crear nuevo
             </a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Direcci&oacute;n</th>
-                <th>Tel&eacute;fono</th>
-                <th>Email</th>
-                <th>Contacto</th>
-                <th>Nit</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('cliente_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.nombre }}</td>
-                <td>{{ entity.direccion }}</td>
-                <td>{{ entity.telefono }}</td>
-                <td>{{ entity.email }}</td>
-                <td>{{ entity.contacto }}</td>
-                <td>{{ entity.nit }}</td>
-                <td><a href="{{ path('cliente_edit', { 'id': entity.id }) }}"><i class="icon-pencil"></i></a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
+    <p></p>
+    <table id="list">
     </table>
+    <div id="pager">
+    </div>
+    <div id="botoneraTemplate"  style="display:none;"><a rel="tooltip" title="Editar Cliente" href="{{ path('cliente_edit', {'id': '__id'}) }}" class="btn btn-primary btn-mini"><i class="icon-pencil icon-white"></i></a><a href="{{path('cliente_show',{'id': '__id'}) }}" rel="tooltip" class="btn-mini btn btn-success btn-default" data-toggle="tooltip" title="Borrar Cliente"><i class="icon-trash icon-white"></i></a></div>
 {% endblock %}
+{% block javascripts %}
+	<script type="text/javascript" src="{{asset('js/jqgrid/js/jquery.jqGrid.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('js/jqgrid/js/i18n/grid.locale-es.js')}}"></script>
+	<script>
+		$(document).ready(function(){
+			$("#list").jqGrid({
+				url:"{{path('cliente_list')}}",
+				datatype:"json",
+				colNames:['Nombre','Direccion','Telefono','E-mail','Contacto','NIT','Acciones'],
+				colModel:[
+					{name:'nombre',index:'nombre',width:120,align:"center",search:true},
+					{name:'direccion',width:160,align:"center",search:false},
+					{name:'telefono',width:120,align:"center",search:false},
+					{name:'email',width:200,align:"center",search:false},
+					{name:'contacto',width:160,align:"center"},
+					{name:'nit',width:120,align:"center",search:false},
+					{name:'acciones',width:120,jsonmap:"id",align:'center',formatter:botonera,search:false,sortable:false},
+				],
+				pager:"#pager",
+				gridview:true,
+				rowList:[2,10,20,50],
+				viewrecords:true,
+				rownumbers:true,
+				viewsortcols:[true,'horizontal',true],
+				height:'100%',
+			});
+			$("#list").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false, defaultSearch:'cn'});
+			});
+			function botonera(cellvalue, options, rowObject)
+			{
+                	var html=$("#botoneraTemplate").html();
+                	html=html.replace(/__id/g,cellvalue);
+		        	return html;
+		    }
+		    $('body').on('mouseover','[rel=tooltip]',function(){$(this).tooltip('show'); });
+	
+	</script>
+{%endblock%}

@@ -11,15 +11,21 @@ class ReservaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+			->add('mailContacto')
             //->add('creacion')
             ->add('fechaServicio','genemu_jquerydate',array(
             'widget' => 'single_text',
-            'culture' => 'es',
-            'configs' => array("dateFormat"=>"Y-m-d", "minDate" =>-1)
-            
+            'culture' => 'es',            
         ))
+
             ->add('guiaMaster')
-            ->add('horaServicio')
+            ->add('horaServicio'
+            ,'text'
+            ,array(
+            //"data_class"=>"DateTime",
+            "data"=>($builder->getData()->getHoraServicio()?$builder->getData()->getHoraServicio()->format("H:i"):null)
+            )
+            )
             ->add('temperaturaRequerida', 'text')
             ->add('contacto')
             ->add('notas')
@@ -33,12 +39,20 @@ class ReservaType extends AbstractType
             'property' => 'nombre',
             'empty_value' => 'Seleccione'
         ))
+        
+			->add('status','genemu_jqueryselect2_entity',
+			array(
+			'class'=>'VC\BaseBundle\Entity\Status',
+			'property'=>'status',
+			'empty_value'=>'Seleccione'
+			))
             ->add('cliente', 'genemu_jqueryselect2_entity', array(
             'class' => 'VC\BaseBundle\Entity\Cliente',
             'property' => 'nombre',
             'empty_value' => 'Seleccione'
         ))
             //->add('creado_por')
+
         ;
     }
 

@@ -27,6 +27,17 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
 
         if (0 === strpos($pathinfo, '/a')) {
             if (0 === strpos($pathinfo, '/aerolinea')) {
+                // aerolinea_list
+                if ($pathinfo === '/aerolinea/JSONList') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_aerolinea_list;
+                    }
+
+                    return array (  '_controller' => 'VC\\BaseBundle\\Controller\\AerolineaController::jsonListAction',  '_route' => 'aerolinea_list',);
+                }
+                not_aerolinea_list:
+
                 // aerolinea
                 if (rtrim($pathinfo, '/') === '/aerolinea') {
                     if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
@@ -111,6 +122,17 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
             }
 
             if (0 === strpos($pathinfo, '/agencia')) {
+                // agencia_list
+                if ($pathinfo === '/agencia/JSONList') {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_agencia_list;
+                    }
+
+                    return array (  '_controller' => 'VC\\BaseBundle\\Controller\\AgenciaController::jsonListAction',  '_route' => 'agencia_list',);
+                }
+                not_agencia_list:
+
                 // agencia
                 if (rtrim($pathinfo, '/') === '/agencia') {
                     if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
@@ -197,6 +219,17 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         }
 
         if (0 === strpos($pathinfo, '/cliente')) {
+            // cliente_list
+            if ($pathinfo === '/cliente/JSONlist') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_cliente_list;
+                }
+
+                return array (  '_controller' => 'VC\\BaseBundle\\Controller\\ClienteController::jsonListAction',  '_route' => 'cliente_list',);
+            }
+            not_cliente_list:
+
             // cliente
             if (rtrim($pathinfo, '/') === '/cliente') {
                 if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
@@ -293,7 +326,47 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
 
         }
 
+        if (0 === strpos($pathinfo, '/proceso')) {
+            // vc_reservas_proceso_index
+            if (rtrim($pathinfo, '/') === '/proceso') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_vc_reservas_proceso_index;
+                }
+
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'vc_reservas_proceso_index');
+                }
+
+                return array (  '_controller' => 'VC\\ReservasBundle\\Controller\\ProcesoController::indexAction',  '_route' => 'vc_reservas_proceso_index',);
+            }
+            not_vc_reservas_proceso_index:
+
+            // proceso_create
+            if (preg_match('#^/proceso/(?P<reserva>[^/]++)/new$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_proceso_create;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'proceso_create')), array (  '_controller' => 'VC\\ReservasBundle\\Controller\\ProcesoController::createAction',));
+            }
+            not_proceso_create:
+
+        }
+
         if (0 === strpos($pathinfo, '/reserva')) {
+            // reserva_confirm
+            if (preg_match('#^/reserva/(?P<id>[^/]++)/confirm$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_reserva_confirm;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'reserva_confirm')), array (  '_controller' => 'VC\\ReservasBundle\\Controller\\ReservaController::confirmAction',));
+            }
+            not_reserva_confirm:
+
             // reserva
             if (rtrim($pathinfo, '/') === '/reserva') {
                 if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
@@ -309,6 +382,11 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
             }
             not_reserva:
 
+            // reserva_grid
+            if ($pathinfo === '/reserva/grid') {
+                return array (  '_controller' => 'VC\\ReservasBundle\\Controller\\ReservaController::gridAction',  '_route' => 'reserva_grid',);
+            }
+
             // reserva_create
             if ($pathinfo === '/reserva/') {
                 if ($this->context->getMethod() != 'POST') {
@@ -319,6 +397,17 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                 return array (  '_controller' => 'VC\\ReservasBundle\\Controller\\ReservaController::createAction',  '_route' => 'reserva_create',);
             }
             not_reserva_create:
+
+            // reserva_process
+            if (preg_match('#^/reserva/(?P<id>[^/]++)/process$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_reserva_process;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'reserva_process')), array (  '_controller' => 'VC\\ReservasBundle\\Controller\\ReservaController::processAction',));
+            }
+            not_reserva_process:
 
             // reserva_new
             if ($pathinfo === '/reserva/new') {
@@ -374,6 +463,106 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'reserva_delete')), array (  '_controller' => 'VC\\ReservasBundle\\Controller\\ReservaController::deleteAction',));
             }
             not_reserva_delete:
+
+            // print_pdf
+            if (preg_match('#^/reserva/(?P<id>[^/]++)/printPDF$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_print_pdf;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'print_pdf')), array (  '_controller' => 'VC\\ReservasBundle\\Controller\\ReservaController::pdfAction',));
+            }
+            not_print_pdf:
+
+        }
+
+        if (0 === strpos($pathinfo, '/tipoCaja')) {
+            // tipoCaja_grid
+            if ($pathinfo === '/tipoCaja/grid') {
+                return array (  '_controller' => 'VC\\ReservasBundle\\Controller\\TipoCajaController::gridAction',  '_route' => 'tipoCaja_grid',);
+            }
+
+            // tipoCaja
+            if (rtrim($pathinfo, '/') === '/tipoCaja') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_tipoCaja;
+                }
+
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'tipoCaja');
+                }
+
+                return array (  '_controller' => 'VC\\ReservasBundle\\Controller\\TipoCajaController::indexAction',  '_route' => 'tipoCaja',);
+            }
+            not_tipoCaja:
+
+            // tipoCaja_new
+            if ($pathinfo === '/tipoCaja/new') {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_tipoCaja_new;
+                }
+
+                return array (  '_controller' => 'VC\\ReservasBundle\\Controller\\TipoCajaController::newAction',  '_route' => 'tipoCaja_new',);
+            }
+            not_tipoCaja_new:
+
+            // tipoCaja_create
+            if ($pathinfo === '/tipoCaja/') {
+                if ($this->context->getMethod() != 'POST') {
+                    $allow[] = 'POST';
+                    goto not_tipoCaja_create;
+                }
+
+                return array (  '_controller' => 'VC\\ReservasBundle\\Controller\\TipoCajaController::createAction',  '_route' => 'tipoCaja_create',);
+            }
+            not_tipoCaja_create:
+
+            // tipoCaja_edit
+            if (preg_match('#^/tipoCaja/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_tipoCaja_edit;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'tipoCaja_edit')), array (  '_controller' => 'VC\\ReservasBundle\\Controller\\TipoCajaController::editAction',));
+            }
+            not_tipoCaja_edit:
+
+            // tipoCaja_update
+            if (preg_match('#^/tipoCaja/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'PUT') {
+                    $allow[] = 'PUT';
+                    goto not_tipoCaja_update;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'tipoCaja_update')), array (  '_controller' => 'VC\\ReservasBundle\\Controller\\TipoCajaController::updateAction',));
+            }
+            not_tipoCaja_update:
+
+            // tipoCaja_show
+            if (preg_match('#^/tipoCaja/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'HEAD'));
+                    goto not_tipoCaja_show;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'tipoCaja_show')), array (  '_controller' => 'VC\\ReservasBundle\\Controller\\TipoCajaController::showAction',));
+            }
+            not_tipoCaja_show:
+
+            // tipoCaja_delete
+            if (preg_match('#^/tipoCaja/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                if ($this->context->getMethod() != 'DELETE') {
+                    $allow[] = 'DELETE';
+                    goto not_tipoCaja_delete;
+                }
+
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'tipoCaja_delete')), array (  '_controller' => 'VC\\ReservasBundle\\Controller\\TipoCajaController::deleteAction',));
+            }
+            not_tipoCaja_delete:
 
         }
 

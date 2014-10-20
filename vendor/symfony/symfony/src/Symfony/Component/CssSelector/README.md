@@ -35,10 +35,10 @@ Resources
 This component is a port of the Python lxml library, which is copyright Infrae
 and distributed under the BSD license.
 
-Current code is a port of https://github.com/SimonSapin/cssselect@v0.7.1
+Current code is a port of https://github.com/SimonSapin/cssselect/releases/tag/v0.7.1
 
 You can run the unit tests with the following command:
 
     $ cd path/to/Symfony/Component/CssSelector/
-    $ composer.phar install --dev
+    $ composer.phar install
     $ phpunit

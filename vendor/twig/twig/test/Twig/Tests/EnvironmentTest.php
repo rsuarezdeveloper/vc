@@ -48,7 +48,7 @@ class Twig_Tests_EnvironmentTest extends PHPUnit_Framework_TestCase
         // globals can be added after calling getGlobals
         $twig = new Twig_Environment(new Twig_Loader_String());
         $twig->addGlobal('foo', 'foo');
-        $globals = $twig->getGlobals();
+        $twig->getGlobals();
         $twig->addGlobal('foo', 'bar');
         $globals = $twig->getGlobals();
         $this->assertEquals('bar', $globals['foo']);
@@ -65,7 +65,7 @@ class Twig_Tests_EnvironmentTest extends PHPUnit_Framework_TestCase
         // globals can be modified after extensions init
         $twig = new Twig_Environment(new Twig_Loader_String());
         $twig->addGlobal('foo', 'foo');
-        $globals = $twig->getGlobals();
+        $twig->getGlobals();
         $twig->getFunctions();
         $twig->addGlobal('foo', 'bar');
         $globals = $twig->getGlobals();
@@ -74,7 +74,7 @@ class Twig_Tests_EnvironmentTest extends PHPUnit_Framework_TestCase
         // globals can be modified after extensions and runtime init
         $twig = new Twig_Environment(new Twig_Loader_String());
         $twig->addGlobal('foo', 'foo');
-        $globals = $twig->getGlobals();
+        $twig->getGlobals();
         $twig->getFunctions();
         $twig->initRuntime();
         $twig->addGlobal('foo', 'bar');
@@ -218,21 +218,21 @@ class Twig_Tests_EnvironmentTest_Extension extends Twig_Extension
     public function getFilters()
     {
         return array(
-            'foo_filter' => new Twig_Filter_Function('foo_filter'),
+            new Twig_SimpleFilter('foo_filter', 'foo_filter'),
         );
     }
 
     public function getTests()
     {
         return array(
-            'foo_test' => new Twig_Test_Function('foo_test'),
+            new Twig_SimpleTest('foo_test', 'foo_test'),
         );
     }
 
     public function getFunctions()
     {
         return array(
-            'foo_function' => new Twig_Function_Function('foo_function'),
+            new Twig_SimpleFunction('foo_function', 'foo_function'),
         );
     }
 

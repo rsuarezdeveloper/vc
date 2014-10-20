@@ -99,10 +99,34 @@ class ReservaProducto extends \VC\ReservasBundle\Entity\ReservaProducto implemen
         return parent::getReserva();
     }
 
+    public function setPeso($peso)
+    {
+        $this->__load();
+        return parent::setPeso($peso);
+    }
+
+    public function getPeso()
+    {
+        $this->__load();
+        return parent::getPeso();
+    }
+
+    public function setTipoCaja(\VC\ReservasBundle\Entity\TipoCaja $tipoCaja = NULL)
+    {
+        $this->__load();
+        return parent::setTipoCaja($tipoCaja);
+    }
+
+    public function getTipoCaja()
+    {
+        $this->__load();
+        return parent::getTipoCaja();
+    }
+
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'nombreProducto', 'piezas', 'fbe', 'reserva');
+        return array('__isInitialized__', 'id', 'peso', 'nombreProducto', 'piezas', 'fbe', 'reserva', 'tipoCaja');
     }
 
     public function __clone()

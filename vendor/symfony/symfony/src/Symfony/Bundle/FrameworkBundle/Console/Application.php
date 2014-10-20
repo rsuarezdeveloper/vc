@@ -11,6 +11,7 @@
 
 namespace Symfony\Bundle\FrameworkBundle\Console;
 
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\Console\Application as BaseApplication;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -62,17 +63,27 @@ class Application extends BaseApplication
      * @param InputInterface  $input  An Input instance
      * @param OutputInterface $output An Output instance
      *
-     * @return integer 0 if everything went fine, or an error code
+     * @return int     0 if everything went fine, or an error code
      */
     public function doRun(InputInterface $input, OutputInterface $output)
     {
+        $this->kernel->boot();
+
         if (!$this->commandsRegistered) {
             $this->registerCommands();
 
             $this->commandsRegistered = true;
         }
 
-        $this->setDispatcher($this->kernel->getContainer()->get('event_dispatcher'));
+        $container = $this->kernel->getContainer();
+
+        foreach ($this->all() as $command) {
+            if ($command instanceof ContainerAwareInterface) {
+                $command->setContainer($container);
+            }
+        }
+
+        $this->setDispatcher($container->get('event_dispatcher'));
 
         if (true === $input->hasParameterOption(array('--shell', '-s'))) {
             $shell = new Shell($this);
@@ -87,8 +98,6 @@ class Application extends BaseApplication
 
     protected function registerCommands()
     {
-        $this->kernel->boot();
-
         foreach ($this->kernel->getBundles() as $bundle) {
             if ($bundle instanceof Bundle) {
                 $bundle->registerCommands($this);

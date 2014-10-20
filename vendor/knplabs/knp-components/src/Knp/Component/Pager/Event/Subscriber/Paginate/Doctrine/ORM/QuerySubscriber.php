@@ -14,6 +14,9 @@ use Doctrine\ORM\Tools\Pagination\CountWalker as DoctrineCountWalker;
 use Doctrine\ORM\Tools\Pagination\WhereInWalker as DoctrineWhereInWalker;
 use Doctrine\ORM\Tools\Pagination\LimitSubqueryWalker as DoctrineLimitSubqueryWalker;
 
+/**
+ * @deprecated see UsesPaginator
+ **/
 class QuerySubscriber implements EventSubscriberInterface
 {
     /**
@@ -63,23 +66,11 @@ class QuerySubscriber implements EventSubscriberInterface
                     ->setMaxResults(null)
                 ;
 
-                $conn = $countQuery->getEntityManager()->getConnection();
-                $params = $countQuery->getParameters()->toArray();
+                $countQuery->getEntityManager()->getConfiguration()->addCustomHydrationMode('asIs',
+                            'Knp\Component\Pager\Event\Subscriber\Paginate\Doctrine\ORM\Query\AsIsHydrator');
+                $countResult = $countQuery->getResult('asIs');
 
-                list($types, $params) = array_reduce($params, function ($res, Parameter $par) {
-                    $res[0][] = $par->getType();
-                    $res[1][] = $par->getValue();
-
-                    return $res;
-                }, array(array(), array()));
-
-                $countResult = $conn
-                    ->executeQuery($countQuery->getSQL(),
-                        $params,
-                        $types)
-                    ->fetchColumn();
-
-                $event->count = intval($countResult);
+                $event->count = intval(current(current($countResult)));
             }
             // process items
             $result = null;
@@ -112,7 +103,7 @@ class QuerySubscriber implements EventSubscriberInterface
                         ->setMaxResults(null)
                     ;
 
-                    if (version_compare(\Doctrine\ORM\Version::VERSION, '2.3.0', '>=')) {
+                    if (version_compare(\Doctrine\ORM\Version::VERSION, '2.3.0', '>=') && count($ids) > 0) {
                         $whereInQuery->setParameter(WhereInWalker::PAGINATOR_ID_ALIAS, $ids);
                     } else {
                         $type = $limitSubQuery->getHint($useDoctrineWalkers ?

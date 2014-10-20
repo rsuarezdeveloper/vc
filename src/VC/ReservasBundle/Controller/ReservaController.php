@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use VC\ReservasBundle\Entity\Reserva;
 use VC\ReservasBundle\Entity\ReservaProducto;
 use VC\ReservasBundle\Form\ReservaType;
+use VC\ReservasBundle\Form\ProcesoType;
 
 /**
  * Reserva controller.
@@ -19,6 +20,33 @@ use VC\ReservasBundle\Form\ReservaType;
  */
 class ReservaController extends Controller
 {
+
+	/**
+	 * Confirms a Reserva entity
+	 * 
+	 * @Route("/{id}/confirm",name="reserva_confirm")
+	 * @Method("POST")
+	 * 
+	 * 
+	 */
+	 
+	 public function confirmAction($id)
+	 {
+		 $em=$this->getDoctrine()->getManager();
+		 $status=$em->getRepository('VCBaseBundle:Status')->find(2);
+		 $entity=$em->getRepository('VCReservasBundle:Reserva')->find($id);
+		 
+		 if (!$entity) {
+			 throw $this->createNotFoundException('No existe esa reserva');
+			 }
+		 $entity->setStatus($status);
+		 $em->flush();
+		 $response=new Response();
+		 $response->setContent("ok");
+		 return $response;
+		 
+		 
+	 } 
 
     /**
      * Lists all Reserva entities.
@@ -49,69 +77,62 @@ class ReservaController extends Controller
         $em = $this->getDoctrine()->getManager();
         $qb = $em->createQueryBuilder()
                          ->add('from','VCReservasBundle:Reserva r')
-                         ->add('select','r, r.id,agencias.nombre as agencia,aerolineas.nombre as aerolinea,clientes.nombre as cliente')
+                         ->add('select','r,agencias.nombre as agencia,aerolineas.nombre as aerolinea,
+                         clientes.nombre as cliente,usuarios.nombre as creadoPor,r.notas,
+                         r.contacto,r.temperaturaRequerida as temperatura,r.guiaMaster as guiam,
+                         r.fechaServicio,r.horaServicio,r.id,s.status'
+                         )
                          ->distinct()
                          ->leftJoin('r.cliente','clientes')
                          ->leftJoin('r.agencia','agencias')
                          ->leftJoin('r.aerolinea','aerolineas')
-                         ->where("1=1")
-                         ;
-        
-        
-        
-        //die($qb->getQuery()->getSQL());
+                         ->leftJoin('r.creado_por','usuarios')
+                         ->leftJoin('r.status','s');
         $fields=array(
                 "agencia"=>'agencia.nombre',
                 "aerolinea"=>"aerolinea.nombre",
                 "cliente"=>"cliente.nombre",
-                "fecha_servicio"=>"r.fecha_servicio",
-                "hora_servicio" =>"r.hora_servicio",
+                "fecha_servicio"=>"r.fechaServicio",
+                "hora_servicio" =>"r.horaServicio",
                 "id"=>"r.id"
         );
-        if ( $request->get('_search') && $request->get('_search') == "true" && $request->get('filters') )
-                { 
-                        $f=$request->get('filters');
-                        $f=json_decode(str_replace("\\","",$f),true);
-                        $rules=$f['rules'];
-                        foreach($rules as $rule){
-                                //print $rule['field']."=".$rule['data'];
-                                $searchField=$fields[$rule['field']];
-                                $searchString=$rule['data'];
-                                $qb->andWhere($qb->expr()->like($searchField, $qb->expr()->literal("%".$searchString."%")));
-                                
-                        }
-                        
-                }
-                //Ordenamiento
-                if($request->get('sidx') ){
-                        $oby=$fields[$request->get('sidx')]." ".strtoupper($request->get('sord'));
-                        $qb->add('orderBy', $oby);
-                }else{
-                        $qb->add('orderBy', 'r.id DESC');
-                }
-                $query=$qb->getQuery();
-                $r=$qb->getQuery()->getResult();
-                $paginator = $this->get('knp_paginator');
-                $pagination = $paginator->paginate(
-                        $query,
-                        $this->get('request')->query->get('page', 1)/*page number*/,
-                       $this->get('request')->query->get('rows', 50)/*limit per page*/,
-                       array('distinct' => false)
+		if ($request->get('_search')=='true')
+		{
+			$filters=json_decode($request->get('filters'));
+			$rules=$filters->rules;
+			foreach($rules as $rule)//añade busqueda por nombre y contacto
+			{
+				if ($rule->field=="nombre")//añade el criterio de nombre
+					$qb->andWhere($qb->expr()->like('c.nombre',':nombre'))->setParameter('nombre',"%".$rule->data."%");
+				if ($rule->field=="contacto")//añade el criterio de contacto
+					$qb->andWhere($qb->expr()->like('c.contacto',':contacto'))->setParameter('contacto',"%".$rule->data."%");
+				
+			}
+		}
+		if ($request->get('sidx')!="")
+		{
+			$qb->orderBy($campos[$request->get('sidx')],$request->get('sord'));//asigna criterio de ordenacion
+		}                
+		$query=$qb->getQuery();
+        $r=$qb->getQuery()->getResult();
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+			$query,
+            $this->get('request')->query->get('page', 1)/*page number*/,
+            $this->get('request')->query->get('rows', 50)/*limit per page*/
                 );
-                #$r=$query->getArrayResult();
-                //die (json_encode($query->getArrayResult()));
-                $res=array();
-                $pdata=$pagination->getPaginationData();
-                $i=0;
-                $res['page'] = $this->get('request')->query->get('page', 1);
-                $res['total'] = $pdata['pageCount'];
-                $res['records'] = count($r);
-                $res['rows'] = $query->getArrayResult();
-                /*$res['rows'] =array();
-                foreach($pagination as $p){
-                    $res['rows'][]=$p;
-                }*/
-                //$res['pdata']=$pdata;
+        $res=array();
+        $pdata=$pagination->getPaginationData();
+        $res['page'] = $this->get('request')->query->get('page', 1);
+        $res['total'] = $pdata['pageCount'];
+        $res['records'] = count($r);
+        $res['rows'] = Array();
+		foreach ($pagination as $entity)
+		{
+			$entity['fecha_s']=$entity['fechaServicio']->format('j/m/o');
+			$entity['hora_s']=$entity['horaServicio']->format('H:i');
+			$res['rows'][]=$entity;
+		}
         $response=new Response();
         $response->setContent(json_encode($res));
         return $response;
@@ -127,15 +148,22 @@ class ReservaController extends Controller
     public function createAction(Request $request)
     {
         $user = $this->get('security.context')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $all=$request->request->all();
+        $all['vc_reservasbundle_reservatype']['horaServicio']= new \DateTime($all['vc_reservasbundle_reservatype']['horaServicio']);
+        $request->request->replace($all);
+        //$status=$em->getRepository('VCBaseBundle:Status')->find(1);
         $entity  = new Reserva();
         //print_r($request);
         //exit();
         $entity->setCreacion(new \DateTime())
-               ->setCreadoPor($user);
+               ->setCreadoPor($user)
+               //->setStatus($status)
+               ;
         $form = $this->createForm(new ReservaType(), $entity);
         $form->bind($request);
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            
             $em->persist($entity);
             $em->flush();
             if($request->get('producto_nombre')){
@@ -163,6 +191,27 @@ class ReservaController extends Controller
             'form'   => $form->createView(),
         );
     }
+
+	/**
+	 * Processes a Reserva entity
+	 * 
+	 * @Route("/{id}/process",name="reserva_process")
+	 * @Method("GET")
+	 * @Template()
+	 */
+	 
+	 public function processAction($id)
+	 {
+		 $em=$this->getDoctrine()->getManager();
+		 $entity=$em->getRepository("VCReservasBundle:Reserva")->find($id);
+		 if (!$entity)
+			throw $this->createNotFoundException('Unable to find Reserva entity.');
+		$status=$entity->getStatus()->getId();
+		$productos=$em->getRepository('VCReservasBundle:Proceso')->findByReserva($entity);
+		$respuesta=array("productos"=>$productos);
+		$respuesta['entity']=$entity;
+		return $respuesta;
+	 }
 
     /**
      * Displays a form to create a new Reserva entity.
@@ -258,6 +307,9 @@ class ReservaController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createForm(new ReservaType(), $entity);
+        $all=$request->request->all();
+        $all['vc_reservasbundle_reservatype']['horaServicio']= new \DateTime($all['vc_reservasbundle_reservatype']['horaServicio']);
+        $request->request->replace($all);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
@@ -313,4 +365,40 @@ class ReservaController extends Controller
             ->getForm()
         ;
     }
+    
+    
+    /**
+     * Prints a procesed Reserva Entity
+     * 
+     * @Route("/{id}/printPDF",name="print_pdf")
+     * @Method("GET")
+     */ 
+     
+     public function pdfAction($id)
+     {
+		$em=$this->getDoctrine()->getManager();
+		$entity=$em->getRepository("VCReservasBundle:Reserva")->find($id);
+		if (!$entity)
+			throw $this->createNotFoundException('Unable to find Reserva entity.');
+		$productos=$em->getRepository('VCReservasBundle:Proceso')->findByReserva($entity);
+		$mpdf=new \mPDF('',    // mode - default ''
+				 'Letter-L',    // format - A4, for example, default ''
+				 0,     // font size - default 0
+				 '',    // default font family
+				 15,    // margin_left
+				 15,    // margin right
+				 10,     // margin top
+				 10,    // margin bottom
+				 9,     // margin header
+				 9,     // margin footer
+			 'L');  // L - landscape, P - portrait
+		$mpdf->AddPage(); 
+		$mpdf->SetDisplayMode('fullpage','single');
+		$filename=date("YMDHis")."Reserva.pdf";
+		$html=$this->renderView('VCReservasBundle:Reserva:pdfBody.html.twig',array('productos'=>$productos,'reserva'=>$entity));
+		$mpdf->WriteHTML("td{width:3cm;font-size:0.9em;padding:5px; 0px;}body{font-family:arial;}",1);
+		$mpdf->WriteHTML($html,2);
+		$mpdf->Output($filename,'D');
+		exit;
+	 }
 }

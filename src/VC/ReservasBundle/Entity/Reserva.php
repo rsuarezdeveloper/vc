@@ -26,7 +26,11 @@ class Reserva
      *
      * @ORM\Column(name="creacion", type="datetime" , nullable=true)
      */
+
     private $creacion;
+    
+ 
+ 
 
     /**
      * @var \DateTime
@@ -34,13 +38,16 @@ class Reserva
      * @ORM\Column(name="fecha_servicio", type="datetime", nullable=true)
      */
     private $fechaServicio;
+    
+
 
     /**
      * @ORM\ManyToOne(targetEntity="VC\BaseBundle\Entity\Agencia")
      * @ORM\JoinColumn(name="agencia", referencedColumnName="id", nullable=true)
      */
     private $agencia;
-
+    
+    
     /**
      * @var string
      *
@@ -75,12 +82,33 @@ class Reserva
      */
     private $cliente;
 
+	/**
+	 * 
+	 * @ORM\ManyToOne(targetEntity="VC\BaseBundle\Entity\Status")
+	 * @ORM\JoinColumn(name="status", referencedColumnName="id")
+	 * 
+	 */ 
+	 
+	 private $status;
+
+
     /**
      * @var string
      *
      * @ORM\Column(name="contacto", type="text", nullable=true)
      */
     private $contacto;
+
+	/**
+	 * 
+	 * @var string
+	 * 
+	 * @ORM\Column(name="email_contacto",type="string",nullable=false)
+	 * 
+	 */ 
+	 
+	 private $mailContacto;
+
 
     /**
      * @var string
@@ -373,10 +401,10 @@ class Reserva
     /**
      * Add productos
      *
-     * @param \CM\ReservasBundle\Entity\ReservaProducto $productos
+     * @param \VC\ReservasBundle\Entity\ReservaProducto $productos
      * @return Reserva
      */
-    public function addProducto(\CM\ReservasBundle\Entity\ReservaProducto $productos)
+    public function addProducto(\VC\ReservasBundle\Entity\ReservaProducto $productos)
     {
         $this->productos[] = $productos;
     
@@ -386,9 +414,9 @@ class Reserva
     /**
      * Remove productos
      *
-     * @param \CM\ReservasBundle\Entity\ReservaProducto $productos
+     * @param \VC\ReservasBundle\Entity\ReservaProducto $productos
      */
-    public function removeProducto(\CM\ReservasBundle\Entity\ReservaProducto $productos)
+    public function removeProducto(\VC\ReservasBundle\Entity\ReservaProducto $productos)
     {
         $this->productos->removeElement($productos);
     }
@@ -401,5 +429,122 @@ class Reserva
     public function getProductos()
     {
         return $this->productos;
+    }
+
+    /**
+     * Set largo
+     *
+     * @param float $largo
+     * @return Reserva
+     */
+    public function setLargo($largo)
+    {
+        $this->largo = $largo;
+    
+        return $this;
+    }
+
+    /**
+     * Get largo
+     *
+     * @return float 
+     */
+    public function getLargo()
+    {
+        return $this->largo;
+    }
+
+    /**
+     * Set ancho
+     *
+     * @param float $ancho
+     * @return Reserva
+     */
+    public function setAncho($ancho)
+    {
+        $this->ancho = $ancho;
+    
+        return $this;
+    }
+
+    /**
+     * Get ancho
+     *
+     * @return float 
+     */
+    public function getAncho()
+    {
+        return $this->ancho;
+    }
+
+    /**
+     * Set alto
+     *
+     * @param float $alto
+     * @return Reserva
+     */
+    public function setAlto($alto)
+    {
+        $this->alto = $alto;
+    
+        return $this;
+    }
+
+    /**
+     * Get alto
+     *
+     * @return float 
+     */
+    public function getAlto()
+    {
+        return $this->alto;
+    }
+
+
+
+    /**
+     * Set status
+     *
+     * @param \VC\BaseBundle\Entity\Status $status
+     * @return Reserva
+     */
+    public function setStatus(\VC\BaseBundle\Entity\Status $status = null)
+    {
+        $this->status = $status;
+    
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return \VC\BaseBundle\Entity\Status 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set mailContacto
+     *
+     * @param string $mailContacto
+     * @return Reserva
+     */
+    public function setMailContacto($mailContacto)
+    {
+        $this->mailContacto = $mailContacto;
+    
+        return $this;
+    }
+
+    /**
+     * Get mailContacto
+     *
+     * @return string 
+     */
+    public function getMailContacto()
+    {
+        return $this->mailContacto;
     }
 }

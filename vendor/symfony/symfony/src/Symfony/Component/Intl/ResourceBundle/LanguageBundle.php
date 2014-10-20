@@ -15,6 +15,8 @@ namespace Symfony\Component\Intl\ResourceBundle;
  * Default implementation of {@link LanguageBundleInterface}.
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
+ *
+ * @internal
  */
 class LanguageBundle extends AbstractBundle implements LanguageBundleInterface
 {
@@ -27,8 +29,8 @@ class LanguageBundle extends AbstractBundle implements LanguageBundleInterface
             $locale = \Locale::getDefault();
         }
 
-        if (null === ($languages = $this->readEntry($locale, array('Languages')))) {
-            return null;
+        if (null === ($languages = $this->readEntry($locale, array('Languages'), true))) {
+            return;
         }
 
         // Some languages are translated together with their region,
@@ -49,7 +51,7 @@ class LanguageBundle extends AbstractBundle implements LanguageBundleInterface
             $locale = \Locale::getDefault();
         }
 
-        if (null === ($languages = $this->readEntry($locale, array('Languages')))) {
+        if (null === ($languages = $this->readEntry($locale, array('Languages'), true))) {
             return array();
         }
 
@@ -87,7 +89,7 @@ class LanguageBundle extends AbstractBundle implements LanguageBundleInterface
 
         // "af" (Afrikaans) has no "Scripts" block
         if (!isset($data['Scripts'][$script])) {
-            return null;
+            return;
         }
 
         return $data['Scripts'][$script];
@@ -102,7 +104,7 @@ class LanguageBundle extends AbstractBundle implements LanguageBundleInterface
             $locale = \Locale::getDefault();
         }
 
-        if (null === ($scripts = $this->readEntry($locale, array('Scripts')))) {
+        if (null === ($scripts = $this->readEntry($locale, array('Scripts'), true))) {
             return array();
         }
 

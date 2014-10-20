@@ -77,6 +77,12 @@ class DateType extends AbstractType
                 $calendar,
                 $pattern
             );
+
+            // new \intlDateFormatter may return null instead of false in case of failure, see https://bugs.php.net/bug.php?id=66323
+            if (!$formatter) {
+                throw new InvalidOptionsException(intl_get_error_message(), intl_get_error_code());
+            }
+
             $formatter->setLenient(false);
 
             if ('choice' === $options['widget']) {
@@ -181,7 +187,7 @@ class DateType extends AbstractType
             return array(
                 'year' => $emptyValue,
                 'month' => $emptyValue,
-                'day' => $emptyValue
+                'day' => $emptyValue,
             );
         };
 
@@ -247,10 +253,10 @@ class DateType extends AbstractType
         $pattern = $formatter->getPattern();
         $timezone = $formatter->getTimezoneId();
 
-        if (version_compare(\PHP_VERSION, '5.5.0-dev', '>=')) {
-            $formatter->setTimeZone(\DateTimeZone::UTC);
+        if ($setTimeZone = method_exists($formatter, 'setTimeZone')) {
+            $formatter->setTimeZone('UTC');
         } else {
-            $formatter->setTimeZoneId(\DateTimeZone::UTC);
+            $formatter->setTimeZoneId('UTC');
         }
 
         if (preg_match($regex, $pattern, $matches)) {
@@ -265,7 +271,7 @@ class DateType extends AbstractType
             $formatter->setPattern($pattern);
         }
 
-        if (version_compare(\PHP_VERSION, '5.5.0-dev', '>=')) {
+        if ($setTimeZone) {
             $formatter->setTimeZone($timezone);
         } else {
             $formatter->setTimeZoneId($timezone);
@@ -279,7 +285,9 @@ class DateType extends AbstractType
         $result = array();
 
         foreach ($years as $year) {
-            $result[$year] = gmmktime(0, 0, 0, 6, 15, $year);
+            if (false !== $y = gmmktime(0, 0, 0, 6, 15, $year)) {
+                $result[$year] = $y;
+            }
         }
 
         return $result;

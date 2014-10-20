@@ -21,6 +21,17 @@ class ReservaProducto
      */
     private $id;
 
+   	/**
+	 * 
+	 * @var float
+	 * @ORM\Column(name="peso", type="float",nullable=true)
+	 * 
+	 */
+	 
+	 private $peso;
+
+
+
     /**
      * @ORM\ManyToOne(targetEntity="VC\ReservasBundle\Entity\Reserva")
      * @ORM\JoinColumn(name="reserva", referencedColumnName="id")
@@ -33,6 +44,16 @@ class ReservaProducto
      * @ORM\Column(name="nombre_producto", type="string", length=255)
      */
     private $nombreProducto;
+
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="VC\ReservasBundle\Entity\TipoCaja")
+     * @ORM\JoinColumn(name="tipoCaja",referencedColumnName="id",nullable=true)
+     * 
+     */
+     
+     private $tipoCaja; 
+
 
     /**
      * @var integer
@@ -150,5 +171,51 @@ class ReservaProducto
     public function getReserva()
     {
         return $this->reserva;
+    }
+
+    /**
+     * Set peso
+     *
+     * @param float $peso
+     * @return ReservaProducto
+     */
+    public function setPeso($peso)
+    {
+        $this->peso = $peso;
+    
+        return $this;
+    }
+
+    /**
+     * Get peso
+     *
+     * @return float 
+     */
+    public function getPeso()
+    {
+        return $this->peso;
+    }
+
+    /**
+     * Set tipoCaja
+     *
+     * @param \VC\ReservasBundle\Entity\TipoCaja $tipoCaja
+     * @return ReservaProducto
+     */
+    public function setTipoCaja(\VC\ReservasBundle\Entity\TipoCaja $tipoCaja = null)
+    {
+        $this->tipoCaja = $tipoCaja;
+    
+        return $this;
+    }
+
+    /**
+     * Get tipoCaja
+     *
+     * @return \VC\ReservasBundle\Entity\TipoCaja 
+     */
+    public function getTipoCaja()
+    {
+        return $this->tipoCaja;
     }
 }

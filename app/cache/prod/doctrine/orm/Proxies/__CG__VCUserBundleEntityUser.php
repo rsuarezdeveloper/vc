@@ -69,6 +69,18 @@ class User extends \VC\UserBundle\Entity\User implements \Doctrine\ORM\Proxy\Pro
         return parent::getId();
     }
 
+    public function setCliente(\VC\BaseBundle\Entity\Cliente $cliente = NULL)
+    {
+        $this->__load();
+        return parent::setCliente($cliente);
+    }
+
+    public function getCliente()
+    {
+        $this->__load();
+        return parent::getCliente();
+    }
+
     public function addRole($role)
     {
         $this->__load();
@@ -366,7 +378,7 @@ class User extends \VC\UserBundle\Entity\User implements \Doctrine\ORM\Proxy\Pro
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'lastLogin', 'locked', 'expired', 'expiresAt', 'confirmationToken', 'passwordRequestedAt', 'roles', 'credentialsExpired', 'credentialsExpireAt', 'id', 'nombre');
+        return array('__isInitialized__', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'lastLogin', 'locked', 'expired', 'expiresAt', 'confirmationToken', 'passwordRequestedAt', 'roles', 'credentialsExpired', 'credentialsExpireAt', 'id', 'nombre', 'cliente');
     }
 
     public function __clone()

@@ -1,86 +1,45 @@
 Symfony2 Excel bundle
 ============
 
-This bundle permits you to create an easily modifiable excel object.
-This is just a dependency injection that links
+This bundle permits you to create, modify and read excel objects.
+
+[![Build Status](https://travis-ci.org/liuggio/ExcelBundle.png)](https://travis-ci.org/liuggio/ExcelBundle)
+[![Total Downloads](https://poser.pugx.org/liuggio/ExcelBundle/downloads.png)](https://packagist.org/packages/liuggio/ExcelBundle)
+[![Latest Stable Version](https://poser.pugx.org/liuggio/ExcelBundle/v/stable.png)](https://packagist.org/packages/liuggio/ExcelBundle)
+[![Latest Unstable Version](https://poser.pugx.org/liuggio/ExcelBundle/v/unstable.png)](https://packagist.org/packages/liuggio/ExcelBundle)
+
+## License
+
+[![License](https://poser.pugx.org/liuggio/ExcelBundle/license.png)](LICENSE)
 
 
-3 Objects:
+## Version 2
 
-- The container in this bundle, 
+This is the **shiny** new version.
+There is a big BC with the 1.* version, but **unit tests**, **functional tests**, and **the new factory** is very simple to use.
 
-- The StreamWrapper in the n3bStreamresponse
+### Version 1.*
 
-- A Writer.
- 
+If you have installed an old version, and you are happy to use it, you could find documentation and files
+in the [tag v1.0.6](https://github.com/liuggio/ExcelBundle/releases/tag/v1.0.6),
+[browse the code](https://github.com/liuggio/ExcelBundle/tree/cf0ecbeea411d7c3bdc8abab14c3407afdf530c4).
 
-You could create your own writer extending  ``n3b\Bundle\Util\HttpFoundation\StreamResponse\StreamWriterInterface`` or you could use the great PHPExcel library. With PHPExcel you can create xls, ods, pdf and more.
+### Things to know:
 
-You have to know that csv is faster so I encourage you to use the built-in function for csv: http://it.php.net/manual-lookup.php?pattern=csv&lang=en&scope=quickref
+CSV is faster so if you have to create simple xls file,
+I encourage you to use the built-in function for csv: http://php.net/manual-lookup.php?pattern=csv&lang=en&scope=quickref
 
-## Migration
+## Installation
 
-In order to follow the naming convention  https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md  all the liuggio namespaces are migrated to Liuggio.
+**1**  Add to composer.json to the `require` key
 
-This master is up-to-date to the symfony/symfony master actually on 2.1
-
-
-## INSTALLATION with COMPOSER 
-
-1  Add to composer.json to the `require` key  
-
-``` 
+``` yml
     "require" : {
-        "liuggio/excelbundle": ">=1.0.0",
+        "liuggio/excelbundle": "~2.0",
     }
 ``` 
- 
 
-2 Register the bundle in ``app/AppKernel.php``
-
-``` php
-    $bundles = array(
-        // ...
-        new Liuggio\ExcelBundle\LiuggioExcelBundle(),
-    );
-```
-
-## INSTALLATION with deps file
-
-1  Add to the following to your `deps` file, then run `php bin/vendors install`
-
-``` yaml
-[PHPExcel]
-    git=http://github.com/PHPOffice/PHPExcel.git
-    target=/phpexcel
-    version=origin/master
-
-[n3bStreamresponse]
-    git=git://github.com/liuggio/Symfony2-StreamResponse.git
-    target=n3b/src/n3b/Bundle/Util/HttpFoundation/StreamResponse
-
-[LiuggioExcelBundle]
-    git=https://github.com/liuggio/ExcelBundle.git
-    target=/bundles/Liuggio/ExcelBundle
-``` 
-
-2  Register the namespaces and prefixes in `app/autoload.php`:
-
-``` php
-    $loader->registerNamespaces(array(
-        // ...
-        'n3b\\Bundle\\Util\\HttpFoundation\\StreamResponse' => __DIR__.'/../vendor/n3b/src',
-        'Liuggio'          => __DIR__.'/../vendor/bundles',
-    ));
-    $loader->registerPrefixes(array(
-        // ...
-        'PHPExcel'         => __DIR__.'/../vendor/phpexcel/Classes',
-    ));
-
-```
- 
-
-3 Enable the bundle in `app/AppKernel.php`
+**2** Register the bundle in ``app/AppKernel.php``
 
 ``` php
     $bundles = array(
@@ -88,119 +47,110 @@ This master is up-to-date to the symfony/symfony master actually on 2.1
         new Liuggio\ExcelBundle\LiuggioExcelBundle(),
     );
 ```
- 
 
+## TL;DR
 
-## AVAILABLE SERVICES
-
-If you want to write
+- Create an empty object:
 
 ``` php
-   // create MS Excel5
-   $excelService = $this->get('xls.service_xls5');
-   // create pdf
-   $this->get('xls.service_pdf');
-   // create MS Excel 2007
-   $this->get('xls.service_xls2007');
-
+$phpExcelObject = $this->get('phpexcel')->createPHPExcelObject();
 ```
 
-
-If you want to read xls
+- Create an object from a file:
 
 ``` php
-    $excelObj = $this->get('xls.load_xls5')->load($filename);
-
+$phpExcelObject = $this->get('phpexcel')->createPHPExcelObject('file.xls');
 ```
 
+- Create a Excel5 and write to a file given the object:
 
+```php
+$writer = $this->get('phpexcel')->createWriter($phpExcelObject, 'Excel5');
+$writer->save('file.xls');
+```
 
+- Create a Excel5 and create a StreamedResponse:
 
-## USAGE
+```php
+$writer = $this->get('phpexcel')->createWriter($phpExcelObject, 'Excel5');
+$response = $this->get('phpexcel')->createStreamedResponse($writer);
+```
+## Not Only 'Excel5'
 
-Create a controller in your bundle
+The list of the types are:
 
+1.  'Excel5'
+2.  'Excel2007'
+3.  'Excel2003XML'
+4.  'OOCalc'
+5.  'SYLK'
+6.  'Gnumeric'
+7.  'HTML'
+8.  'CSV'
+
+## Example
+
+### Fake Controller
+
+The best place to start is the fake Controller at `Tests/app/Controller/FakeController.php`, that is a working example.
+
+### More example
+
+You could find a lot of examples in the official PHPExcel repository https://github.com/PHPOffice/PHPExcel/tree/develop/Examples
+
+### For lazy devs
 
 ``` php
-
 namespace YOURNAME\YOURBUNDLE\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-
 class DefaultController extends Controller
 {
-    
+
     public function indexAction($name)
     {
         // ask the service for a Excel5
-        $excelService = $this->get('xls.service_xls5');
-        // or $this->get('xls.service_pdf');
-        // or create your own is easy just modify services.yml
+       $phpExcelObject = $this->get('phpexcel')->createPHPExcelObject();
 
+       $phpExcelObject->getProperties()->setCreator("liuggio")
+           ->setLastModifiedBy("Giulio De Donato")
+           ->setTitle("Office 2005 XLSX Test Document")
+           ->setSubject("Office 2005 XLSX Test Document")
+           ->setDescription("Test document for Office 2005 XLSX, generated using PHP classes.")
+           ->setKeywords("office 2005 openxml php")
+           ->setCategory("Test result file");
+       $phpExcelObject->setActiveSheetIndex(0)
+           ->setCellValue('A1', 'Hello')
+           ->setCellValue('B2', 'world!');
+       $phpExcelObject->getActiveSheet()->setTitle('Simple');
+       // Set active sheet index to the first sheet, so Excel opens this as the first sheet
+       $phpExcelObject->setActiveSheetIndex(0);
 
-        // create the object see http://phpexcel.codeplex.com documentation
-        $excelService->excelObj->getProperties()->setCreator("Maarten Balliauw")
-                            ->setLastModifiedBy("Maarten Balliauw")
-                            ->setTitle("Office 2005 XLSX Test Document")
-                            ->setSubject("Office 2005 XLSX Test Document")
-                            ->setDescription("Test document for Office 2005 XLSX, generated using PHP classes.")
-                            ->setKeywords("office 2005 openxml php")
-                            ->setCategory("Test result file");
-        $excelService->excelObj->setActiveSheetIndex(0)
-                    ->setCellValue('A1', 'Hello')
-                    ->setCellValue('B2', 'world!');
-        $excelService->excelObj->getActiveSheet()->setTitle('Simple');
-        // Set active sheet index to the first sheet, so Excel opens this as the first sheet
-        $excelService->excelObj->setActiveSheetIndex(0);
- 
-        //create the response
-        $response = $excelService->getResponse();
+        // create the writer
+        $writer = $this->get('phpexcel')->createWriter($phpExcelObject, 'Excel5');
+        // create the response
+        $response = $this->get('phpexcel')->createStreamedResponse($writer);
+        // adding headers
         $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
-        $response->headers->set('Content-Disposition', 'attachment;filename=stdream2.xls');
-        
-        // If you are using a https connection, you have to set those two headers for compatibility with IE <9
+        $response->headers->set('Content-Disposition', 'attachment;filename=stream-file.xls');
         $response->headers->set('Pragma', 'public');
         $response->headers->set('Cache-Control', 'maxage=1');
+
         return $response;        
     }
 }
-
 ```
-
-With the right writer (e.g. PHPExcel_Writer_Excel5) you could also write the output to a file:
-``` php
-    
-	public function indexAction($name)
-    {
-        $excelService = $this->get('xls.service_xls5');	
-
-        //...create php excel object
-
-        $excelService->getStreamWriter()->write( $filename );
-    }
-```
-
-
-## ADVANCED USE
-
-If you need to, see and modify ``Liuggio\ExcelBundle\Resources\config\services.yml``
-
 
 ## Contributors
 
-@pivasyk
+the [list of contributors](https://github.com/liuggio/ExcelBundle/graphs/contributors)
 
-@dirkbl
+## Contribute
 
-@DerStoffel
+1. fork the project
+2. clone the repo
+3. get the coding standard fixer: `wget http://cs.sensiolabs.org/get/php-cs-fixer.phar`
+4. before the PullRequest you should run the coding standard fixer with `php php-cs-fixer.phar fix -v .`
 
-@artturi
 
-@isqad88
-
-@mazenovi
-
-@jochenhilgers
-
-@Squazic

@@ -22,6 +22,11 @@ use Symfony\Component\Intl\Intl;
  */
 abstract class AbstractIntlDateFormatterTest extends \PHPUnit_Framework_TestCase
 {
+    protected function setUp()
+    {
+        \Locale::setDefault('en');
+    }
+
     /**
      * When a time zone is not specified, it uses the system default however it returns null in the getter method
      * @covers Symfony\Component\Intl\DateFormatter\IntlDateFormatter::getTimeZoneId
@@ -143,7 +148,7 @@ abstract class AbstractIntlDateFormatterTest extends \PHPUnit_Framework_TestCase
             array('EEE', 0, 'Thu'),
             array('EEEE', 0, 'Thursday'),
             array('EEEEE', 0, 'T'),
-            array('EEEEEE', 0, 'Thu'),
+            array('EEEEEE', 0, 'Th'),
 
             array('E', 1296540000, 'Tue'), // 2011-02-01
             array('E', 1296950400, 'Sun'), // 2011-02-06
@@ -266,7 +271,7 @@ abstract class AbstractIntlDateFormatterTest extends \PHPUnit_Framework_TestCase
         // With PHP 5.5 IntlDateFormatter accepts empty values ('0')
         if (version_compare(PHP_VERSION, '5.5.0-dev', '>=')) {
             return array(
-                array('y-M-d', 'foobar', 'datefmt_format: string \'foobar\' is not numeric, which would be required for it to be a valid date: U_ILLEGAL_ARGUMENT_ERROR')
+                array('y-M-d', 'foobar', 'datefmt_format: string \'foobar\' is not numeric, which would be required for it to be a valid date: U_ILLEGAL_ARGUMENT_ERROR'),
             );
         }
 
@@ -376,7 +381,7 @@ abstract class AbstractIntlDateFormatterTest extends \PHPUnit_Framework_TestCase
         $formatter->setPattern('yyyy-MM-dd HH:mm:ss');
 
         $this->assertEquals(
-            $this->getDateTime(0)->format('Y-m-d H:i:s'),
+            $this->getDateTime(0, 'UTC')->format('Y-m-d H:i:s'),
             $formatter->format(0)
         );
     }
@@ -394,7 +399,7 @@ abstract class AbstractIntlDateFormatterTest extends \PHPUnit_Framework_TestCase
         $formatter->setPattern('yyyy-MM-dd HH:mm:ss');
 
         $this->assertEquals(
-            $this->getDateTime(0)->format('Y-m-d H:i:s'),
+            $this->getDateTime(0, 'Europe/London')->format('Y-m-d H:i:s'),
             $formatter->format(0)
         );
 
@@ -417,7 +422,7 @@ abstract class AbstractIntlDateFormatterTest extends \PHPUnit_Framework_TestCase
         $formatter->setPattern('yyyy-MM-dd HH:mm:ss');
 
         $this->assertEquals(
-            $this->getDateTime(0)->format('Y-m-d H:i:s'),
+            $this->getDateTime(0, 'Europe/London')->format('Y-m-d H:i:s'),
             $formatter->format(0)
         );
 
@@ -584,7 +589,7 @@ abstract class AbstractIntlDateFormatterTest extends \PHPUnit_Framework_TestCase
             array('EEE', 'Thu', 0),
             array('EEEE', 'Thursday', 0),
             array('EEEEE', 'T', 432000),
-            array('EEEEEE', 'Thu', 0),
+            array('EEEEEE', 'Th', 0),
         );
     }
 
@@ -865,14 +870,8 @@ abstract class AbstractIntlDateFormatterTest extends \PHPUnit_Framework_TestCase
         return $this->getDateFormatter('en', IntlDateFormatter::MEDIUM, IntlDateFormatter::SHORT, 'UTC', IntlDateFormatter::GREGORIAN, $pattern);
     }
 
-    protected function getDateTime($timestamp = null)
+    protected function getDateTime($timestamp, $timeZone)
     {
-        if (version_compare(PHP_VERSION, '5.5.0-dev', '>=')) {
-            $timeZone = date_default_timezone_get();
-        } else {
-            $timeZone = getenv('TZ') ?: 'UTC';
-        }
-
         $dateTime = new \DateTime();
         $dateTime->setTimestamp(null === $timestamp ? time() : $timestamp);
         $dateTime->setTimeZone(new \DateTimeZone($timeZone));
@@ -919,14 +918,14 @@ abstract class AbstractIntlDateFormatterTest extends \PHPUnit_Framework_TestCase
     abstract protected function getIntlErrorMessage();
 
     /**
-     * @return integer
+     * @return int
      */
     abstract protected function getIntlErrorCode();
 
     /**
-     * @param integer $errorCode
+     * @param int     $errorCode
      *
-     * @return Boolean
+     * @return bool
      */
     abstract protected function isIntlFailure($errorCode);
 }

@@ -21,7 +21,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "knplabs/knp-paginator-bundle": "dev-master",
-        "liuggio/excelbundle": ">=1.0.4"
+        "liuggio/excelbundle": ">=1.0.4",
+        "genemu/form-bundle": "~2.2"
     },
     "scripts": {
         "post-install-cmd": [

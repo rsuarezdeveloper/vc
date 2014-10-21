@@ -16,6 +16,7 @@
       <parameter key="AsseticBundle">Symfony\Bundle\AsseticBundle\AsseticBundle</parameter>
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
+      <parameter key="GenemuFormBundle">Genemu\Bundle\FormBundle\GenemuFormBundle</parameter>
       <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
       <parameter key="FOSUserBundle">FOS\UserBundle\FOSUserBundle</parameter>
       <parameter key="UserBundle">VC\UserBundle\UserBundle</parameter>
@@ -303,6 +304,9 @@
     <parameter key="twig.exception_listener.controller">twig.controller.exception:showAction</parameter>
     <parameter key="twig.form.resources" type="collection">
       <parameter>form_div_layout.html.twig</parameter>
+      <parameter>GenemuFormBundle:Form:div_layout.html.twig</parameter>
+      <parameter>GenemuFormBundle:Form:jquery_layout.html.twig</parameter>
+      <parameter>GenemuFormBundle:Form:stylesheet_layout.html.twig</parameter>
     </parameter>
     <parameter key="debug.templating.engine.twig.class">Symfony\Bundle\TwigBundle\Debug\TimedTwigEngine</parameter>
     <parameter key="twig.options" type="collection">
@@ -478,6 +482,67 @@
     <parameter key="sensio_framework_extra.converter.doctrine.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter</parameter>
     <parameter key="sensio_framework_extra.converter.datetime.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DateTimeParamConverter</parameter>
     <parameter key="sensio_framework_extra.view.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener</parameter>
+    <parameter key="genemu.form.recaptcha.public_key"></parameter>
+    <parameter key="genemu.form.recaptcha.private_key"></parameter>
+    <parameter key="genemu.form.recaptcha.server_url"></parameter>
+    <parameter key="genemu.form.recaptcha.code"></parameter>
+    <parameter key="genemu.form.recaptcha.options" type="collection"/>
+    <parameter key="genemu.form.recaptcha.validation.options" type="collection"/>
+    <parameter key="genemu.form.captcha.options" type="collection">
+      <parameter key="enabled">true</parameter>
+      <parameter key="driver">gd</parameter>
+      <parameter key="width">100</parameter>
+      <parameter key="height">30</parameter>
+      <parameter key="length">4</parameter>
+      <parameter key="format">png</parameter>
+      <parameter key="chars" type="collection">
+        <parameter>0</parameter>
+        <parameter>1</parameter>
+        <parameter>2</parameter>
+        <parameter>3</parameter>
+        <parameter>4</parameter>
+        <parameter>5</parameter>
+        <parameter>6</parameter>
+        <parameter>7</parameter>
+        <parameter>8</parameter>
+        <parameter>9</parameter>
+      </parameter>
+      <parameter key="font_size">18</parameter>
+      <parameter key="grayscale">false</parameter>
+      <parameter key="font_color" type="collection">
+        <parameter>252525</parameter>
+        <parameter>8B8787</parameter>
+        <parameter>550707</parameter>
+        <parameter>3526E6</parameter>
+        <parameter>88531E</parameter>
+      </parameter>
+      <parameter key="fonts" type="collection">
+        <parameter>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/akbar.ttf</parameter>
+        <parameter>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/brushcut.ttf</parameter>
+        <parameter>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/molten.ttf</parameter>
+        <parameter>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/planetbe.ttf</parameter>
+        <parameter>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/whoobub.ttf</parameter>
+      </parameter>
+      <parameter key="background_color">DDDDDD</parameter>
+      <parameter key="border_color">000000</parameter>
+      <parameter key="code">null</parameter>
+    </parameter>
+    <parameter key="genemu.form.tinymce.configs" type="collection">
+      <parameter key="theme">advanced</parameter>
+    </parameter>
+    <parameter key="genemu.form.color.options" type="collection"/>
+    <parameter key="genemu.form.date.options" type="collection">
+      <parameter key="dateFormat">Y-m-d</parameter>
+      <parameter key="locale">es</parameter>
+    </parameter>
+    <parameter key="genemu.form.rating.options" type="collection"/>
+    <parameter key="genemu.form.file.root_dir">/Applications/MAMP/htdocs/vc/app/../web</parameter>
+    <parameter key="genemu.form.file.folder">/upload</parameter>
+    <parameter key="genemu.form.file.upload_dir">/Applications/MAMP/htdocs/vc/app/../web/upload</parameter>
+    <parameter key="genemu.form.file.options" type="collection"/>
+    <parameter key="genemu.form.image.selected"></parameter>
+    <parameter key="genemu.form.image.thumbnails" type="collection"/>
+    <parameter key="genemu.form.image.filters" type="collection"/>
     <parameter key="knp_paginator.class">Knp\Component\Pager\Paginator</parameter>
     <parameter key="knp_paginator.templating.helper.pagination.class">Knp\Bundle\PaginatorBundle\Templating\PaginationHelper</parameter>
     <parameter key="knp_paginator.helper.processor.class">Knp\Bundle\PaginatorBundle\Helper\Processor</parameter>
@@ -1654,6 +1719,24 @@
       </call>
       <call method="addResource">
         <argument>yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/genemu/form-bundle/Genemu/Bundle/FormBundle/Resources/translations/validators.de.yml</argument>
+        <argument>de</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/genemu/form-bundle/Genemu/Bundle/FormBundle/Resources/translations/validators.en.yml</argument>
+        <argument>en</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
+        <argument>/Applications/MAMP/htdocs/vc/vendor/genemu/form-bundle/Genemu/Bundle/FormBundle/Resources/translations/validators.fr.yml</argument>
+        <argument>fr</argument>
+        <argument>validators</argument>
+      </call>
+      <call method="addResource">
+        <argument>yml</argument>
         <argument>/Applications/MAMP/htdocs/vc/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ar.yml</argument>
         <argument>ar</argument>
         <argument>FOSUserBundle</argument>
@@ -2360,6 +2443,59 @@
               <argument key="reset">form.type.reset</argument>
               <argument key="currency">form.type.currency</argument>
               <argument key="entity">form.type.entity</argument>
+              <argument key="genemu_recaptcha">genemu.form.core.type.recaptcha</argument>
+              <argument key="genemu_captcha">genemu.form.core.type.captcha</argument>
+              <argument key="genemu_plain">genemu.form.core.type.plain</argument>
+              <argument key="genemu_tinymce">genemu.form.core.type.tinymce</argument>
+              <argument key="genemu_ajaxmodel">genemu.form.model.type.ajaxmodel</argument>
+              <argument key="genemu_jquerycolor">genemu.form.jquery.type.color</argument>
+              <argument key="genemu_jquerydate">genemu.form.jquery.type.date</argument>
+              <argument key="genemu_jqueryfile">genemu.form.jquery.type.file</argument>
+              <argument key="genemu_jquerygeolocation">genemu.form.jquery.type.geolocation</argument>
+              <argument key="genemu_jqueryimage">genemu.form.jquery.type.image</argument>
+              <argument key="genemu_jqueryrating">genemu.form.jquery.type.rating</argument>
+              <argument key="genemu_jqueryslider">genemu.form.jquery.type.slider</argument>
+              <argument key="genemu_ajaxentity">genemu.form.entity.type.ajaxentity</argument>
+              <argument key="genemu_jqueryautocomplete_text">genemu.form.jquery.type.autocomplete.text</argument>
+              <argument key="genemu_jqueryautocomplete_entity">genemu.form.jquery.type.autocomplete.entity</argument>
+              <argument key="genemu_jqueryautocomplete_document">genemu.form.jquery.type.autocomplete.document</argument>
+              <argument key="genemu_jqueryselect2_choice">genemu.form.jquery.type.select2.choice</argument>
+              <argument key="genemu_jqueryselect2_language">genemu.form.jquery.type.select2.language</argument>
+              <argument key="genemu_jqueryselect2_country">genemu.form.jquery.type.select2.country</argument>
+              <argument key="genemu_jqueryselect2_timezone">genemu.form.jquery.type.select2.timezone</argument>
+              <argument key="genemu_jqueryselect2_locale">genemu.form.jquery.type.select2.locale</argument>
+              <argument key="genemu_jqueryselect2_entity">genemu.form.jquery.type.select2.entity</argument>
+              <argument key="genemu_jqueryselect2_document">genemu.form.jquery.type.select2.document</argument>
+              <argument key="genemu_jqueryselect2_model">genemu.form.jquery.type.select2.model</argument>
+              <argument key="genemu_jqueryselect2_currency">genemu.form.jquery.type.select2.currency</argument>
+              <argument key="genemu_jqueryselect2_hidden">genemu.form.jquery.type.select2.hidden</argument>
+              <argument key="genemu_jquerychosen_choice">genemu.form.jquery.type.chosen.choice</argument>
+              <argument key="genemu_jquerychosen_language">genemu.form.jquery.type.chosen.language</argument>
+              <argument key="genemu_jquerychosen_country">genemu.form.jquery.type.chosen.country</argument>
+              <argument key="genemu_jquerychosen_timezone">genemu.form.jquery.type.chosen.timezone</argument>
+              <argument key="genemu_jquerychosen_locale">genemu.form.jquery.type.chosen.locale</argument>
+              <argument key="genemu_jquerychosen_entity">genemu.form.jquery.type.chosen.entity</argument>
+              <argument key="genemu_jquerychosen_document">genemu.form.jquery.type.chosen.document</argument>
+              <argument key="genemu_jquerychosen_model">genemu.form.jquery.type.chosen.model</argument>
+              <argument key="genemu_jquerychosen_currency">genemu.form.jquery.type.chosen.currency</argument>
+              <argument key="genemu_jqueryautocompleter_choice">genemu.form.jquery.type.autocompleter.choice</argument>
+              <argument key="genemu_jqueryautocompleter_language">genemu.form.jquery.type.autocompleter.language</argument>
+              <argument key="genemu_jqueryautocompleter_country">genemu.form.jquery.type.autocompleter.country</argument>
+              <argument key="genemu_jqueryautocompleter_timezone">genemu.form.jquery.type.autocompleter.timezone</argument>
+              <argument key="genemu_jqueryautocompleter_locale">genemu.form.jquery.type.autocompleter.locale</argument>
+              <argument key="genemu_jqueryautocompleter_entity">genemu.form.jquery.type.autocompleter.entity</argument>
+              <argument key="genemu_jqueryautocompleter_document">genemu.form.jquery.type.autocompleter.document</argument>
+              <argument key="genemu_jqueryautocompleter_model">genemu.form.jquery.type.autocompleter.model</argument>
+              <argument key="genemu_jqueryautocompleter_currency">genemu.form.jquery.type.autocompleter.currency</argument>
+              <argument key="genemu_jquerytokeninput_choice">genemu.form.jquery.type.tokeninput.choice</argument>
+              <argument key="genemu_jquerytokeninput_language">genemu.form.jquery.type.tokeninput.language</argument>
+              <argument key="genemu_jquerytokeninput_country">genemu.form.jquery.type.tokeninput.country</argument>
+              <argument key="genemu_jquerytokeninput_timezone">genemu.form.jquery.type.tokeninput.timezone</argument>
+              <argument key="genemu_jquerytokeninput_locale">genemu.form.jquery.type.tokeninput.locale</argument>
+              <argument key="genemu_jquerytokeninput_entity">genemu.form.jquery.type.tokeninput.entity</argument>
+              <argument key="genemu_jquerytokeninput_document">genemu.form.jquery.type.tokeninput.document</argument>
+              <argument key="genemu_jquerytokeninput_model">genemu.form.jquery.type.tokeninput.model</argument>
+              <argument key="genemu_jquerytokeninput_currency">genemu.form.jquery.type.tokeninput.currency</argument>
               <argument key="fos_user_username">fos_user.username_form_type</argument>
               <argument key="fos_user_profile">fos_user.profile.form.type</argument>
               <argument key="fos_user_registration">fos_user.registration.form.type</argument>
@@ -2864,7 +3000,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>544567f148bb3</argument>
+            <argument>54469ece78d64</argument>
           </service>
         </argument>
       </argument>
@@ -3129,7 +3265,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>544567f148bb3</argument>
+            <argument>54469ece78d64</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -3309,18 +3445,7 @@
         <argument type="service">
           <service class="Symfony\Bridge\Twig\Extension\FormExtension" public="false">
             <tag name="twig.extension"/>
-            <argument type="service">
-              <service class="Symfony\Bridge\Twig\Form\TwigRenderer" public="false">
-                <argument type="service">
-                  <service class="Symfony\Bridge\Twig\Form\TwigRendererEngine" public="false">
-                    <argument type="collection">
-                      <argument>form_div_layout.html.twig</argument>
-                    </argument>
-                  </service>
-                </argument>
-                <argument type="service" id="form.csrf_provider" on-invalid="null"/>
-              </service>
-            </argument>
+            <argument type="service" id="twig.form.renderer"/>
           </service>
         </argument>
       </call>
@@ -3353,12 +3478,28 @@
         </argument>
       </call>
       <call method="addExtension">
+        <argument type="service" id="genemu.twig.extension.form"/>
+      </call>
+      <call method="addExtension">
         <argument type="service" id="knp_paginator.twig.extension.pagination"/>
       </call>
       <call method="addGlobal">
         <argument>app</argument>
         <argument type="service" id="templating.globals"/>
       </call>
+    </service>
+    <service id="twig.form.renderer" class="Symfony\Bridge\Twig\Form\TwigRenderer" public="false">
+      <argument type="service">
+        <service class="Symfony\Bridge\Twig\Form\TwigRendererEngine" public="false">
+          <argument type="collection">
+            <argument>form_div_layout.html.twig</argument>
+            <argument>GenemuFormBundle:Form:div_layout.html.twig</argument>
+            <argument>GenemuFormBundle:Form:jquery_layout.html.twig</argument>
+            <argument>GenemuFormBundle:Form:stylesheet_layout.html.twig</argument>
+          </argument>
+        </service>
+      </argument>
+      <argument type="service" id="form.csrf_provider" on-invalid="null"/>
     </service>
     <service id="twig.translation.extractor" class="Symfony\Bridge\Twig\Translation\TwigExtractor">
       <tag name="translation.extractor" alias="twig"/>
@@ -3721,6 +3862,289 @@
     </service>
     <service id="sensio_framework_extra.cache.listener" class="Sensio\Bundle\FrameworkExtraBundle\EventListener\CacheListener">
       <tag name="kernel.event_subscriber"/>
+    </service>
+    <service id="genemu.twig.extension.form" class="Genemu\Bundle\FormBundle\Twig\Extension\FormExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id="twig.form.renderer"/>
+    </service>
+    <service id="genemu.gd.captcha" class="Genemu\Bundle\FormBundle\Gd\Type\Captcha">
+      <argument type="service" id="session"/>
+      <argument>VacuumCooling2013RS</argument>
+    </service>
+    <service id="genemu.form.type_recaptcha.validator" class="Genemu\Bundle\FormBundle\Form\Core\Validator\ReCaptchaValidator">
+      <argument type="service" id="request" strict="false"/>
+      <argument></argument>
+      <argument type="collection"/>
+    </service>
+    <service id="genemu.form.core.type.recaptcha" class="Genemu\Bundle\FormBundle\Form\Core\Type\ReCaptchaType">
+      <tag name="form.type" alias="genemu_recaptcha"/>
+      <argument type="service" id="genemu.form.type_recaptcha.validator"/>
+      <argument></argument>
+      <argument></argument>
+      <argument type="collection"/>
+    </service>
+    <service id="genemu.form.core.type.captcha" class="Genemu\Bundle\FormBundle\Form\Core\Type\CaptchaType">
+      <tag name="form.type" alias="genemu_captcha"/>
+      <argument type="service" id="genemu.gd.captcha"/>
+      <argument type="collection">
+        <argument key="enabled">true</argument>
+        <argument key="driver">gd</argument>
+        <argument key="width">100</argument>
+        <argument key="height">30</argument>
+        <argument key="length">4</argument>
+        <argument key="format">png</argument>
+        <argument key="chars" type="collection">
+          <argument>0</argument>
+          <argument>1</argument>
+          <argument>2</argument>
+          <argument>3</argument>
+          <argument>4</argument>
+          <argument>5</argument>
+          <argument>6</argument>
+          <argument>7</argument>
+          <argument>8</argument>
+          <argument>9</argument>
+        </argument>
+        <argument key="font_size">18</argument>
+        <argument key="grayscale">false</argument>
+        <argument key="font_color" type="collection">
+          <argument>252525</argument>
+          <argument>8B8787</argument>
+          <argument>550707</argument>
+          <argument>3526E6</argument>
+          <argument>88531E</argument>
+        </argument>
+        <argument key="fonts" type="collection">
+          <argument>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/akbar.ttf</argument>
+          <argument>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/brushcut.ttf</argument>
+          <argument>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/molten.ttf</argument>
+          <argument>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/planetbe.ttf</argument>
+          <argument>/Applications/MAMP/htdocs/vc/app/../web/bundles/genemuform/fonts/whoobub.ttf</argument>
+        </argument>
+        <argument key="background_color">DDDDDD</argument>
+        <argument key="border_color">000000</argument>
+        <argument key="code">null</argument>
+      </argument>
+    </service>
+    <service id="genemu.form.core.type.plain" class="Genemu\Bundle\FormBundle\Form\Core\Type\PlainType">
+      <tag name="form.type" alias="genemu_plain"/>
+    </service>
+    <service id="genemu.form.core.type.tinymce" class="Genemu\Bundle\FormBundle\Form\Core\Type\TinymceType">
+      <tag name="form.type" alias="genemu_tinymce"/>
+      <argument type="collection">
+        <argument key="theme">advanced</argument>
+      </argument>
+    </service>
+    <service id="genemu.form.model.type.ajaxmodel" class="Genemu\Bundle\FormBundle\Form\Model\Type\AjaxModelType">
+      <tag name="form.type" alias="genemu_ajaxmodel"/>
+    </service>
+    <service id="genemu.form.jquery.type.color" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ColorType">
+      <tag name="form.type" alias="genemu_jquerycolor"/>
+      <argument type="collection"/>
+    </service>
+    <service id="genemu.form.jquery.type.date" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\DateType">
+      <tag name="form.type" alias="genemu_jquerydate"/>
+      <argument type="collection">
+        <argument key="dateFormat">Y-m-d</argument>
+        <argument key="locale">es</argument>
+      </argument>
+    </service>
+    <service id="genemu.form.jquery.type.file" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\FileType">
+      <tag name="form.type" alias="genemu_jqueryfile"/>
+      <argument type="collection"/>
+      <argument>/Applications/MAMP/htdocs/vc/app/../web</argument>
+    </service>
+    <service id="genemu.form.jquery.type.geolocation" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\GeolocationType">
+      <tag name="form.type" alias="genemu_jquerygeolocation"/>
+    </service>
+    <service id="genemu.form.jquery.type.image" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ImageType">
+      <tag name="form.type" alias="genemu_jqueryimage"/>
+      <argument></argument>
+      <argument type="collection"/>
+      <argument type="collection"/>
+    </service>
+    <service id="genemu.form.jquery.type.rating" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\RatingType">
+      <tag name="form.type" alias="genemu_jqueryrating"/>
+      <argument type="collection"/>
+    </service>
+    <service id="genemu.form.jquery.type.slider" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\SliderType">
+      <tag name="form.type" alias="genemu_jqueryslider"/>
+    </service>
+    <service id="genemu.form.entity.type.ajaxentity" class="Genemu\Bundle\FormBundle\Form\Doctrine\Type\AjaxEntityType">
+      <tag name="form.type" alias="genemu_ajaxentity"/>
+      <argument type="service" id="doctrine" on-invalid="ignore"/>
+    </service>
+    <service id="genemu.form.jquery.type.autocomplete.text" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleteType">
+      <tag name="form.type" alias="genemu_jqueryautocomplete_text"/>
+      <argument>text</argument>
+    </service>
+    <service id="genemu.form.jquery.type.autocomplete.entity" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleteType">
+      <tag name="form.type" alias="genemu_jqueryautocomplete_entity"/>
+      <argument>entity</argument>
+      <argument type="service" id="doctrine" on-invalid="null"/>
+    </service>
+    <service id="genemu.form.jquery.type.autocomplete.document" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleteType">
+      <tag name="form.type" alias="genemu_jqueryautocomplete_document"/>
+      <argument>document</argument>
+      <argument>null</argument>
+    </service>
+    <service id="genemu.form.jquery.type.select2.choice" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
+      <tag name="form.type" alias="genemu_jqueryselect2_choice"/>
+      <argument>choice</argument>
+      <argument type="collection"/>
+    </service>
+    <service id="genemu.form.jquery.type.select2.language" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
+      <tag name="form.type" alias="genemu_jqueryselect2_language"/>
+      <argument>language</argument>
+      <argument type="collection"/>
+    </service>
+    <service id="genemu.form.jquery.type.select2.country" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
+      <tag name="form.type" alias="genemu_jqueryselect2_country"/>
+      <argument>country</argument>
+      <argument type="collection"/>
+    </service>
+    <service id="genemu.form.jquery.type.select2.timezone" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
+      <tag name="form.type" alias="genemu_jqueryselect2_timezone"/>
+      <argument>timezone</argument>
+      <argument type="collection"/>
+    </service>
+    <service id="genemu.form.jquery.type.select2.locale" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
+      <tag name="form.type" alias="genemu_jqueryselect2_locale"/>
+      <argument>locale</argument>
+      <argument type="collection"/>
+    </service>
+    <service id="genemu.form.jquery.type.select2.entity" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
+      <tag name="form.type" alias="genemu_jqueryselect2_entity"/>
+      <argument>entity</argument>
+      <argument type="collection"/>
+    </service>
+    <service id="genemu.form.jquery.type.select2.document" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
+      <tag name="form.type" alias="genemu_jqueryselect2_document"/>
+      <argument>document</argument>
+      <argument type="collection"/>
+    </service>
+    <service id="genemu.form.jquery.type.select2.model" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
+      <tag name="form.type" alias="genemu_jqueryselect2_model"/>
+      <argument>model</argument>
+      <argument type="collection"/>
+    </service>
+    <service id="genemu.form.jquery.type.select2.currency" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
+      <tag name="form.type" alias="genemu_jqueryselect2_currency"/>
+      <argument>currency</argument>
+      <argument type="collection"/>
+    </service>
+    <service id="genemu.form.jquery.type.select2.hidden" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2Type">
+      <tag name="form.type" alias="genemu_jqueryselect2_hidden"/>
+      <argument>hidden</argument>
+      <argument type="collection"/>
+    </service>
+    <service id="genemu.form.jquery.type.chosen.choice" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ChosenType">
+      <tag name="form.type" alias="genemu_jquerychosen_choice"/>
+      <argument>choice</argument>
+    </service>
+    <service id="genemu.form.jquery.type.chosen.language" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ChosenType">
+      <tag name="form.type" alias="genemu_jquerychosen_language"/>
+      <argument>language</argument>
+    </service>
+    <service id="genemu.form.jquery.type.chosen.country" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ChosenType">
+      <tag name="form.type" alias="genemu_jquerychosen_country"/>
+      <argument>country</argument>
+    </service>
+    <service id="genemu.form.jquery.type.chosen.timezone" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ChosenType">
+      <tag name="form.type" alias="genemu_jquerychosen_timezone"/>
+      <argument>timezone</argument>
+    </service>
+    <service id="genemu.form.jquery.type.chosen.locale" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ChosenType">
+      <tag name="form.type" alias="genemu_jquerychosen_locale"/>
+      <argument>locale</argument>
+    </service>
+    <service id="genemu.form.jquery.type.chosen.entity" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ChosenType">
+      <tag name="form.type" alias="genemu_jquerychosen_entity"/>
+      <argument>entity</argument>
+    </service>
+    <service id="genemu.form.jquery.type.chosen.document" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ChosenType">
+      <tag name="form.type" alias="genemu_jquerychosen_document"/>
+      <argument>document</argument>
+    </service>
+    <service id="genemu.form.jquery.type.chosen.model" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ChosenType">
+      <tag name="form.type" alias="genemu_jquerychosen_model"/>
+      <argument>model</argument>
+    </service>
+    <service id="genemu.form.jquery.type.chosen.currency" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\ChosenType">
+      <tag name="form.type" alias="genemu_jquerychosen_currency"/>
+      <argument>currency</argument>
+    </service>
+    <service id="genemu.form.jquery.type.autocompleter.choice" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleterType">
+      <tag name="form.type" alias="genemu_jqueryautocompleter_choice"/>
+      <argument>choice</argument>
+    </service>
+    <service id="genemu.form.jquery.type.autocompleter.language" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleterType">
+      <tag name="form.type" alias="genemu_jqueryautocompleter_language"/>
+      <argument>language</argument>
+    </service>
+    <service id="genemu.form.jquery.type.autocompleter.country" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleterType">
+      <tag name="form.type" alias="genemu_jqueryautocompleter_country"/>
+      <argument>country</argument>
+    </service>
+    <service id="genemu.form.jquery.type.autocompleter.timezone" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleterType">
+      <tag name="form.type" alias="genemu_jqueryautocompleter_timezone"/>
+      <argument>timezone</argument>
+    </service>
+    <service id="genemu.form.jquery.type.autocompleter.locale" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleterType">
+      <tag name="form.type" alias="genemu_jqueryautocompleter_locale"/>
+      <argument>locale</argument>
+    </service>
+    <service id="genemu.form.jquery.type.autocompleter.entity" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleterType">
+      <tag name="form.type" alias="genemu_jqueryautocompleter_entity"/>
+      <argument>entity</argument>
+    </service>
+    <service id="genemu.form.jquery.type.autocompleter.document" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleterType">
+      <tag name="form.type" alias="genemu_jqueryautocompleter_document"/>
+      <argument>document</argument>
+    </service>
+    <service id="genemu.form.jquery.type.autocompleter.model" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleterType">
+      <tag name="form.type" alias="genemu_jqueryautocompleter_model"/>
+      <argument>model</argument>
+    </service>
+    <service id="genemu.form.jquery.type.autocompleter.currency" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\AutocompleterType">
+      <tag name="form.type" alias="genemu_jqueryautocompleter_currency"/>
+      <argument>currency</argument>
+    </service>
+    <service id="genemu.form.jquery.type.tokeninput.choice" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\TokeninputType">
+      <tag name="form.type" alias="genemu_jquerytokeninput_choice"/>
+      <argument>choice</argument>
+    </service>
+    <service id="genemu.form.jquery.type.tokeninput.language" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\TokeninputType">
+      <tag name="form.type" alias="genemu_jquerytokeninput_language"/>
+      <argument>language</argument>
+    </service>
+    <service id="genemu.form.jquery.type.tokeninput.country" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\TokeninputType">
+      <tag name="form.type" alias="genemu_jquerytokeninput_country"/>
+      <argument>country</argument>
+    </service>
+    <service id="genemu.form.jquery.type.tokeninput.timezone" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\TokeninputType">
+      <tag name="form.type" alias="genemu_jquerytokeninput_timezone"/>
+      <argument>timezone</argument>
+    </service>
+    <service id="genemu.form.jquery.type.tokeninput.locale" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\TokeninputType">
+      <tag name="form.type" alias="genemu_jquerytokeninput_locale"/>
+      <argument>locale</argument>
+    </service>
+    <service id="genemu.form.jquery.type.tokeninput.entity" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\TokeninputType">
+      <tag name="form.type" alias="genemu_jquerytokeninput_entity"/>
+      <argument>entity</argument>
+    </service>
+    <service id="genemu.form.jquery.type.tokeninput.document" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\TokeninputType">
+      <tag name="form.type" alias="genemu_jquerytokeninput_document"/>
+      <argument>document</argument>
+    </service>
+    <service id="genemu.form.jquery.type.tokeninput.model" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\TokeninputType">
+      <tag name="form.type" alias="genemu_jquerytokeninput_model"/>
+      <argument>model</argument>
+    </service>
+    <service id="genemu.form.jquery.type.tokeninput.currency" class="Genemu\Bundle\FormBundle\Form\JQuery\Type\TokeninputType">
+      <tag name="form.type" alias="genemu_jquerytokeninput_currency"/>
+      <argument>currency</argument>
     </service>
     <service id="knp_paginator" class="Knp\Component\Pager\Paginator">
       <argument type="service" id="event_dispatcher"/>
@@ -4176,6 +4600,10 @@
       <call method="addPath">
         <argument>/Applications/MAMP/htdocs/vc/vendor/doctrine/doctrine-bundle/Doctrine/Bundle/DoctrineBundle/Resources/views</argument>
         <argument>Doctrine</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Applications/MAMP/htdocs/vc/vendor/genemu/form-bundle/Genemu/Bundle/FormBundle/Resources/views</argument>
+        <argument>GenemuForm</argument>
       </call>
       <call method="addPath">
         <argument>/Applications/MAMP/htdocs/vc/vendor/knplabs/knp-paginator-bundle/Knp/Bundle/PaginatorBundle/Resources/views</argument>

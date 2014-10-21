@@ -124,7 +124,7 @@ class Reserva
     private $creado_por;
 
     /**
-     * @ORM\OneToMany(targetEntity="VC\ReservasBundle\Entity\ReservaProducto",mappedBy="reserva",cascade={"persist"}, inversedBy=productos)
+     * @ORM\OneToMany(targetEntity="VC\ReservasBundle\Entity\ReservaProducto",mappedBy="reserva",cascade={"persist"})
      */
     private $productos;
     

@@ -2,4 +2,4 @@ _assetic:
     resource: .
     type: assetic
 _app:
-    resource: /Applications/MAMP/htdocs/vc/app/config/routing_dev.yml
+    resource: /home/vacuumws/public_html/reservas/app/config/routing_dev.yml

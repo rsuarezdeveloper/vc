@@ -71,4 +71,4 @@ fos_user:
 genemu_form:
     autocomplete: ~
     select2: ~
-    date: {configs:{dateFormat:Y-m-d, locale:"es"}}
+    date: ~

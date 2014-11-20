@@ -27,7 +27,36 @@ class Aerolinea
      * @ORM\Column(name="nombre", type="string", length=255)
      */
     private $nombre;
-
+   
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alias", type="string", length=255)
+     */
+    private $alias;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pais", type="string", length=255)
+     */
+    private $pais;
+	
+	/**
+     * @var string
+     *
+     * @ORM\Column(name="iata", type="string", length=255)
+     */
+    private $iata;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="icao", type="string", length=255)
+     */
+    private $icao;
+    
+    
     /**
      * @var string
      *
@@ -120,5 +149,97 @@ class Aerolinea
     public function getContacto()
     {
         return $this->contacto;
+    }
+
+    /**
+     * Set alias
+     *
+     * @param string $alias
+     * @return Aerolinea
+     */
+    public function setAlias($alias)
+    {
+        $this->alias = $alias;
+    
+        return $this;
+    }
+
+    /**
+     * Get alias
+     *
+     * @return string 
+     */
+    public function getAlias()
+    {
+        return $this->alias;
+    }
+
+    /**
+     * Set pais
+     *
+     * @param string $pais
+     * @return Aerolinea
+     */
+    public function setPais($pais)
+    {
+        $this->pais = $pais;
+    
+        return $this;
+    }
+
+    /**
+     * Get pais
+     *
+     * @return string 
+     */
+    public function getPais()
+    {
+        return $this->pais;
+    }
+
+    /**
+     * Set iata
+     *
+     * @param string $iata
+     * @return Aerolinea
+     */
+    public function setIata($iata)
+    {
+        $this->iata = $iata;
+    
+        return $this;
+    }
+
+    /**
+     * Get iata
+     *
+     * @return string 
+     */
+    public function getIata()
+    {
+        return $this->iata;
+    }
+
+    /**
+     * Set icao
+     *
+     * @param string $icao
+     * @return Aerolinea
+     */
+    public function setIcao($icao)
+    {
+        $this->icao = $icao;
+    
+        return $this;
+    }
+
+    /**
+     * Get icao
+     *
+     * @return string 
+     */
+    public function getIcao()
+    {
+        return $this->icao;
     }
 }

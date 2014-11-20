@@ -169,13 +169,13 @@ class ReservaController extends Controller
             if($request->get('producto_nombre')){
                 foreach($request->get('producto_nombre') as $k=>$v){
                     $prod=$v;
-                    $piezas=$request->get("producto_piezas")[$k];
-                    $fbe=$request->get("producto_fbe")[$k];
+                    $piezas=$request->get("producto_piezas");
+                    $fbe=$request->get("producto_fbe");
                     if($piezas>0 && $fbe>0){
                         $rp=new ReservaProducto();
                         $rp->setNombreProducto($prod)
-                           ->setPiezas($piezas)
-                           ->setFbe($fbe)
+                           ->setPiezas($piezas[$k])
+                           ->setFbe($fbe[$k])
                            ->setReserva($entity);
                         $em->persist($rp);
                         $em->flush();
@@ -224,6 +224,9 @@ class ReservaController extends Controller
     {
         $entity = new Reserva();
         $user = $this->get('security.context')->getToken()->getUser();
+        $em=$this->getDoctrine()->getManager();
+		$status=$em->getRepository("VCBaseBundle:Reserva")->find(1);
+		$entity->setStatus($status);
         $entity->setFechaServicio(new \DateTime());
         if($this->get('security.context')->isGranted('ROLE_CUSTOMER')){
             $entity->setCliente($user->getCliente());

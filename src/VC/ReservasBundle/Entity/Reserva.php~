@@ -39,8 +39,11 @@ class Reserva
      */
     private $fechaServicio;
     
-
-
+	/**
+     * @ORM\ManyToOne(targetEntity="VC\BaseBundle\Entity\Sucursal")
+     * @ORM\JoinColumn(name="sucursal", referencedColumnName="id", nullable=true)
+     */
+	private $sucursal;
     /**
      * @ORM\ManyToOne(targetEntity="VC\BaseBundle\Entity\Agencia")
      * @ORM\JoinColumn(name="agencia", referencedColumnName="id", nullable=true)

@@ -39,8 +39,11 @@ class Reserva
      */
     private $fechaServicio;
     
-
-
+	/**
+     * @ORM\ManyToOne(targetEntity="VC\BaseBundle\Entity\Sucursal")
+     * @ORM\JoinColumn(name="sucursal", referencedColumnName="id", nullable=true)
+     */
+	private $sucursal;
     /**
      * @ORM\ManyToOne(targetEntity="VC\BaseBundle\Entity\Agencia")
      * @ORM\JoinColumn(name="agencia", referencedColumnName="id", nullable=true)
@@ -546,5 +549,28 @@ class Reserva
     public function getMailContacto()
     {
         return $this->mailContacto;
+    }
+
+    /**
+     * Set sucursal
+     *
+     * @param \VC\BaseBundle\Entity\Sucursal $sucursal
+     * @return Reserva
+     */
+    public function setSucursal(\VC\BaseBundle\Entity\Sucursal $sucursal = null)
+    {
+        $this->sucursal = $sucursal;
+    
+        return $this;
+    }
+
+    /**
+     * Get sucursal
+     *
+     * @return \VC\BaseBundle\Entity\Sucursal 
+     */
+    public function getSucursal()
+    {
+        return $this->sucursal;
     }
 }

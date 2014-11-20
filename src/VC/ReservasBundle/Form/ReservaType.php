@@ -13,9 +13,11 @@ class ReservaType extends AbstractType
         $builder
 			->add('mailContacto')
             //->add('creacion')
-            ->add('fechaServicio','genemu_jquerydate',array(
-            'widget' => 'single_text',
-            'culture' => 'es',            
+            ->add('fechaServicio','text',array(
+            //'widget' => 'single_text',
+            //'culture' => 'es',
+            'data'=>date('Y-m-d')
+            //'configs'=>array('minDate'=> '1', 'dateFormat'=>'yy-mm-dd' )           
         ))
 
             ->add('guiaMaster')
@@ -29,6 +31,12 @@ class ReservaType extends AbstractType
             ->add('temperaturaRequerida', 'text')
             ->add('contacto')
             ->add('notas')
+            ->add('sucursal', 'genemu_jqueryselect2_entity', array(
+            'class' => 'VC\BaseBundle\Entity\Sucursal',
+            'property' => 'nombre',
+            'empty_value' => 'Seleccione',
+            'configs' => array("placeholder"=>"Sucursal","width"=>"250px")
+        ))
             ->add('agencia', 'genemu_jqueryselect2_entity', array(
             'class' => 'VC\BaseBundle\Entity\Agencia',
             'property' => 'nombre',

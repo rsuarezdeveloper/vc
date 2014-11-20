@@ -27,7 +27,36 @@ class Aerolinea
      * @ORM\Column(name="nombre", type="string", length=255)
      */
     private $nombre;
-
+   
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alias", type="string", length=255)
+     */
+    private $alias;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pais", type="string", length=255)
+     */
+    private $pais;
+	
+	/**
+     * @var string
+     *
+     * @ORM\Column(name="iata", type="string", length=255)
+     */
+    private $iata;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="icao", type="string", length=255)
+     */
+    private $icao;
+    
+    
     /**
      * @var string
      *

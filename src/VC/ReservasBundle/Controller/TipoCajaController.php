@@ -123,11 +123,12 @@ class TipoCajaController extends Controller
     {
         $entity  = new TipoCaja();
         $form = $this->createForm(new TipoCajaType(),$entity);
-        var_dump($request->get('vc_reservasbundle_tipocajatype')['descripcion']);
-		$entity->setDescripcion($request->get('vc_reservasbundle_tipocajatype')['descripcion']);
-		$entity->setAlto($request->get('vc_reservasbundle_tipocajatype')['alto']);
-		$entity->setAncho($request->get('vc_reservasbundle_tipocajatype')['ancho']);
-		$entity->setLargo($request->get('vc_reservasbundle_tipocajatype')['largo']);		
+        //var_dump($request->get('vc_reservasbundle_tipocajatype')['descripcion']);
+        $frm = $request->get('vc_reservasbundle_tipocaja');
+		$entity->setDescripcion($frm['descripcion']);
+		$entity->setAlto($frm['alto']);
+		$entity->setAncho($frm['ancho']);
+		$entity->setLargo($frm['largo']);		
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($entity);

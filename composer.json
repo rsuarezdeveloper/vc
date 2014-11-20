@@ -20,7 +20,7 @@
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "~2.0@dev",
-        "knplabs/knp-paginator-bundle": "dev-master",
+        "knplabs/knp-paginator-bundle": "~2.4",
         "liuggio/excelbundle": ">=1.0.4",
         "genemu/form-bundle": "~2.2"
     },

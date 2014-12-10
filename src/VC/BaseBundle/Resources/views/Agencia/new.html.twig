@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 
+{%block page_header%}Crear Nueva Agencia{% endblock %}
 {% block body -%}
-    <h1>Crear Nueva Agencia</h1>
 
     <form action="{{ path('agencia_create') }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}

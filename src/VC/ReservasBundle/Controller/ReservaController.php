@@ -150,7 +150,8 @@ class ReservaController extends Controller
         $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
         $all=$request->request->all();
-        //$all['vc_reservasbundle_reservatype']['horaServicio']= new \DateTime($all['vc_reservasbundle_reservatype']['horaServicio']);
+        var_dump(['vc_reservasbundle_reservatype']['horaServicio']);
+        $all['vc_reservasbundle_reservatype']['horaServicio']= new \DateTime($all['vc_reservasbundle_reservatype']['horaServicio']);
         $request->request->replace($all);
         //$status=$em->getRepository('VCBaseBundle:Status')->find(1);
         $entity  = new Reserva();

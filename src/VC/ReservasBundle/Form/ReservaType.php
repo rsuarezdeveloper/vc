@@ -20,13 +20,7 @@ class ReservaType extends AbstractType
             //'configs'=>array('minDate'=> '1', 'dateFormat'=>'yy-mm-dd' )           
         ))
 
-            ->add('guiaMaster'
-            ,'text'
-            ,array(
-            //"data_class"=>"DateTime",
-            "data"=>($builder->getData()->getHoraServicio()?$builder->getData()->getHoraServicio()->format("H:i"):null)
-            )
-            )
+            ->add('guiaMaster')
             ->add('horaServicio'
             ,'text'
             ,array(

@@ -33,7 +33,7 @@ class ReservaProducto
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="VC\ReservasBundle\Entity\Reserva")
+     * @ORM\ManyToOne(targetEntity="VC\ReservasBundle\Entity\Reserva", inversedBy="productos")
      * @ORM\JoinColumn(name="reserva", referencedColumnName="id")
      */
     private $reserva;

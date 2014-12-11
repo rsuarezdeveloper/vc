@@ -131,6 +131,16 @@ class Reserva
      */
     private $productos;
     
+    public function __construct()
+    {
+        $this->productos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString()
+	{
+    	return "{$this->id}";
+	}
+
     /**
      * Get id
      *

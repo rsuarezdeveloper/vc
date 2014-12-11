@@ -130,11 +130,7 @@ class Reserva
      * @ORM\OneToMany(targetEntity="VC\ReservasBundle\Entity\ReservaProducto",mappedBy="reserva",cascade={"persist"})
      */
     private $productos;
-    
-    public function __construct()
-    {
-        $this->productos = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+
 
     public function __toString()
 	{

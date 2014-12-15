@@ -78,7 +78,11 @@
     <script>
         $(document).ready(function(){
 
-    $("#vc_reservasbundle_reservatype_clasificacion").select2();
+    $("#vc_reservasbundle_reservatype_clasificacion").select2({
+                placeholder: "Tipo de Servicio",
+                width: "120px",
+                allowClear: true
+                });
 
                 var tr_producto='<tr><td><a href="#" class="delete"><i class="icon-trash"></i></a></td><td><input type="text" name="producto_nombre[]" id="producto_nombre[]" placeholder="Nombre Producto"/></td><td><input type="text" name="producto_piezas[]" id="producto_piezas[]" placeholder="0" dir="rtl" class="input-small"/></td><td><input type="text" name="producto_fbe[]" id="producto_fbe[]" placeholder="0" dir="rtl" class="input-small"/></td></tr>';
                 $("#tbl-productos").append(tr_producto);

@@ -25,7 +25,7 @@ class ReservaType extends AbstractType
             ,'text'
             ,array(
             //"data_class"=>"DateTime",
-            "data"=>($builder->getData()->getHoraServicio()?$builder->getData()->getHoraServicio()->format("H:i"):null)
+            //"data"=>($builder->getData()->getHoraServicio()?$builder->getData()->getHoraServicio()->format("H:i"):null)
             )
             )
             ->add('clasificacion', 'choice', array(

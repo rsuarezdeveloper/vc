@@ -153,9 +153,9 @@ class ReservaController extends Controller
         $em = $this->getDoctrine()->getManager();
         $all=$request->request->all();
         var_dump($all);
-        var_dump($all['vc_reservasbundle_reservatype']['horaServicio']);
-        $all['vc_reservasbundle_reservatype']['horaServicio']= new \DateTime($all['vc_reservasbundle_reservatype']['horaServicio']);
-        $request->request->replace($all);
+        //var_dump($all['vc_reservasbundle_reservatype']['horaServicio']);
+        //$all['vc_reservasbundle_reservatype']['horaServicio']= new \DateTime($all['vc_reservasbundle_reservatype']['horaServicio']);
+        //$request->request->replace($all);
         //$status=$em->getRepository('VCBaseBundle:Status')->find(1);
         $entity  = new Reserva();
         //print_r($request);

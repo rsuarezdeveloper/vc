@@ -85,6 +85,19 @@ class Reserva
      */
     private $temperaturaRequerida;
 
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="noPalet", type="decimal", scale=4, nullable=true)
+     */
+    private $noPalet;
+
+    /**
+	 *@ORM\OneToMany(targetEntity="VC\ReservasBundle\Entity\ReservaHijas",mappedBy="reserva",cascade={"persist"})
+	 */
+
+	private $hijas;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="VC\BaseBundle\Entity\Cliente")

@@ -21,7 +21,7 @@ class ReservaType extends AbstractType
         ))
 
             ->add('guiaMaster')
-            ->add('horaServicio'
+            ->add('horaString'
             ,'text'
             ,array(
             //"data_class"=>"DateTime",

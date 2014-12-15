@@ -21,7 +21,7 @@ class ReservaType extends AbstractType
         ))
 
             ->add('guiaMaster')
-            ->add('horaString','text',array('attr'=>array('class'=>'timePicker')))
+            ->add('horaServicio','text',array('attr'=>array('class'=>'timePicker')))
             ->add('clasificacion', 'choice', array(
     'choices' => array('Seleccione' => 'Seleccione','Flor' => 'Flor', 'Aromatica' => 'Aromatica'),
     'preferred_choices' => array('Seleccione'),

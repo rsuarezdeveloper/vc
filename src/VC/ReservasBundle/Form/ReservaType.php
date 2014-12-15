@@ -47,13 +47,13 @@ class ReservaType extends AbstractType
             ->add('agencia', 'genemu_jqueryselect2_entity', array(
             'class' => 'VC\BaseBundle\Entity\Agencia',
             'property' => 'nombre',
-            'empty_value' => 'Seleccione'
+            'empty_value' => 'Seleccione',
             'configs' => array("placeholder"=>"Sucursal","width"=>"230px")
         ))
             ->add('aerolinea', 'genemu_jqueryselect2_entity', array(
             'class' => 'VC\BaseBundle\Entity\Aerolinea',
             'property' => 'nombre',
-            'empty_value' => 'Seleccione'
+            'empty_value' => 'Seleccione',
             'configs' => array("placeholder"=>"Sucursal","width"=>"230px")
         ))
         
@@ -66,7 +66,7 @@ class ReservaType extends AbstractType
             ->add('cliente', 'genemu_jqueryselect2_entity', array(
             'class' => 'VC\BaseBundle\Entity\Cliente',
             'property' => 'nombre',
-            'empty_value' => 'Seleccione'
+            'empty_value' => 'Seleccione',
             'configs' => array("placeholder"=>"Sucursal","width"=>"230px")
         ))
             //->add('creado_por')

@@ -147,13 +147,14 @@ class ReservaController extends Controller
      */
     public function createAction(Request $request)
     {
+
+
         $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
         $all=$request->request->all();
         var_dump($all);
         var_dump($all['vc_reservasbundle_reservatype']['horaServicio']);
-        //$all['vc_reservasbundle_reservatype']['horaServicio']= new \DateTime($all['vc_reservasbundle_reservatype']['horaServicio']);
-        $all['vc_reservasbundle_reservatype']['horaServicio']= new \DateTime();
+        $all['vc_reservasbundle_reservatype']['horaServicio']= new \DateTime($all['vc_reservasbundle_reservatype']['horaServicio']);
         $request->request->replace($all);
         //$status=$em->getRepository('VCBaseBundle:Status')->find(1);
         $entity  = new Reserva();
@@ -180,7 +181,7 @@ class ReservaController extends Controller
                            ->setPiezas($piezas[$k])
                            ->setFbe($fbe[$k])
                            ->setReserva($entity);
-                        $em->persist($rp);
+                        //$em->persist($rp);
                         $em->flush();
                     }
                 }

@@ -152,6 +152,7 @@ class ReservaController extends Controller
         $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
         $all=$request->request->all();
+        var_dump($all);
         $all['vc_reservasbundle_reservatype']['fechaServicio']= new \DateTime($all['vc_reservasbundle_reservatype']['fechaServicio']);
         $all['vc_reservasbundle_reservatype']['horaServicio']= new \DateTime($all['vc_reservasbundle_reservatype']['horaServicio']);
         $request->request->replace($all);
@@ -167,7 +168,7 @@ class ReservaController extends Controller
         $form->bind($request);
         if ($form->isValid()) {
             
-            $em->persist($entity);
+            //$em->persist($entity);
             $em->flush();
             if($request->get('producto_nombre')){
                 foreach($request->get('producto_nombre') as $k=>$v){

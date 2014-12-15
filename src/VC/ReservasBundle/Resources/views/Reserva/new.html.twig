@@ -37,7 +37,7 @@
             </tr>
             <tr></tr>
             <tr>
-                <td><label>Contacto Aerolinea:</label>{{ form_widget(form.contactoAerolinea,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
+                <td><a a href="javascript:void(0)" onclick="crearContacto();" rel="tooltip" title="Crear Nuevo Contacto"> <i class="icon-plus-sign"></i></a><label>Contacto Aerolinea:</label>{{ form_widget(form.contactoAerolinea,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
                 <td><label>Contacto Agencia:</label>{{ form_widget(form.contactoAgencia,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
                 <td><label>Contacto Cliente:</label>{{ form_widget(form.contactoCliente,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
             </tr>
@@ -91,7 +91,6 @@
 
     <script>
         function crearContacto(){
-            //path= "{{path('reserva_new')}}";
             $("#crearContactoModal div.modal-body").empty().load();
             $("#crearContactoModal").modal('show');
             $("#crearContactoModal").on('shown', function(){

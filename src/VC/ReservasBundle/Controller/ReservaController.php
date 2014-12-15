@@ -168,7 +168,7 @@ class ReservaController extends Controller
         $form->bind($request);
         if ($form->isValid()) {
             
-            //$em->persist($entity);
+            $em->persist($entity);
             $em->flush();
             if($request->get('producto_nombre')){
                 foreach($request->get('producto_nombre') as $k=>$v){
@@ -181,7 +181,7 @@ class ReservaController extends Controller
                            ->setPiezas($piezas[$k])
                            ->setFbe($fbe[$k])
                            ->setReserva($entity);
-                        //$em->persist($rp);
+                        $em->persist($rp);
                         $em->flush();
                     }
                 }

@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use VC\ReservasBundle\Entity\Reserva;
 use VC\ReservasBundle\Entity\ReservaProducto;
+use VC\ReservasBundle\Entity\ReservaHijas;
 use VC\ReservasBundle\Form\ReservaType;
 use VC\ReservasBundle\Form\ProcesoType;
 
@@ -184,6 +185,16 @@ class ReservaController extends Controller
                         $em->persist($rp);
                         $em->flush();
                     }
+                }
+            }
+            if($request->get('guiaHija')){
+                foreach($request->get('guiaHija') as $k=>$v){
+                    $hija=$v;
+                        $gh=new ReservaHijas();
+                        $gh->setGuiaHija($hija)
+                           ->setReserva($entity);
+                        $em->persist($gh);
+                        $em->flush();
                 }
             }
 

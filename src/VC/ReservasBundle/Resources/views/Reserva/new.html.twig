@@ -37,7 +37,7 @@
             </tr>
             <tr></tr>
             <tr>
-                <td><a a href="javascript:void(0)" onclick="crearContacto();" rel="tooltip" title="Crear Nuevo Contacto"> <i class="icon-plus-sign"></i></a><label>Contacto Aerolinea:</label>{{ form_widget(form.contactoAerolinea,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
+                <td><label>Contacto Aerolinea:</label>{{ form_widget(form.contactoAerolinea,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
                 <td><label>Contacto Agencia:</label>{{ form_widget(form.contactoAgencia,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
                 <td><label>Contacto Cliente:</label>{{ form_widget(form.contactoCliente,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
             </tr>
@@ -96,12 +96,12 @@
             $("#crearContactoModal").modal('show');
             $("#crearContactoModal").on('shown', function(){
                 $(this).css({
-                    'width':'650px',
+                    'width':'350px',
                     'margin-top': function () { //vertical centering
-                        return -($(this).height() / 3);
+                        return -($(this).height() / 2);
                     },
                     'margin-left': function () { //Horizontal centering
-                        return -($(this).width() / 3);
+                        return -($(this).width() / 2);
                     }
                 });
             });

@@ -30,14 +30,12 @@
                 <label>Temperatura Requerida:</label>{{ form_widget(form.temperaturaRequerida) }}
                 <label>Numero de Palet:</label>{{ form_widget(form.noPalet) }}</td>
                 <td><button class="btn btn-small" id="btn-nueva-hija" type="button"><i class='icon-plus'></i>Guias Hija</button>
-        <table id="tbl-hijas">
-            <tr>
-                <th></th>
-                <th>Numero</th>
-            </tr>
+                <table id="tbl-hijas">
 
-        </table></td>
+                </table>
+                </td>
             </tr>
+            <tr></tr>
             <tr>
                 <td><label>Contacto Aerolinea:</label>{{ form_widget(form.contactoAerolinea,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
                 <td><label>Contacto Agencia:</label>{{ form_widget(form.contactoAgencia,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>

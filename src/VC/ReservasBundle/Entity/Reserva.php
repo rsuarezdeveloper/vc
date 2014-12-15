@@ -74,6 +74,13 @@ class Reserva
     /**
      * @var string
      *
+     * @ORM\Column(name="hora_string", type="string" , nullable=true, length=255)
+     */
+    private $horaString;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="clasificacion", type="string", nullable=true)
      */
     private $clasificacion;

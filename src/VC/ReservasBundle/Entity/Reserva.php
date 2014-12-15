@@ -118,9 +118,23 @@ class Reserva
     /**
      * @var string
      *
-     * @ORM\Column(name="contacto", type="text", nullable=true)
+     * @ORM\Column(name="contactoAerolinea", type="text", nullable=true)
      */
-    private $contacto;
+    private $contactoAerolinea;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contactoAgencia", type="text", nullable=true)
+     */
+    private $contactoAgencia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contactoCliente", type="text", nullable=true)
+     */
+    private $contactoCliente;
 
 	/**
 	 * 

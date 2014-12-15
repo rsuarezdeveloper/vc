@@ -90,6 +90,22 @@
     {{form_javascript(form)}}
 
     <script>
+        function crearContacto(){
+            //path= "{{path('reserva_new')}}";
+            $("#crearContactoModal div.modal-body").empty().load();
+            $("#crearContactoModal").modal('show');
+            $("#crearContactoModal").on('shown', function(){
+                $(this).css({
+                    'width':'650px',
+                    'margin-top': function () { //vertical centering
+                        return -($(this).height() / 3);
+                    },
+                    'margin-left': function () { //Horizontal centering
+                        return -($(this).width() / 3);
+                    }
+                });
+            });
+        }
         $(document).ready(function(){
 
     $("#vc_reservasbundle_reservatype_clasificacion").select2({
@@ -119,23 +135,7 @@
 				  
 				  minuteStep:1
 				  });
-                
-            function crearContacto(){
-            //path= "{{path('reserva_new')}}";
-            $("#crearContactoModal div.modal-body").empty().load();
-            $("#crearContactoModal").modal('show');
-            $("#crearContactoModal").on('shown', function(){
-                $(this).css({
-                    'width':'650px',
-                    'margin-top': function () { //vertical centering
-                        return -($(this).height() / 3);
-                    },
-                    'margin-left': function () { //Horizontal centering
-                        return -($(this).width() / 3);
-                    }
-                });
-            });
- }
+
             });
         
     </script>

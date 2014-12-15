@@ -72,6 +72,13 @@ class Reserva
     private $horaServicio;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="horaString", type="string", nullable=true)
+     */
+    private $horaString;
+
+    /**
      * @var float
      *
      * @ORM\Column(name="temperatura_requerida", type="decimal", scale=4, nullable=true)

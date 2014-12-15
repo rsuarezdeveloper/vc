@@ -37,7 +37,7 @@
             </tr>
             <tr></tr>
             <tr>
-                <td><label>Contacto Aerolinea:</label>{{ form_widget(form.contactoAerolinea,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
+                <td><a a href="javascript:void(0)" onclick="crearContacto();" rel="tooltip" title="Crear Nuevo Contacto"> <i class="icon-plus-sign"></i></a><label>Contacto Aerolinea:</label>{{ form_widget(form.contactoAerolinea,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
                 <td><label>Contacto Agencia:</label>{{ form_widget(form.contactoAgencia,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
                 <td><label>Contacto Cliente:</label>{{ form_widget(form.contactoCliente,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
             </tr>
@@ -71,6 +71,20 @@
         </a>
         </p>
     </form>
+
+    <div id="crearContactoModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="editarLabel">Nuevo Contacto</h3>
+	</div>
+	<div class="modal-body">
+		<p>One fine body…</p>
+	</div>
+	<div class="modal-footer">
+				<button class="btn" data-dismiss="modal">Cancelar</button>
+				<button id="save-contacto" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+			</div>
+</<di></di>v>
 {% endblock %}
 {% block javascripts%}
     {{form_javascript(form)}}
@@ -106,6 +120,22 @@
 				  minuteStep:1
 				  });
                 
+            function crearContacto(){
+            //path= "{{path('contacto_new'}}";
+            $("#crearContactoModal div.modal-body").empty().load();
+            $("#crearContactoModal").modal('show');
+            $("#crearContactoModal").on('shown', function(){
+                $(this).css({
+                    'width':'650px',
+                    'margin-top': function () { //vertical centering
+                        return -($(this).height() / 3);
+                    },
+                    'margin-left': function () { //Horizontal centering
+                        return -($(this).width() / 3);
+                    }
+                });
+            });
+ }
             });
         
     </script>

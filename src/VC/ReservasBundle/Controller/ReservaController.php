@@ -228,7 +228,7 @@ class ReservaController extends Controller
         $entity = new Reserva();
         $user = $this->get('security.context')->getToken()->getUser();
         $em=$this->getDoctrine()->getManager();
-		$status=$em->getRepository("VCReservasBundle:Reserva")->find(1);
+		$status=$em->getRepository("VCBaseBundle:Status")->find(1);
 		$entity->setStatus($status);
         $entity->setFechaServicio(new \DateTime());
         if($this->get('security.context')->isGranted('ROLE_CUSTOMER')){

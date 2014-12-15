@@ -28,6 +28,10 @@ class ReservaType extends AbstractType
             "data"=>($builder->getData()->getHoraServicio()?$builder->getData()->getHoraServicio()->format("H:i"):null)
             )
             )
+            ->add('clasificacion', 'choice', array(
+    'choices' => array('Seleccione' => 'Seleccione','Flor' => 'Flor', 'Aromatica' => 'Aromatica'),
+    'preferred_choices' => array('Seleccione'),
+            ))
             ->add('temperaturaRequerida', 'text')
             ->add('contacto')
             ->add('notas')

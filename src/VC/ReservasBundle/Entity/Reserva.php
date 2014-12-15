@@ -74,9 +74,9 @@ class Reserva
     /**
      * @var string
      *
-     * @ORM\Column(name="horaString", type="string", nullable=true)
+     * @ORM\Column(name="clasificacion", type="string", nullable=true)
      */
-    private $horaString;
+    private $clasificacion;
 
     /**
      * @var float

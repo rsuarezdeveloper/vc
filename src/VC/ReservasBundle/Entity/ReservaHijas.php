@@ -5,12 +5,12 @@ namespace VC\ReservasBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ReservaProducto
+ * ReservaHijas
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class ReservaProducto
+class ReservaHijas
 {
     /**
      * @var integer

@@ -180,7 +180,7 @@ class ReservaController extends Controller
                            ->setPiezas($piezas[$k])
                            ->setFbe($fbe[$k])
                            ->setReserva($entity);
-                        $em->persist($rp);
+                        //$em->persist($rp);
                         $em->flush();
                     }
                 }

@@ -133,7 +133,7 @@ class ReservaController extends Controller
 			$entity['hora_s']=$entity['horaServicio']->format('H:i');
 			$res['rows'][]=$entity;
 		}
-        $qb->orderBy([$entity['fecha_s'],$entity['hora_s']);
+        $qb->orderBy($entity['fecha_s'],$entity['hora_s']);
         $response=new Response();
         $response->setContent(json_encode($res));
         return $response;

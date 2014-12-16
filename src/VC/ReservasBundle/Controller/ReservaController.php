@@ -106,14 +106,12 @@ class ReservaController extends Controller
 					$qb->andWhere($qb->expr()->like('c.nombre',':nombre'))->setParameter('nombre',"%".$rule->data."%");
 				if ($rule->field=="contacto")//añade el criterio de contacto
 					$qb->andWhere($qb->expr()->like('c.contacto',':contacto'))->setParameter('contacto',"%".$rule->data."%");
-				
 			}
 		}
 		/*if ($request->get('sidx')!="")
 		{
 			$qb->orderBy($campos[$request->get('sidx')],$request->get('sord'));//asigna criterio de ordenacion
 		}  */
-        $qb->orderBy("fecha_servicio");
 		$query=$qb->getQuery();
         $r=$qb->getQuery()->getResult();
         $paginator = $this->get('knp_paginator');

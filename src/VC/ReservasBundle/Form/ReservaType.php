@@ -21,7 +21,7 @@ class ReservaType extends AbstractType
         //))
             ->add('fechaServicio', 'genemu_jquerydate', array(
 		            'widget' => 'single_text',
-                    'data'=>date('Y-m-d')
+                    'data'=>date('Y-m-d'),
                     'configs'=>array('minDate'=> '1', 'dateFormat'=>'yy-mm-dd' )
 		        ))
 

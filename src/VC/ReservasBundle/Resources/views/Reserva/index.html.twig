@@ -81,7 +81,7 @@
 			$("#list").jqGrid({
 				url:"{{path('reserva_grid')}}",
 				datatype:"json",
-				colNames:['Cliente','Agencia','Aerol&iacute;nea','Fecha Servicio','Hora Servicio','Gu&iacute;a Master','Temperatura','Contacto','Notas','Piezas','FBE','Estado','Acciones'],
+				colNames:['Cliente','Agencia','Aerol&iacute;nea','Fecha Servicio','Hora Servicio','Gu&iacute;a Master','Temperatura','Notas','Piezas','FBE','Estado','Acciones'],
 				colModel:[
 					{name:'cliente',index:'cliente',width:100,align:"center",search:true},
 					{name:'agencia',width:100,align:"center",search:true},
@@ -91,7 +91,7 @@
 					{name:'hora_s',width:80,align:"center"},
 					{name:'guiam',width:100,align:"center"},
 					{name:'temperatura',width:60,align:"center",search:false},
-					{name:'contacto',width:100,align:"center"},
+					//{name:'contacto',width:100,align:"center"},
 					{name:'notas',width:100,align:"center"},
 					{name:'piezas',width:80,align:"center"},
 					{name:'fbe',width:50,align:"center"},

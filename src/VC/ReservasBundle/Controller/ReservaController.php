@@ -79,8 +79,7 @@ class ReservaController extends Controller
         $qb = $em->createQueryBuilder()
                          ->add('from','VCReservasBundle:Reserva r')
                          ->add('select','r,agencias.nombre as agencia,aerolineas.nombre as aerolinea,
-                         clientes.nombre as cliente,usuarios.nombre as creadoPor,r.notas,
-                         r.contacto,r.temperaturaRequerida as temperatura,r.guiaMaster as guiam,
+                         clientes.nombre as cliente,usuarios.nombre as creadoPor,r.notas,r.temperaturaRequerida as temperatura,r.guiaMaster as guiam,
                          r.fechaServicio,r.horaServicio,r.id,s.status'
                          )
                          ->distinct()

@@ -13,12 +13,15 @@ class ReservaType extends AbstractType
         $builder
 			->add('mailContacto')
             //->add('creacion')
-            ->add('fechaServicio','text',array(
+            //->add('fechaServicio','text',array(
             //'widget' => 'single_text',
             //'culture' => 'es',
-            'data'=>date('Y-m-d')
+            //'data'=>date('Y-m-d')
             //'configs'=>array('minDate'=> '1', 'dateFormat'=>'yy-mm-dd' )           
-        ))
+        //))
+            ->add('fechaServicio', 'genemu_jquerydate', array(
+		            'widget' => 'single_text'
+		        ))
 
             ->add('guiaMaster')
             ->add('horaServicio','text',array('attr'=>array('class'=>'timePicker')))

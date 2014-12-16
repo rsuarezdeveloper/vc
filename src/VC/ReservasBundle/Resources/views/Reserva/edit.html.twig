@@ -1,3 +1,4 @@
+
 {% extends '::base.html.twig' %}
 {%block page_header%}Editar Reserva{% endblock %}
 {%block stylesheets%}
@@ -11,43 +12,27 @@
                 
                 <td><label>Cliente</label>
                     {% if is_granted('ROLE_CUSTOMER') %}
-                        <h4>{{entity.cliente.nombre}}</h4>
+                        <h3>{{entity.cliente.nombre}}</h3>
                         <div style="display: none">{{ form_widget(edit_form.cliente) }}</div>
                     {%else%}
                         {{ form_widget(edit_form.cliente) }}
                     {%endif%}
                 </td>
-                <td><label>Fecha de Servicio:</label>{{ form_widget(edit_form.fechaServicio) }}
-                	<label>Sucursal Requerida:</label>{{ form_widget(edit_form.sucursal) }}
-                </td>
+                <td><label>Fecha de Servicio:</label>{{ form_widget(edit_form.fechaServicio) }}</td>
                 <td><label>Hora de Servicio:</label><div class="bootstrap-timepicker">
-					{{ form_widget(editform.horaServicio) }}</div>
-					 <label>Clasificacion:</label>{{ form_widget(edit_form.clasificacion) }}
+					{{ form_widget(edit_form.horaServicio) }}</div>
 				</td>
-            </tr>
-            <tr>
-                <td><label>Guia Master:</label>{{ form_widget(edit_form.guiaMaster) }}
-                <label>Temperatura Requerida:</label>{{ form_widget(edit_form.temperaturaRequerida) }}
-                <label>Numero de Palet:</label>{{ form_widget(edit_form.noPalet) }}</td>
-                <td><button class="btn btn-small" id="btn-nueva-hija" type="button"><i class='icon-plus'></i>Guias Hija</button>
-                <table id="tbl-hijas">
 
-                </table>
-                </td>
             </tr>
-            <tr></tr>
             <tr>
-                <td><a a href="javascript:void(0)" onclick="crearContacto();" rel="tooltip" title="Crear Nuevo Contacto"> <i class="icon-plus-sign"></i></a><label>Contacto Aerolinea:</label>{{ form_widget(edit_form.contactoAerolinea) }}</td>
-                <td><label>Contacto Agencia:</label>{{ form_widget(edit_form.contactoAgencia) }}</td>
-                <td><label>Contacto Cliente:</label>{{ form_widget(edit_form.contactoCliente) }}</td>
+                <td><label>Guia Master:</label>{{ form_widget(edit_form.guiaMaster) }}</td>
+                <td><label>Temperatura Requerida:</label>{{ form_widget(edit_form.temperaturaRequerida) }}</td>
+                <td><label>Contacto:</label>{{ form_widget(edit_form.contactoAgencia,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
             </tr>
             <tr>
                 <td><label>Agencia:</label>{{ form_widget(edit_form.agencia) }}</td>
                 <td><label>Aerolinea:</label>{{ form_widget(edit_form.aerolinea) }}</td>
                 <td><label>Notas:</label>{{ form_widget(edit_form.notas) }}</td>
-            </tr>
-            <tr>
-
             </tr>
         </table>
         {{form_rest(edit_form)}}

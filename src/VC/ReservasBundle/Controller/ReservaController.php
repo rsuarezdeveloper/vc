@@ -109,10 +109,10 @@ class ReservaController extends Controller
 				
 			}
 		}
-		if ($request->get('sidx')!="")
+		/*if ($request->get('sidx')!="")
 		{
 			$qb->orderBy($campos[$request->get('sidx')],$request->get('sord'));//asigna criterio de ordenacion
-		}                
+		}  */
 		$query=$qb->getQuery();
         $r=$qb->getQuery()->getResult();
         $paginator = $this->get('knp_paginator');
@@ -133,6 +133,7 @@ class ReservaController extends Controller
 			$entity['hora_s']=$entity['horaServicio']->format('H:i');
 			$res['rows'][]=$entity;
 		}
+        $qb->orderBy($campos[$entity['fecha_s']],$entity['hora_s']);
         $response=new Response();
         $response->setContent(json_encode($res));
         return $response;

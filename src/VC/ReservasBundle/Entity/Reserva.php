@@ -88,7 +88,7 @@ class Reserva
     /**
      * @var float
      *
-     * @ORM\Column(name="temperatura_requerida", type="decimal", scale=4, nullable=true)
+     * @ORM\Column(name="temperatura_requerida", type="decimal", nullable=true)
      */
     private $temperaturaRequerida;
 

@@ -138,6 +138,49 @@ class ReservaController extends Controller
         return $response;
             
     }
+
+    /**
+     * Displays a form to create a new CotizacionRubro entity.
+     *
+     * @Route("/anula", name="reserva_anularModal")
+     * @Method("POST")
+     * @Template()
+     */
+    public function anularModalAction(Request $request)
+    {
+    	$em = $this->getDoctrine()->getManager();
+		$id= $request->get("id");
+		$entity = $em->getRepository('VCReservasBundle:Reserva')->find($id);
+
+        return array(
+            'entity' => $entity,
+        );
+    }
+
+     /**
+     *
+     * @Route("/{id}/anular", name="reserva_anular")
+     * @Method("GET")
+     */
+    public function anuladaAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+		$nota= $request->get("nota");
+		$entity = $em->getRepository('VCReservasBundle:Reserva')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Reserva entity.');
+        }
+            $anulada=$em->getRepository('VCBaseBundle:Status')->find(4);
+        	$entity->setStatus($anulada);
+        	$entity->setnotaAnulada($nota);
+            $em->persist($entity);
+            $em->flush();
+
+       return $this->redirect($this->generateUrl('reserva'));
+
+     }
+
     /**
      * Creates a new Reserva entity.
      *

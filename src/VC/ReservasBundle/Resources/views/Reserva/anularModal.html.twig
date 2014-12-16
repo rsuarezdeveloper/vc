@@ -1,0 +1,13 @@
+<form method="post" action="{{ path('reserva_anular', { 'id': entity.id }) }}" id="FrmAnulaReserva" novalidate="novalidate">
+    	<p></p>
+    	<div align="center">
+            <input type="hidden" name="rubro_id" value="{{entity.id}}">
+        <textarea name="nota" ></textarea>
+        </div>
+	</div>
+    </form>
+
+{%block javascripts%}
+<script>
+</script>
+{%endblock%}

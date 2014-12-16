@@ -121,23 +121,31 @@ class Reserva
 	 
 	 private $status;
 
+     /**
+     * @var text
+     *
+     * @ORM\Column(name="notaAnulada", type="text", nullable=true)
+     */
+    private $notaAnulada;
+
+
 
     /**
-     * @var string
+     * @var text
      *
      * @ORM\Column(name="contactoAerolinea", type="text", nullable=true)
      */
     private $contactoAerolinea;
 
     /**
-     * @var string
+     * @var text
      *
      * @ORM\Column(name="contactoAgencia", type="text", nullable=true)
      */
     private $contactoAgencia;
 
     /**
-     * @var string
+     * @var text
      *
      * @ORM\Column(name="contactoCliente", type="text", nullable=true)
      */
@@ -147,7 +155,7 @@ class Reserva
 	 * 
 	 * @var string
 	 * 
-	 * @ORM\Column(name="email_contacto",type="string",nullable=false)
+	 * @ORM\Column(name="email_contacto",type="string",nullable=true)
 	 * 
 	 */ 
 	 

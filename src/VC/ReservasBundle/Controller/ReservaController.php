@@ -160,7 +160,7 @@ class ReservaController extends Controller
      /**
      *
      * @Route("/{id}/anular", name="reserva_anular")
-     * @Method("GET")
+     * @Method("POST")
      */
     public function anuladaAction($id, Request $request)
     {

@@ -113,6 +113,9 @@ class ReservaController extends Controller
 		{
 			$qb->orderBy($campos[$request->get('sidx')],$request->get('sord'));//asigna criterio de ordenacion
 		}  */
+        $entity['fecha_s']=$entity['fechaServicio']->format('j/m/o');
+        $entity['hora_s']=$entity['horaServicio']->format('H:i');
+        $qb->orderBy($entity['fecha_s'],$entity['hora_s']);
 		$query=$qb->getQuery();
         $r=$qb->getQuery()->getResult();
         $paginator = $this->get('knp_paginator');
@@ -133,7 +136,7 @@ class ReservaController extends Controller
 			$entity['hora_s']=$entity['horaServicio']->format('H:i');
 			$res['rows'][]=$entity;
 		}
-        $qb->orderBy($entity['fecha_s'],$entity['hora_s']);
+        //$qb->orderBy($entity['fecha_s'],$entity['hora_s']);
         $response=new Response();
         $response->setContent(json_encode($res));
         return $response;

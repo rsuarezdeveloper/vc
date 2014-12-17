@@ -137,7 +137,6 @@
 
 			$.post("{{path('contacto_create')}}",frm.serialize(),function(data){
                 $("#crearContactoModal").modal('hide');
-				//$("#div-rubros-aprobados").load("{{path('dosrubro')}}?dos={{entity.id}}");
 			});
 
 	});

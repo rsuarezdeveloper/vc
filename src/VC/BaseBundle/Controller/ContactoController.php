@@ -8,11 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use VC\BaseBundle\Entity\Cliente;
-use VC\BaseBundle\Form\ClienteType;
+use VC\BaseBundle\Entity\Contacto;
+use VC\BaseBundle\Form\ContactoType;
 
 /**
- * Cliente controller.
+ * Contaco controller.
  *
  * @Route("/contacto")
  */
@@ -102,14 +102,14 @@ class ContactoController extends Controller
     /**
      * Creates a new Cliente entity.
      *
-     * @Route("/", name="cliente_create")
+     * @Route("/", name="contacto_create")
      * @Method("POST")
-     * @Template("VCBaseBundle:Cliente:new.html.twig")
+     * @Template("VCBaseBundle:Contacto:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity  = new Cliente();
-        $form = $this->createForm(new ClienteType(), $entity);
+        $entity  = new Contacto();
+        $form = $this->createForm(new ContactoType(), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
@@ -117,7 +117,7 @@ class ContactoController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('cliente_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('contacto_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -129,14 +129,14 @@ class ContactoController extends Controller
     /**
      * Displays a form to create a new Cliente entity.
      *
-     * @Route("/new", name="cliente_new")
+     * @Route("/new", name="contacto_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new Cliente();
-        $form   = $this->createForm(new ClienteType(), $entity);
+        $entity = new Contacto();
+        $form   = $this->createForm(new ContactoType(), $entity);
 
         return array(
             'entity' => $entity,
@@ -147,7 +147,7 @@ class ContactoController extends Controller
     /**
      * Finds and displays a Cliente entity.
      *
-     * @Route("/{id}", name="cliente_show")
+     * @Route("/{id}", name="contacto_show")
      * @Method("GET")
      * @Template()
      */
@@ -155,7 +155,7 @@ class ContactoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('VCBaseBundle:Cliente')->find($id);
+        $entity = $em->getRepository('VCBaseBundle:Contacto')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Cliente entity with id' .$id);
@@ -172,7 +172,7 @@ class ContactoController extends Controller
     /**
      * Displays a form to edit an existing Cliente entity.
      *
-     * @Route("/{id}/edit", name="cliente_edit")
+     * @Route("/{id}/edit", name="contacto_edit")
      * @Method("GET")
      * @Template()
      */
@@ -180,13 +180,13 @@ class ContactoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('VCBaseBundle:Cliente')->find($id);
+        $entity = $em->getRepository('VCBaseBundle:Contacto')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Cliente entity.');
         }
 
-        $editForm = $this->createForm(new ClienteType(), $entity);
+        $editForm = $this->createForm(new ContactoType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -199,29 +199,29 @@ class ContactoController extends Controller
     /**
      * Edits an existing Cliente entity.
      *
-     * @Route("/{id}", name="cliente_update")
+     * @Route("/{id}", name="contacto_update")
      * @Method("PUT")
-     * @Template("VCBaseBundle:Cliente:edit.html.twig")
+     * @Template("VCBaseBundle:Contacto:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('VCBaseBundle:Cliente')->find($id);
+        $entity = $em->getRepository('VCBaseBundle:Contacto')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Cliente entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new ClienteType(), $entity);
+        $editForm = $this->createForm(new ContactoType(), $entity);
         $editForm->bind($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('cliente_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('contacto_edit', array('id' => $id)));
         }
 
         return array(
@@ -233,7 +233,7 @@ class ContactoController extends Controller
     /**
      * Deletes a Cliente entity.
      *
-     * @Route("/{id}", name="cliente_delete")
+     * @Route("/{id}", name="contacto_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -243,7 +243,7 @@ class ContactoController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('VCBaseBundle:Cliente')->find($id);
+            $entity = $em->getRepository('VCBaseBundle:Contacto')->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Cliente entity.');
@@ -253,7 +253,7 @@ class ContactoController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('cliente'));
+        return $this->redirect($this->generateUrl('contacto'));
     }
 
     /**

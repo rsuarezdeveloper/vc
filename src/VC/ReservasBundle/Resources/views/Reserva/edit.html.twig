@@ -108,6 +108,15 @@
     <script type="text/javascript" src="{{asset('css/jquery.jeditable.js')}}"></script>
     <script>
         $(document).ready(function(){
+
+            $("span[id^=nombreProducto]").editable("{{path('contacto')}}",{
+			indicator:'<i class="fa fa-refresh fa-spin"></i>',
+			tooltip:"Editar Valor",
+			onblur: "submit",
+            width:'50px', // THIS DOES THE TRICK
+            height:"16px", //THIS DOES THE TRICK
+
+		});
                 var tr_producto='<tr><td><a href="#" class="delete"><i class="icon-trash"></i></a></td><td><input type="text" name="producto_nombre[]" id="producto_nombre[]" placeholder="Nombre Producto"/></td><td><input type="text" name="producto_piezas[]" id="producto_piezas[]" placeholder="0" dir="rtl" class="input-small"/></td><td><input type="text" name="producto_fbe[]" id="producto_fbe[]" placeholder="0" dir="rtl" class="input-small"/></td></tr>';
                 $("#tbl-productos").append(tr_producto);
                 $("#btn-nuevo-producto").click(function(){

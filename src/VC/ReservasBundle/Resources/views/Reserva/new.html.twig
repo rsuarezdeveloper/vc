@@ -82,7 +82,7 @@
 	</div>
 	<div class="modal-footer">
 				<button class="btn" data-dismiss="modal">Cancelar</button>
-				<button id="save-contacto" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+				<button id="btn-contacto" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
 			</div>
     </div>
 {% endblock %}
@@ -128,6 +128,19 @@
                 $(".delete").live('click', function(event) {
                         $(this).parent().parent().remove();
                 });
+
+            $("#btn-contacto").click(function(){
+            $("#crearContactoModal div.modal-body").prepend('<div class="alert alert-info"><i class="fa fa-refresh fa-spin"></i> Prefacturando...</div>');
+
+
+                frm = $("frm-crear-contacto");
+
+			$.post("{{path('contacto_create')}}",frm.serialize(),function(data){
+                $("#crearContactoModal").modal('hide');
+				//$("#div-rubros-aprobados").load("{{path('dosrubro')}}?dos={{entity.id}}");
+			});
+
+	});
 
               $('#vc_reservasbundle_reservatype_horaServicio').timepicker({
 				  showInputs:false,

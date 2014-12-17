@@ -219,7 +219,7 @@ class ReservaController extends Controller
                     $prod=$v;
                     $piezas=$request->get("producto_piezas");
                     $fbe=$request->get("producto_fbe");
-                    if($piezas[$k]>0 && $fbe[$k]>0){
+                    if($piezas[$k]>0 || $fbe[$k]>0){
                         $rp=new ReservaProducto();
                         $rp->setNombreProducto($prod)
                            ->setPiezas($piezas[$k])
@@ -233,11 +233,13 @@ class ReservaController extends Controller
             if($request->get('guiaHija')){
                 foreach($request->get('guiaHija') as $k=>$v){
                     $hija=$v;
+                    if($hija[$k]>0){
                         $gh=new ReservaHijas();
                         $gh->setGuiaHija($hija)
                            ->setReserva($entity);
                         $em->persist($gh);
                         $em->flush();
+                    }
                 }
             }
 

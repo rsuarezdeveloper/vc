@@ -74,7 +74,7 @@ class ContactoController extends Controller
 		foreach ($pagination as $entity)
 		{
 			$r['rows'][]=array('nombre'=>$entity->getNombre(),'direccion'=>$entity->getDireccion(),'telefono'=>$entity->getTelefono(),
-			'email'=>$entity->getEmail(),'contacto'=>$entity->getContacto(),'nit'=>$entity->getNit(),'id'=>$entity->getId(),
+			'email'=>$entity->getEmail(),'observaciones'=>$entity->getObservaciones(),'id'=>$entity->getId(),
 			);
 		}
 		$response->setContent(json_encode($r));

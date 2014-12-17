@@ -91,7 +91,7 @@
 
     <script>
         function crearContacto(){
-            $("#crearContactoModal div.modal-body").empty().load();
+            $("#crearContactoModal div.modal-body").empty().load("{{path('contacto_new')}}");
             $("#crearContactoModal").modal('show');
             $("#crearContactoModal").on('shown', function(){
                 $(this).css({

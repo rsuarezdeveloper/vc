@@ -252,6 +252,30 @@ class ReservaController extends Controller
         );
     }
 
+    /**
+     * Edits an existing DosContenedores entity.
+     *
+     * @Route("/jei", name="editProductosjei")
+     */
+    public function jeiAction(Request $request){
+	    $value= $request->get('value');
+	    $field = $request->get('id');
+	    $field= explode("|", $field);
+	    $fields = array("nombreProducto","piezas","fbe");
+	    if(in_array($field[0],$fields)){
+		    $em = $this->getDoctrine()->getManager();
+			$entity = $em->getRepository('VCReservasBundle:ReservaProducto')->find($field[1]);
+			$f = ucfirst($field[0]);
+            $str = "\$entity->set{$f}(\$value);";
+			eval($str);
+			$em->persist($entity);
+			$em->flush();
+	    }
+
+		return new Response($value);
+
+    }
+
 	/**
 	 * Processes a Reserva entity
 	 * 

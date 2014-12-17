@@ -74,8 +74,8 @@
             <tr>
                 <td></td>
                 <td><span id="nombreProducto|{{entity.id}}" title="Click para cambiar Nombre">{{producto.nombreProducto}}</span></td>
-                <td style="text-align: right">{{producto.piezas}}</td>
-                <td style="text-align: right">{{producto.fbe}}</td>
+                <td style="text-align: right"><span id="piezas|{{entity.id}}" title="Click para cambiar Piezas">{{producto.piezas}}</td>
+                <td style="text-align: right"><span id="fbe|{{entity.id}}" title="Click para cambiar fbe">{{producto.fbe}}</td>
             </tr>
             {%endfor%}
         </table>
@@ -109,11 +109,19 @@
     <script>
         $(document).ready(function(){
 
-            $("span[id^=nombreProducto]").editable("{{path('contacto')}}",{
+            $("span[id^=piezas],span[id^=fbe]").editable("{{path('editProductojei')}}",{
 			indicator:'<i class="fa fa-refresh fa-spin"></i>',
 			tooltip:"Editar Valor",
 			onblur: "submit",
             width:'50px', // THIS DOES THE TRICK
+            height:"16px", //THIS DOES THE TRICK
+
+		});
+            $("span[id^=nombreProducto]").editable("{{path('editProductojei')}}",{
+			indicator:'<i class="fa fa-refresh fa-spin"></i>',
+			tooltip:"Editar Valor",
+			onblur: "submit",
+            width:'150px', // THIS DOES THE TRICK
             height:"16px", //THIS DOES THE TRICK
 
 		});

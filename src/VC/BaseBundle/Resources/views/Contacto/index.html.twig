@@ -27,13 +27,12 @@
 			$("#list").jqGrid({
 				url:"{{path('contacto_list')}}",
 				datatype:"json",
-				colNames:['Nombre','Direccion','Telefono','E-mail','Contacto','Observaciones','Acciones'],
+				colNames:['Nombre','Direccion','Telefono','E-mail','Observaciones','Acciones'],
 				colModel:[
 					{name:'nombre',index:'nombre',width:120,align:"center",search:true},
 					{name:'direccion',width:160,align:"center",search:false},
 					{name:'telefono',width:120,align:"center",search:false},
 					{name:'email',width:180,align:"center",search:false},
-					{name:'contacto',width:160,align:"center"},
 					{name:'observaciones',width:160,align:"center",search:false},
 					{name:'acciones',width:120,jsonmap:"id",align:'center',formatter:botonera,search:false,sortable:false},
 				],

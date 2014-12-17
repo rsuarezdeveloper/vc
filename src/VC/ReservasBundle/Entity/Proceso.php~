@@ -23,7 +23,7 @@ class Proceso
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="VC\ReservasBundle\Entity\Reserva")
-	 * @ORM\JoinColumn(name="reserva",referencedColumnName="id",nullable=true)
+	 * @ORM\JoinColumn(name="reserva",referencedColumnName="id",nullable=false)
 	 * 
 	 * 
 	 */

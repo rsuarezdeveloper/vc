@@ -37,4 +37,60 @@ class ReservaHijas
      */
     private $reserva;
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set guiaHija
+     *
+     * @param string $guiaHija
+     * @return ReservaHijas
+     */
+    public function setGuiaHija($guiaHija)
+    {
+        $this->guiaHija = $guiaHija;
+    
+        return $this;
+    }
+
+    /**
+     * Get guiaHija
+     *
+     * @return string 
+     */
+    public function getGuiaHija()
+    {
+        return $this->guiaHija;
+    }
+
+    /**
+     * Set reserva
+     *
+     * @param \VC\ReservasBundle\Entity\Reserva $reserva
+     * @return ReservaHijas
+     */
+    public function setReserva(\VC\ReservasBundle\Entity\Reserva $reserva = null)
+    {
+        $this->reserva = $reserva;
+    
+        return $this;
+    }
+
+    /**
+     * Get reserva
+     *
+     * @return \VC\ReservasBundle\Entity\Reserva 
+     */
+    public function getReserva()
+    {
+        return $this->reserva;
+    }
 }

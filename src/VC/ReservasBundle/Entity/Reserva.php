@@ -629,4 +629,198 @@ class Reserva
     {
         return $this->sucursal;
     }
+
+    /**
+     * Set horaString
+     *
+     * @param string $horaString
+     * @return Reserva
+     */
+    public function setHoraString($horaString)
+    {
+        $this->horaString = $horaString;
+    
+        return $this;
+    }
+
+    /**
+     * Get horaString
+     *
+     * @return string 
+     */
+    public function getHoraString()
+    {
+        return $this->horaString;
+    }
+
+    /**
+     * Set clasificacion
+     *
+     * @param string $clasificacion
+     * @return Reserva
+     */
+    public function setClasificacion($clasificacion)
+    {
+        $this->clasificacion = $clasificacion;
+    
+        return $this;
+    }
+
+    /**
+     * Get clasificacion
+     *
+     * @return string 
+     */
+    public function getClasificacion()
+    {
+        return $this->clasificacion;
+    }
+
+    /**
+     * Set noPalet
+     *
+     * @param string $noPalet
+     * @return Reserva
+     */
+    public function setNoPalet($noPalet)
+    {
+        $this->noPalet = $noPalet;
+    
+        return $this;
+    }
+
+    /**
+     * Get noPalet
+     *
+     * @return string 
+     */
+    public function getNoPalet()
+    {
+        return $this->noPalet;
+    }
+
+    /**
+     * Set notaAnulada
+     *
+     * @param string $notaAnulada
+     * @return Reserva
+     */
+    public function setNotaAnulada($notaAnulada)
+    {
+        $this->notaAnulada = $notaAnulada;
+    
+        return $this;
+    }
+
+    /**
+     * Get notaAnulada
+     *
+     * @return string 
+     */
+    public function getNotaAnulada()
+    {
+        return $this->notaAnulada;
+    }
+
+    /**
+     * Set contactoAerolinea
+     *
+     * @param string $contactoAerolinea
+     * @return Reserva
+     */
+    public function setContactoAerolinea($contactoAerolinea)
+    {
+        $this->contactoAerolinea = $contactoAerolinea;
+    
+        return $this;
+    }
+
+    /**
+     * Get contactoAerolinea
+     *
+     * @return string 
+     */
+    public function getContactoAerolinea()
+    {
+        return $this->contactoAerolinea;
+    }
+
+    /**
+     * Set contactoAgencia
+     *
+     * @param string $contactoAgencia
+     * @return Reserva
+     */
+    public function setContactoAgencia($contactoAgencia)
+    {
+        $this->contactoAgencia = $contactoAgencia;
+    
+        return $this;
+    }
+
+    /**
+     * Get contactoAgencia
+     *
+     * @return string 
+     */
+    public function getContactoAgencia()
+    {
+        return $this->contactoAgencia;
+    }
+
+    /**
+     * Set contactoCliente
+     *
+     * @param string $contactoCliente
+     * @return Reserva
+     */
+    public function setContactoCliente($contactoCliente)
+    {
+        $this->contactoCliente = $contactoCliente;
+    
+        return $this;
+    }
+
+    /**
+     * Get contactoCliente
+     *
+     * @return string 
+     */
+    public function getContactoCliente()
+    {
+        return $this->contactoCliente;
+    }
+
+    /**
+     * Add hijas
+     *
+     * @param \VC\ReservasBundle\Entity\ReservaHijas $hijas
+     * @return Reserva
+     */
+    public function addHija(\VC\ReservasBundle\Entity\ReservaHijas $hijas)
+    {
+        $this->hijas[] = $hijas;
+    
+        return $this;
+    }
+
+    /**
+     * Remove hijas
+     *
+     * @param \VC\ReservasBundle\Entity\ReservaHijas $hijas
+     */
+    public function removeHija(\VC\ReservasBundle\Entity\ReservaHijas $hijas)
+    {
+        $this->hijas->removeElement($hijas);
+    }
+
+    /**
+     * Get hijas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getHijas()
+    {
+        return $this->hijas;
+    }
 }

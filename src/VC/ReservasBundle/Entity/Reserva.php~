@@ -72,11 +72,38 @@ class Reserva
     private $horaServicio;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="hora_string", type="string" , nullable=true, length=255)
+     */
+    private $horaString;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="clasificacion", type="string", nullable=true)
+     */
+    private $clasificacion;
+
+    /**
      * @var float
      *
-     * @ORM\Column(name="temperatura_requerida", type="decimal", scale=4, nullable=true)
+     * @ORM\Column(name="temperatura_requerida", type="decimal", nullable=true)
      */
     private $temperaturaRequerida;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="noPalet", type="decimal", scale=4, nullable=true)
+     */
+    private $noPalet;
+
+    /**
+	 *@ORM\OneToMany(targetEntity="VC\ReservasBundle\Entity\ReservaHijas",mappedBy="reserva",cascade={"persist"})
+	 */
+
+	private $hijas;
 
 
     /**
@@ -94,19 +121,41 @@ class Reserva
 	 
 	 private $status;
 
+     /**
+     * @var text
+     *
+     * @ORM\Column(name="notaAnulada", type="text", nullable=true)
+     */
+    private $notaAnulada;
+
+
 
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="contacto", type="text", nullable=true)
+     * @ORM\Column(name="contactoAerolinea", type="text", nullable=true)
      */
-    private $contacto;
+    private $contactoAerolinea;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(name="contactoAgencia", type="text", nullable=true)
+     */
+    private $contactoAgencia;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(name="contactoCliente", type="text", nullable=true)
+     */
+    private $contactoCliente;
 
 	/**
 	 * 
 	 * @var string
 	 * 
-	 * @ORM\Column(name="email_contacto",type="string",nullable=false)
+	 * @ORM\Column(name="email_contacto",type="string",nullable=true)
 	 * 
 	 */ 
 	 
@@ -130,7 +179,14 @@ class Reserva
      * @ORM\OneToMany(targetEntity="VC\ReservasBundle\Entity\ReservaProducto",mappedBy="reserva",cascade={"persist"})
      */
     private $productos;
-    
+
+
+
+    public function __toString()
+	{
+    	return "{$this->id}";
+	}
+
     /**
      * Get id
      *
@@ -549,5 +605,28 @@ class Reserva
     public function getMailContacto()
     {
         return $this->mailContacto;
+    }
+
+    /**
+     * Set sucursal
+     *
+     * @param \VC\BaseBundle\Entity\Sucursal $sucursal
+     * @return Reserva
+     */
+    public function setSucursal(\VC\BaseBundle\Entity\Sucursal $sucursal = null)
+    {
+        $this->sucursal = $sucursal;
+    
+        return $this;
+    }
+
+    /**
+     * Get sucursal
+     *
+     * @return \VC\BaseBundle\Entity\Sucursal 
+     */
+    public function getSucursal()
+    {
+        return $this->sucursal;
     }
 }

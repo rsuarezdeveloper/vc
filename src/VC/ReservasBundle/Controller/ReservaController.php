@@ -255,7 +255,7 @@ class ReservaController extends Controller
     /**
      * Edits an existing DosContenedores entity.
      *
-     * @Route("/jei", name="editProductosjei")
+     * @Route("/jei", name="editProductojei")
      */
     public function jeiAction(Request $request){
 	    $value= $request->get('value');

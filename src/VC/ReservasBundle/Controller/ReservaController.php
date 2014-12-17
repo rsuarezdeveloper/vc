@@ -369,6 +369,7 @@ class ReservaController extends Controller
         $editForm = $this->createForm(new ReservaType(), $entity);
         $all=$request->request->all();
         $all['vc_reservasbundle_reservatype']['horaServicio']= new \DateTime($all['vc_reservasbundle_reservatype']['horaServicio']);
+        $all['vc_reservasbundle_reservatype']['fechaServicio']= new \DateTime($all['vc_reservasbundle_reservatype']['fechaServicio']);
         $request->request->replace($all);
         $editForm->bind($request);
 

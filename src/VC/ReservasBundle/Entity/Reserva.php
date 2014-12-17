@@ -130,26 +130,24 @@ class Reserva
 
 
 
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="contactoAerolinea", type="text", nullable=true)
+   /**
+     * @ORM\ManyToOne(targetEntity="VC\BaseBundle\Entity\Contacto")
+     * @ORM\JoinColumn(name="contactoAerolinea", referencedColumnName="id", nullable=true)
      */
     private $contactoAerolinea;
 
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="contactoAgencia", type="text", nullable=true)
+   /**
+     * @ORM\ManyToOne(targetEntity="VC\BaseBundle\Entity\Contacto")
+     * @ORM\JoinColumn(name="contactoAgencia", referencedColumnName="id", nullable=true)
      */
     private $contactoAgencia;
 
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="contactoCliente", type="text", nullable=true)
+   /**
+     * @ORM\ManyToOne(targetEntity="VC\BaseBundle\Entity\Contacto")
+     * @ORM\JoinColumn(name="contactoCliente", referencedColumnName="id", nullable=true)
      */
     private $contactoCliente;
+
 
 	/**
 	 * 
@@ -720,75 +718,6 @@ class Reserva
     public function getNotaAnulada()
     {
         return $this->notaAnulada;
-    }
-
-    /**
-     * Set contactoAerolinea
-     *
-     * @param string $contactoAerolinea
-     * @return Reserva
-     */
-    public function setContactoAerolinea($contactoAerolinea)
-    {
-        $this->contactoAerolinea = $contactoAerolinea;
-    
-        return $this;
-    }
-
-    /**
-     * Get contactoAerolinea
-     *
-     * @return string 
-     */
-    public function getContactoAerolinea()
-    {
-        return $this->contactoAerolinea;
-    }
-
-    /**
-     * Set contactoAgencia
-     *
-     * @param string $contactoAgencia
-     * @return Reserva
-     */
-    public function setContactoAgencia($contactoAgencia)
-    {
-        $this->contactoAgencia = $contactoAgencia;
-    
-        return $this;
-    }
-
-    /**
-     * Get contactoAgencia
-     *
-     * @return string 
-     */
-    public function getContactoAgencia()
-    {
-        return $this->contactoAgencia;
-    }
-
-    /**
-     * Set contactoCliente
-     *
-     * @param string $contactoCliente
-     * @return Reserva
-     */
-    public function setContactoCliente($contactoCliente)
-    {
-        $this->contactoCliente = $contactoCliente;
-    
-        return $this;
-    }
-
-    /**
-     * Get contactoCliente
-     *
-     * @return string 
-     */
-    public function getContactoCliente()
-    {
-        return $this->contactoCliente;
     }
 
     /**

@@ -73,7 +73,7 @@
             {%for producto in entity.productos%}
             <tr>
                 <td></td>
-                <td>{{producto.nombreProducto}}</td>
+                <td><span id="nombreProducto|{{entity.id}}" title="Click para cambiar Nombre">{{producto.nombreProducto}}</span></td>
                 <td style="text-align: right">{{producto.piezas}}</td>
                 <td style="text-align: right">{{producto.fbe}}</td>
             </tr>
@@ -104,6 +104,8 @@
 {% endblock %}
 {% block javascripts%}
     {{form_javascript(edit_form)}}
+
+    <script type="text/javascript" src="{{asset('css/jquery.jeditable.js')}}"></script>
     <script>
         $(document).ready(function(){
                 var tr_producto='<tr><td><a href="#" class="delete"><i class="icon-trash"></i></a></td><td><input type="text" name="producto_nombre[]" id="producto_nombre[]" placeholder="Nombre Producto"/></td><td><input type="text" name="producto_piezas[]" id="producto_piezas[]" placeholder="0" dir="rtl" class="input-small"/></td><td><input type="text" name="producto_fbe[]" id="producto_fbe[]" placeholder="0" dir="rtl" class="input-small"/></td></tr>';

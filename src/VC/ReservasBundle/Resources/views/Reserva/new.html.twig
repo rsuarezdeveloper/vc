@@ -1,8 +1,10 @@
 {% extends '::base.html.twig' %}
 {%block page_header%}Nueva Reserva{% endblock %}
+
 {%block stylesheets%}
      {{ form_stylesheet(form) }}
-     <link rel="stylesheet" href="{{ asset('css/jquery.timepicker.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/jquery.timepicker.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/jquery.jeditable.js') }}" />
 {% endblock %}
 {% block body -%}
     <form action="{{ path('reserva_create') }}" method="post" {{ form_enctype(form) }} novalidate=novalidate>
@@ -87,6 +89,7 @@
     </div>
 {% endblock %}
 {% block javascripts%}
+
     {{form_javascript(form)}}
 
     <script>

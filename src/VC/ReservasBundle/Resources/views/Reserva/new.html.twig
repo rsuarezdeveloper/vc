@@ -134,7 +134,7 @@
 
 
                 frm = $("frm-crear-contacto");
-
+                console.log(frm);
 			$.post("{{path('contacto_create')}}",frm.serialize(),function(data){
                 $("#crearContactoModal").modal('hide');
 			});

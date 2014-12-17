@@ -36,7 +36,7 @@
                 {%for hijas in entity.hijas%}
                  <tr>
                 <td></td>
-                <td>{{hijas.guiaHija}}</td>
+                <td><span id="guiaHija|{{entity.id}}" title="Click para cambiar ">{{hijas.guiaHija}}</td>
                  </tr>
                  {%endfor%}
                 </table>
@@ -122,6 +122,14 @@
 			tooltip:"Editar Valor",
 			onblur: "submit",
             width:'150px', // THIS DOES THE TRICK
+            height:"16px", //THIS DOES THE TRICK
+
+		});
+             $("span[id^=guiaHija]").editable("{{path('editHijajei')}}",{
+			indicator:'<i class="fa fa-refresh fa-spin"></i>',
+			tooltip:"Editar Valor",
+			onblur: "submit",
+            width:'200px', // THIS DOES THE TRICK
             height:"16px", //THIS DOES THE TRICK
 
 		});

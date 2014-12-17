@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+{%block page_header%}Crear Nuevo Contacto{% endblock %}
+{% block body -%}
+    <form action="{{ path('contacto_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <p>
+            <button type="submit" class="btn btn-primary">Crear</button>
+            <a href="{{ path('contacto') }}" class="btn">
+                Cancelar
+            </a>
+        </p>
+    </form>
+{% endblock %}

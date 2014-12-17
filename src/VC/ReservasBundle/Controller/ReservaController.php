@@ -219,7 +219,7 @@ class ReservaController extends Controller
                     $prod=$v;
                     $piezas=$request->get("producto_piezas");
                     $fbe=$request->get("producto_fbe");
-                    if($piezas>0 && $fbe>0){
+                    if($piezas[$k]>0 && $fbe[$k]>0){
                         $rp=new ReservaProducto();
                         $rp->setNombreProducto($prod)
                            ->setPiezas($piezas[$k])

@@ -126,6 +126,27 @@ class ContactoController extends Controller
         );
     }
 
+
+
+    /**
+     * Displays a form to create a new Cliente entity.
+     *
+     * @Route("/popUp", name="contacto_popUp")
+     * @Method("GET")
+     * @Template()
+     */
+    public function popUpAction()
+    {
+        $entity = new Contacto();
+        $form   = $this->createForm(new ContactoType(), $entity);
+
+        return array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        );
+    }
+
+
     /**
      * Displays a form to create a new Cliente entity.
      *

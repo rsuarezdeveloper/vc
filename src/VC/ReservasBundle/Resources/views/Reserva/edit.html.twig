@@ -73,9 +73,9 @@
             {%for producto in entity.productos%}
             <tr>
                 <td></td>
-                <td><span id="nombreProducto|{{entity.id}}" title="Click para cambiar Nombre">{{producto.nombreProducto}}</span></td>
-                <td style="text-align: right"><span id="piezas|{{entity.id}}" title="Click para cambiar Piezas">{{producto.piezas}}</td>
-                <td style="text-align: right"><span id="fbe|{{entity.id}}" title="Click para cambiar fbe">{{producto.fbe}}</td>
+                <td><span id="nombreProducto|{{producto.id}}" title="Click para cambiar Nombre">{{producto.nombreProducto}}</span></td>
+                <td style="text-align: right"><span id="piezas|{{producto.id}}" title="Click para cambiar Piezas">{{producto.piezas}}</td>
+                <td style="text-align: right"><span id="fbe|{{producto.id}}" title="Click para cambiar fbe">{{producto.fbe}}</td>
             </tr>
             {%endfor%}
         </table>

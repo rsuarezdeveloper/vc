@@ -19,12 +19,7 @@ class ReservaType extends AbstractType
             //'data'=>date('Y-m-d')
             //'configs'=>array('minDate'=> '1', 'dateFormat'=>'yy-mm-dd' )           
         //))
-            ->add('fechaServicio', 'genemu_jquerydate', array(
-		            'widget' => 'single_text',
-                    //'data_class' => "DateTime"
-                    //'data'=>date('Y-m-d'),
-                    'configs'=>array('minDate'=> '1', 'dateFormat'=>'yy-mm-dd' )
-		        ))
+            ->add('fechaServicio')
 
             ->add('guiaMaster')
             ->add('horaServicio',"text",array('attr'=>array('class'=>'timePicker'

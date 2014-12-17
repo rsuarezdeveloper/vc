@@ -23,7 +23,7 @@ class ReservaType extends AbstractType
 		            'widget' => 'single_text',
                     //'data_class' => "DateTime"
                     //'data'=>date('Y-m-d'),
-                    //'configs'=>array('minDate'=> '1', 'dateFormat'=>'yy-mm-dd' )
+                    'configs'=>array('minDate'=> '1', 'dateFormat'=>'yy-mm-dd' )
 		        ))
 
             ->add('guiaMaster')

@@ -195,7 +195,6 @@ class ReservaController extends Controller
         $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
         $all=$request->request->all();
-        var_dump($all);
         $all['vc_reservasbundle_reservatype']['fechaServicio']= new \DateTime($all['vc_reservasbundle_reservatype']['fechaServicio']);
         $all['vc_reservasbundle_reservatype']['horaServicio']= new \DateTime($all['vc_reservasbundle_reservatype']['horaServicio']);
         $request->request->replace($all);
@@ -211,7 +210,7 @@ class ReservaController extends Controller
         $form->bind($request);
         if ($form->isValid()) {
             
-            $em->persist($entity);
+            //$em->persist($entity);
             $em->flush();
             if($request->get('producto_nombre')){
                 foreach($request->get('producto_nombre') as $k=>$v){
@@ -224,7 +223,7 @@ class ReservaController extends Controller
                            ->setPiezas($piezas[$k])
                            ->setFbe($fbe[$k])
                            ->setReserva($entity);
-                        $em->persist($rp);
+                        //$em->persist($rp);
                         $em->flush();
                     }
                 }
@@ -235,7 +234,7 @@ class ReservaController extends Controller
                         $gh=new ReservaHijas();
                         $gh->setGuiaHija($hija)
                            ->setReserva($entity);
-                        $em->persist($gh);
+                        //$em->persist($gh);
                         $em->flush();
                 }
             }

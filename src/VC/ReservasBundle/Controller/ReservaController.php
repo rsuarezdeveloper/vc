@@ -184,7 +184,7 @@ class ReservaController extends Controller
     /**
      * Creates a new Reserva entity.
      *
-     * @Route("/", name="reserva_create")
+     * @Route("/create", name="reserva_create")
      * @Method("POST")
      * @Template("VCReservasBundle:Reserva:new.html.twig")
      */

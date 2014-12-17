@@ -27,7 +27,7 @@ class ReservaType extends AbstractType
 		        ))
 
             ->add('guiaMaster')
-            ->add('horaServicio',null,array('attr'=>array('class'=>'timePicker',
+            ->add('horaServicio',"DateTime",array('attr'=>array('class'=>'timePicker',
                    // 'data_class' => NULL
             )))
             ->add('clasificacion', 'choice', array(

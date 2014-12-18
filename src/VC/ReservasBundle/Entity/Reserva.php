@@ -752,4 +752,73 @@ class Reserva
     {
         return $this->hijas;
     }
+
+    /**
+     * Set contactoAerolinea
+     *
+     * @param \VC\BaseBundle\Entity\Contacto $contactoAerolinea
+     * @return Reserva
+     */
+    public function setContactoAerolinea(\VC\BaseBundle\Entity\Contacto $contactoAerolinea = null)
+    {
+        $this->contactoAerolinea = $contactoAerolinea;
+    
+        return $this;
+    }
+
+    /**
+     * Get contactoAerolinea
+     *
+     * @return \VC\BaseBundle\Entity\Contacto 
+     */
+    public function getContactoAerolinea()
+    {
+        return $this->contactoAerolinea;
+    }
+
+    /**
+     * Set contactoAgencia
+     *
+     * @param \VC\BaseBundle\Entity\Contacto $contactoAgencia
+     * @return Reserva
+     */
+    public function setContactoAgencia(\VC\BaseBundle\Entity\Contacto $contactoAgencia = null)
+    {
+        $this->contactoAgencia = $contactoAgencia;
+    
+        return $this;
+    }
+
+    /**
+     * Get contactoAgencia
+     *
+     * @return \VC\BaseBundle\Entity\Contacto 
+     */
+    public function getContactoAgencia()
+    {
+        return $this->contactoAgencia;
+    }
+
+    /**
+     * Set contactoCliente
+     *
+     * @param \VC\BaseBundle\Entity\Contacto $contactoCliente
+     * @return Reserva
+     */
+    public function setContactoCliente(\VC\BaseBundle\Entity\Contacto $contactoCliente = null)
+    {
+        $this->contactoCliente = $contactoCliente;
+    
+        return $this;
+    }
+
+    /**
+     * Get contactoCliente
+     *
+     * @return \VC\BaseBundle\Entity\Contacto 
+     */
+    public function getContactoCliente()
+    {
+        return $this->contactoCliente;
+    }
 }

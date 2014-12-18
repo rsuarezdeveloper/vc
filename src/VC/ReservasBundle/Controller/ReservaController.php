@@ -198,7 +198,7 @@ class ReservaController extends Controller
         var_dump($all);
         var_dump("1");
        // $all['vc_reservasbundle_reservatype']['fechaServicio']= new \DateTime($all['vc_reservasbundle_reservatype']['fechaServicio']);
-        $all['vc_reservasbundle_reservatype']['horaServicio']= new \DateTime($all['vc_reservasbundle_reservatype']['horaServicio']);
+       // $all['vc_reservasbundle_reservatype']['horaServicio']= new \DateTime($all['vc_reservasbundle_reservatype']['horaServicio']);
         $request->request->replace($all);
         //$status=$em->getRepository('VCBaseBundle:Status')->find(1);
         $entity  = new Reserva();

@@ -149,6 +149,7 @@
 				  });
              $('#vc_reservasbundle_reservatype_fechaServicio').val("{{date()|date("Y-m-d")}}");
             var dateToday = new Date();
+            $.datepicker.setDefaults($.datepicker.regional['es']);
             $('#vc_reservasbundle_reservatype_fechaServicio').datepicker({
                 defaultDate: "+1w",
                 changeMonth: true,

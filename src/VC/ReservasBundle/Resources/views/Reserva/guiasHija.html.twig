@@ -4,7 +4,7 @@
                     {%for hijas in entity.hijas%}
                  <tr>
                 <td></td>
-                <td><span id="guiaHija|{{hijas.id}}" title="Click para cambiar ">{{hijas.guiaHija}}</td>
+                <td><span id="campoHija[{{hijas.id}}]" title="Click para cambiar ">{{hijas.guiaHija}}</td>
                  </tr>
                  {%endfor%}
                 </table>
@@ -20,7 +20,7 @@
 
     $(document).ready(function(){
 
-    $("span[id^=guiaHija]").editable("{{path('editHijajei')}}",{
+    $("span[id^=campoHija]").editable("{{path('editHijajei')}}",{
 			indicator:'<i class="fa fa-refresh fa-spin"></i>',
 			tooltip:"Editar Valor",
 			onblur: "submit",

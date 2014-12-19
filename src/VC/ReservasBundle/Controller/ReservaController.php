@@ -500,6 +500,32 @@ class ReservaController extends Controller
     }
 
     /**
+     * Deletes a Reserva entity.
+     *
+     * @Route("/{id}/hija", name="guiaHija_delete")
+     * @Method("DELETE")
+     */
+    public function deleteHijaAction(Request $request, $id)
+    {
+        $form = $this->createDeleteForm($id);
+        $form->bind($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('VCReservasBundle:ReservaHijas')->find($id);
+
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find Reserva entity.');
+            }
+
+            $em->remove($entity);
+            $em->flush();
+        }
+
+        return $this->redirect($this->generateUrl('reserva'));
+    }
+
+    /**
      * Creates a form to delete a Reserva entity by id.
      *
      * @param mixed $id The entity id

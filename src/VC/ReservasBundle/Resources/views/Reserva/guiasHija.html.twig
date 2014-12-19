@@ -3,7 +3,7 @@
                 <table id="tbl-hijas">
                     {%for hijas in entity.hijas%}
                  <tr>
-                <td></td>
+                <td><a href="javascript:void(0);"  onClick="borrarHija(this);" hija_id="{{hijas.id}}" ><i class="icon-trash"></i></a></td>
                 <td><span id="guiaHija|{{hijas.id}}" title="Click para cambiar ">{{hijas.guiaHija}}</td>
                  </tr>
                  {%endfor%}
@@ -35,6 +35,14 @@
                         $(this).parent().parent().remove();
                 });
         });
+
+    function borrarHija(el){
+   			path= "{{path('guiaHija_delete',{id:'__id'})}}".replace('__id',$(el).attr('hija_id'));
+   			$.post(path,{ _method:'DELETE'},function(data){
+   				data = $.parseJSON(data);
+   				$("#detalleHija").load("{{path('edit_guiasHija',{ 'id': entity.id })}}");
+   			});
+   		}
 
 </script>
 {%endblock%}

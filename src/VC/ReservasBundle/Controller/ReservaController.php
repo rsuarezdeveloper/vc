@@ -510,19 +510,39 @@ class ReservaController extends Controller
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 
-        //if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('VCReservasBundle:ReservaHijas')->find($id);
 
-
-
             $em->remove($entity);
             $em->flush();
-        //}
 
         return new Response(json_encode(
             	array(
             		"message" => "Guia Hija Borrada"
+            	)
+            ));
+    }
+
+    /**
+     * Deletes a Reserva entity.
+     *
+     * @Route("/{id}/productoDelete", name="producto_delete")
+     * @Method("DELETE")
+     */
+    public function deleteproductoAction(Request $request, $id)
+    {
+        $form = $this->createDeleteForm($id);
+        $form->bind($request);
+
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('VCReservasBundle:ReservaProducto')->find($id);
+
+            $em->remove($entity);
+            $em->flush();
+
+        return new Response(json_encode(
+            	array(
+            		"message" => "Producto Borrado"
             	)
             ));
     }

@@ -10,7 +10,7 @@
             </tr>
             {%for producto in entity.productos%}
             <tr>
-                <td></td>
+                <td><a href="javascript:void(0);"  onClick="borrarProducto(this);" producto_id="{{producto.id}}" ><i class="icon-trash"></i></a></td>
                 <td><span id="nombreProducto|{{producto.id}}" title="Click para cambiar Nombre">{{producto.nombreProducto}}</span></td>
                 <td style="text-align: right"><span id="piezas|{{producto.id}}" title="Click para cambiar Piezas">{{producto.piezas}}</td>
                 <td style="text-align: right"><span id="fbe|{{producto.id}}" title="Click para cambiar fbe">{{producto.fbe}}</td>
@@ -47,6 +47,14 @@
                 $(".delete").live('click', function(event) {
                         $(this).parent().parent().remove();
                 });
+
+              function borrarHija(el){
+                path= "{{path('producto_delete',{id:'__id'})}}".replace('__id',$(el).attr('producto_id'));
+                $.post(path,{ _method:'DELETE'},function(data){
+                    data = $.parseJSON(data);
+                    $("#detalleProducto").load("{{path('edit_producto',{ 'id': entity.id })}}");
+                });
+   		}
         });
         </script>
 {%endblock%}

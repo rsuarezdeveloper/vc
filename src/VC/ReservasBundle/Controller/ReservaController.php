@@ -134,7 +134,7 @@ class ReservaController extends Controller
 		foreach ($pagination as $entity)
 		{
 			$entity['fecha_s']=$entity['fechaServicio']->format('j/m/o');
-			$entity['hora_s']=$entity['horaServicio']->format('H:i');
+			//$entity['hora_s']=$entity['horaString']->format('H:i');
 			$res['rows'][]=$entity;
 		}
         $response=new Response();

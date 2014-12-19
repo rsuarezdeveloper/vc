@@ -1,0 +1,53 @@
+    <h3>Productos</h3>
+        <button class="btn btn-small" id="btn-nuevo-producto" type="button"><i class='icon-plus'></i> Agregar Producto</button>
+        <br  />
+        <table id="tbl-productos">
+            <tr>
+                <th></th>
+                <th>Producto</th>
+                <th>Piezas</th>
+                <th>FBE</th>
+            </tr>
+            {%for producto in entity.productos%}
+            <tr>
+                <td></td>
+                <td><span id="nombreProducto|{{producto.id}}" title="Click para cambiar Nombre">{{producto.nombreProducto}}</span></td>
+                <td style="text-align: right"><span id="piezas|{{producto.id}}" title="Click para cambiar Piezas">{{producto.piezas}}</td>
+                <td style="text-align: right"><span id="fbe|{{producto.id}}" title="Click para cambiar fbe">{{producto.fbe}}</td>
+            </tr>
+            {%endfor%}
+        </table>
+
+{%block javascripts%}
+      <script>
+          $(document).ready(function(){
+
+            $("span[id^=piezas],span[id^=fbe]").editable("{{path('editProductojei')}}",{
+			indicator:'<i class="fa fa-refresh fa-spin"></i>',
+			tooltip:"Editar Valor",
+			onblur: "submit",
+            width:'50px', // THIS DOES THE TRICK
+            height:"16px", //THIS DOES THE TRICK
+
+		});
+            $("span[id^=nombreProducto]").editable("{{path('editProductojei')}}",{
+			indicator:'<i class="fa fa-refresh fa-spin"></i>',
+			tooltip:"Editar Valor",
+			onblur: "submit",
+            width:'150px', // THIS DOES THE TRICK
+            height:"16px", //THIS DOES THE TRICK
+
+		});
+               var tr_producto='<tr><td><a href="#" class="delete"><i class="icon-trash"></i></a></td><td><input type="text" name="producto_nombre[]" id="producto_nombre[]" placeholder="Nombre Producto"/></td><td><input type="text" name="producto_piezas[]" id="producto_piezas[]" placeholder="0" dir="rtl" class="input-small"/></td><td><input type="text" name="producto_fbe[]" id="producto_fbe[]" placeholder="0" dir="rtl" class="input-small"/></td></tr>';
+                $("#tbl-productos").append(tr_producto);
+                $("#btn-nuevo-producto").click(function(){
+                        $("#tbl-productos").append(tr_producto);
+                });
+
+                $(".delete").live('click', function(event) {
+                        $(this).parent().parent().remove();
+                });
+        });
+        </script>
+{%endblock%}
+

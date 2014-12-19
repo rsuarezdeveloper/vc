@@ -203,6 +203,22 @@ class ReservaController extends Controller
      }
 
     /**
+     *
+     * @Route("/{id}/editproducto", name="edit_producto")
+     * @Method("GET")
+     * @Template()
+     */
+    public function productosAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+		$entity = $em->getRepository('VCReservasBundle:Reserva')->find($id);
+
+        return array(
+            'entity'      => $entity,
+        );
+     }
+
+    /**
      * Creates a new Reserva entity.
      *
      * @Route("/create", name="reserva_create")

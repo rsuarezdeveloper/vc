@@ -82,7 +82,7 @@ class ReservaController extends Controller
                          ->add('from','VCReservasBundle:Reserva r')
                          ->add('select','r,agencias.nombre as agencia,aerolineas.nombre as aerolinea,
                          clientes.nombre as cliente,usuarios.nombre as creadoPor,r.notas,r.temperaturaRequerida as temperatura,r.guiaMaster as guiam,
-                         r.fechaServicio,r.horaServicio,r.id,s.status'
+                         r.fechaServicio,r.horaString,r.id,s.status'
                          )
                          ->distinct()
                          ->leftJoin('r.cliente','clientes')
@@ -95,7 +95,7 @@ class ReservaController extends Controller
                 "aerolinea"=>"aerolinea.nombre",
                 "cliente"=>"cliente.nombre",
                 "fecha_servicio"=>"r.fechaServicio",
-                "hora_servicio" =>"r.horaServicio",
+                "hora_servicio" =>"r.horaString",
                 "id"=>"r.id"
         );
 		if ($request->get('_search')=='true')
@@ -134,7 +134,7 @@ class ReservaController extends Controller
 			$entity['hora_s']=$entity['horaServicio']->format('H:i');
 			$res['rows'][]=$entity;
 		}
-        //$qb->orderBy($entity['fecha_s'],$entity['hora_s']);
+        $qb->orderBy("r.fechaServicio,r.horaString","DESC");
         $response=new Response();
         $response->setContent(json_encode($res));
         return $response;

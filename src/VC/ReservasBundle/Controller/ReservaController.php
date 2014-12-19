@@ -502,7 +502,7 @@ class ReservaController extends Controller
     /**
      * Deletes a Reserva entity.
      *
-     * @Route("/{id}/hija", name="guiaHija_delete")
+     * @Route("/{id}/hijaDelete", name="guiaHija_delete")
      * @Method("DELETE")
      */
     public function deleteHijaAction(Request $request, $id)
@@ -522,7 +522,11 @@ class ReservaController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('reserva'));
+        return new Response(json_encode(
+            	array(
+            		"message" => "Guia Hija Borrada"
+            	)
+            ));
     }
 
     /**

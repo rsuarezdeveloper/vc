@@ -98,7 +98,7 @@
 
     <script type="text/javascript" src="{{asset('css/jquery.jeditable.js')}}"></script>
     <script>
-        $("#guiasHija").load("{{path('edit_guiasHija',{ 'id': entity.id })}}");
+      //  $("#guiasHija").load("{{path('edit_guiasHija',{ 'id': entity.id })}}");
         $(document).ready(function(){
 
             $("span[id^=piezas],span[id^=fbe]").editable("{{path('editProductojei')}}",{

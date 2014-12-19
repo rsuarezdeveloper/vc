@@ -186,7 +186,7 @@ class ReservaController extends Controller
     /**
      *
      * @Route("/{id}/editguiasHija", name="edit_guiasHija")
-     * @Method("POST|GET")
+     * @Method("GET")
      * @Template()
      */
     public function guiasHijaAction($id)

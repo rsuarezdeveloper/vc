@@ -322,6 +322,7 @@ class ReservaController extends Controller
 	    $field= explode("|", $field);
 	    $fields = array("guiaHija");
 	    if(in_array($field[0],$fields)){
+            var_dump("1");
 		    $em = $this->getDoctrine()->getManager();
 			$entity = $em->getRepository('VCReservasBundle:ReservaHijas')->find($field[1]);
 			$f = ucfirst($field[0]);

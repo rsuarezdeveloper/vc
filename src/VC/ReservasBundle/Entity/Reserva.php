@@ -33,9 +33,9 @@ class Reserva
  
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="fecha_servicio", type="datetime", nullable=true)
+     * @ORM\Column(name="fecha_servicio", type="date", nullable=true)
      */
     private $fechaServicio;
     
@@ -216,29 +216,6 @@ class Reserva
     public function getCreacion()
     {
         return $this->creacion;
-    }
-
-    /**
-     * Set fechaServicio
-     *
-     * @param \DateTime $fechaServicio
-     * @return Reserva
-     */
-    public function setFechaServicio($fechaServicio)
-    {
-        $this->fechaServicio = $fechaServicio;
-    
-        return $this;
-    }
-
-    /**
-     * Get fechaServicio
-     *
-     * @return \DateTime 
-     */
-    public function getFechaServicio()
-    {
-        return $this->fechaServicio;
     }
 
     /**

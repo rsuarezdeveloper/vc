@@ -91,9 +91,9 @@ class ReservaController extends Controller
                          ->leftJoin('r.creado_por','usuarios')
                          ->leftJoin('r.status','s');
         $campos=array(
-                "agencia"=>'agencia.nombre',
-                "aerolinea"=>"aerolinea.nombre",
-                "cliente"=>"cliente.nombre",
+                "agencia"=>'agencias.nombre',
+                "aerolinea"=>"aerolineas.nombre",
+                "cliente"=>"clientes.nombre",
                 "fecha_servicio"=>"r.fechaServicio",
                 "hora_servicio" =>"r.horaString",
                 "id"=>"r.id"

@@ -48,7 +48,7 @@
                         $(this).parent().parent().remove();
                 });
 
-              function borrarHija(el){
+              function borrarProducto(el){
                 path= "{{path('producto_delete',{id:'__id'})}}".replace('__id',$(el).attr('producto_id'));
                 $.post(path,{ _method:'DELETE'},function(data){
                     data = $.parseJSON(data);

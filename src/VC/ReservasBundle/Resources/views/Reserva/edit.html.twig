@@ -83,7 +83,7 @@
         $(document).ready(function(){
 
         $("#detalleHija").load("{{path('edit_guiasHija',{ 'id': entity.id })}}");
-        //$("#detalleProducto").load("{{path('edit_producto',{ 'id': entity.id })}}");
+        $("#detalleProducto").load("{{path('edit_producto',{ 'id': entity.id })}}");
 
                 $('#vc_reservasbundle_reservatype_horaString').timepicker({
 				  showInputs:false,

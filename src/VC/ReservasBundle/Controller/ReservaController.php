@@ -199,6 +199,7 @@ class ReservaController extends Controller
         }
 
         return array(
+            'test'      => "1",
             'entity'      => $entity
         );
      }

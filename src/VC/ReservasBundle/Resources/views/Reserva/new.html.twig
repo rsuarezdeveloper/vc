@@ -90,8 +90,6 @@
 {% endblock %}
 {% block javascripts%}
 
-    {{form_javascript(form)}}
-
     <script>
         function crearContacto(){
             $("#crearContactoModal div.modal-body").empty().load("{{path('contacto_popUp')}}");

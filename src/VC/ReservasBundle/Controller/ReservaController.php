@@ -510,17 +510,15 @@ class ReservaController extends Controller
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 
-        if ($form->isValid()) {
+        //if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('VCReservasBundle:ReservaHijas')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Reserva entity.');
-            }
+
 
             $em->remove($entity);
             $em->flush();
-        }
+        //}
 
         return new Response(json_encode(
             	array(

@@ -149,7 +149,12 @@
 				  });
              $('#vc_reservasbundle_reservatype_fechaServicio').val("{{date()|date("Y-m-d")}}");
             $('#vc_reservasbundle_reservatype_fechaServicio').datepicker({
-				  dateformat:"yy-mm-dd", minDate:1, defaultdate:new Date()
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 3,
+                minDate: dateToday,
+				dateformat:"yy-mm-dd",
+                //minDate:1, defaultdate:new Date()
 
 				  });
 

@@ -94,7 +94,7 @@ class ReservaController extends Controller
                 "agencia"=>'agencias.nombre',
                 "aerolinea"=>"aerolineas.nombre",
                 "cliente"=>"clientes.nombre",
-                "fecha_servicio"=>"r.fechaServicio",
+                "fecha_s"=>"r.fechaServicio",
                 "hora_servicio" =>"r.horaString",
                 "id"=>"r.id"
         );

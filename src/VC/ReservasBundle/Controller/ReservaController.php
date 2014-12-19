@@ -67,6 +67,8 @@ class ReservaController extends Controller
         );
     }
 
+
+
     /**
      * displays Reserva data.
      *
@@ -179,6 +181,26 @@ class ReservaController extends Controller
 
        return $this->redirect($this->generateUrl('reserva'));
 
+     }
+
+    /**
+     *
+     * @Route("/{id}/editguiasHija", name="edit_guiasHija")
+     * @Method("POST|GET")
+     * @Template()
+     */
+    public function guiasHijaAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+		$entity = $em->getRepository('VCReservasBundle:Reserva')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Reserva entity.');
+        }
+
+        return array(
+            'entity'      => $entity
+        );
      }
 
     /**

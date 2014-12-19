@@ -90,7 +90,7 @@ class ReservaController extends Controller
                          ->leftJoin('r.aerolinea','aerolineas')
                          ->leftJoin('r.creado_por','usuarios')
                          ->leftJoin('r.status','s');
-        $fields=array(
+        $campos=array(
                 "agencia"=>'agencia.nombre',
                 "aerolinea"=>"aerolinea.nombre",
                 "cliente"=>"cliente.nombre",

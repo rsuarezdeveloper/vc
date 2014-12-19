@@ -1,13 +1,6 @@
             <tr>
+                <button class="btn btn-small" id="btn-nueva-hija" type="button"><i class='icon-plus'></i>Guias Hija</button>
 
-                <table id="tbl-hijas">
-                    {%for hijas in entity.hijas%}
-                 <tr>
-                <td></td>
-                <td><span id="guiaHija|{{hijas.id}}" title="Click para cambiar ">{{hijas.guiaHija}}</td>
-                 </tr>
-                 {%endfor%}
-                </table>
             </tr>
 
 {%block javascripts%}

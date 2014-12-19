@@ -10,30 +10,3 @@
                 </table>
             </tr>
 
-{%block javascripts%}
- <script type="text/javascript" src="{{asset('css/jquery.jeditable.js')}}"></script>
-
-<script>
-    $(document).ready(function(){
-    $("span[id^=guiaHija]").editable("{{path('editHijajei')}}",{
-			indicator:'<i class="fa fa-refresh fa-spin"></i>',
-			tooltip:"Editar Valor",
-			onblur: "submit",
-            width:'200px', // THIS DOES THE TRICK
-            height:"16px", //THIS DOES THE TRICK
-
-		});
-
-    var tr_hijas='<tr><td><a href="#" class="delete"><i class="icon-trash"></i></a></td><td><input type="text" name="guiaHija[]" id="guiaHija[]" placeholder="Guia Hija"/></td></tr>';
-                $("#tbl-hijas").append(tr_hijas);
-                $("#btn-nueva-hija").click(function(){
-                        $("#tbl-hijas").append(tr_hijas);
-                });
-
-                $(".delete").live('click', function(event) {
-                        $(this).parent().parent().remove();
-                });
-        });
-
-</script>
-{%endblock%}

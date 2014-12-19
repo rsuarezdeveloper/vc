@@ -798,4 +798,27 @@ class Reserva
     {
         return $this->contactoCliente;
     }
+
+    /**
+     * Set fechaServicio
+     *
+     * @param \DateTime $fechaServicio
+     * @return Reserva
+     */
+    public function setFechaServicio($fechaServicio)
+    {
+        $this->fechaServicio = $fechaServicio;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaServicio
+     *
+     * @return \DateTime 
+     */
+    public function getFechaServicio()
+    {
+        return $this->fechaServicio;
+    }
 }

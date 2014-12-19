@@ -321,7 +321,7 @@ class ReservaController extends Controller
 	    $field = $request->get('id');
 	    $field= explode("|", $field);
 	    $fields = array("guiaHija");
-	    //if(in_array($field[0],$fields)){
+	    if(in_array($field[0],$fields)){
 		    $em = $this->getDoctrine()->getManager();
 			$entity = $em->getRepository('VCReservasBundle:ReservaHijas')->find($field[1]);
 			$f = ucfirst($field[0]);
@@ -329,7 +329,7 @@ class ReservaController extends Controller
 			eval($str);
 			$em->persist($entity);
 			$em->flush();
-	    //}
+	    }
 
 		return new Response($value);
 

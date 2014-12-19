@@ -47,15 +47,15 @@
                 $(".delete").live('click', function(event) {
                         $(this).parent().parent().remove();
                 });
+        });
 
-              function borrarProducto(el){
+          function borrarProducto(el){
                 path= "{{path('producto_delete',{id:'__id'})}}".replace('__id',$(el).attr('producto_id'));
                 $.post(path,{ _method:'DELETE'},function(data){
                     data = $.parseJSON(data);
                     $("#detalleProducto").load("{{path('edit_producto',{ 'id': entity.id })}}");
                 });
    		}
-        });
         </script>
 {%endblock%}
 

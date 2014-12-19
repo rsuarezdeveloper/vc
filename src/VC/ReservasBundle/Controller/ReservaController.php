@@ -110,7 +110,7 @@ class ReservaController extends Controller
 					$qb->andWhere($qb->expr()->like('c.contacto',':contacto'))->setParameter('contacto',"%".$rule->data."%");
 			}
 		}
-        $qb->orderBy("r.fechaServicio,r.horaString","DESC");
+        $qb->orderBy("r.fechaServicio,r.horaString","ASC");
 
 		if ($request->get('sidx')!="")
 		{

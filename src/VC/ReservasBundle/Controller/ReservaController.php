@@ -194,13 +194,8 @@ class ReservaController extends Controller
         $em = $this->getDoctrine()->getManager();
 		$entity = $em->getRepository('VCReservasBundle:Reserva')->find($id);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Reserva entity.');
-        }
-
         return array(
-            'test'      => "1",
-            'entity'      => $entity
+            'entity'      => $entity,
         );
      }
 

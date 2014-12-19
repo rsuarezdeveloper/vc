@@ -14,7 +14,7 @@
  <script type="text/javascript" src="{{asset('css/jquery.jeditable.js')}}"></script>
 
 <script>
-
+    $(document).ready(function(){
     $("span[id^=guiaHija]").editable("{{path('editHijajei')}}",{
 			indicator:'<i class="fa fa-refresh fa-spin"></i>',
 			tooltip:"Editar Valor",
@@ -33,6 +33,7 @@
                 $(".delete").live('click', function(event) {
                         $(this).parent().parent().remove();
                 });
+        });
 
 </script>
 {%endblock%}

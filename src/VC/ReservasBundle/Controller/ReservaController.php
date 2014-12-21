@@ -269,7 +269,7 @@ class ReservaController extends Controller
             if($request->get('guiaHija')){
                 foreach($request->get('guiaHija') as $k=>$v){
                     $hija=$v;
-                    if($hija>0){
+                    if($hija){
                         var_dump($hija);
                         $gh=new ReservaHijas();
                         $gh->setGuiaHija($hija)

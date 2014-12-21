@@ -542,7 +542,7 @@ class ReservaController extends Controller
 
         return new Response(json_encode(
             	array(
-            		"message" => "Guia Hija Añadida"
+            		"message" => "Guia Hija"
             	)
             ));
     }

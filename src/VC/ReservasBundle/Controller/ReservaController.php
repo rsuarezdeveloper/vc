@@ -282,10 +282,10 @@ class ReservaController extends Controller
           //  return $this->redirect($this->generateUrl('reserva_edit', array('id' => $entity->getId())));
         }
 
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
+      //  return array(
+        //    'entity' => $entity,
+          //  'form'   => $form->createView(),
+        //);
     }
 
     /**

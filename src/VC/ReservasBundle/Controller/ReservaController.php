@@ -527,6 +527,31 @@ class ReservaController extends Controller
     /**
      * Deletes a Reserva entity.
      *
+     * @Route("/{id}/hijaSave", name="guiaHija_save")
+     * @Method("POST")
+     */
+    public function saveHijaAction(Request $request, $id)
+    {
+
+           // $em = $this->getDoctrine()->getManager();
+        var_dump($request->get('guiaHija');
+        //$entity = $em->getRepository('VCReservasBundle:ReservaHijas')->find($id);
+
+            //$em->persist($entity);
+            //$em->flush();
+
+        return new Response(json_encode(
+            	array(
+            		"message" => "Guia Hija Añadida"
+            	)
+            ));
+    }
+
+
+
+    /**
+     * Deletes a Reserva entity.
+     *
      * @Route("/{id}/productoDelete", name="producto_delete")
      * @Method("DELETE")
      */

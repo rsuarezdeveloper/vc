@@ -534,7 +534,7 @@ class ReservaController extends Controller
     {
 
            // $em = $this->getDoctrine()->getManager();
-        var_dump($request->get('guiaHija');
+        var_dump($request->get('guiaHija'));
         //$entity = $em->getRepository('VCReservasBundle:ReservaHijas')->find($id);
 
             //$em->persist($entity);

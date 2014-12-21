@@ -270,7 +270,6 @@ class ReservaController extends Controller
                 foreach($request->get('guiaHija') as $k=>$v){
                     $hija=$v;
                     if($hija){
-                        var_dump($hija);
                         $gh=new ReservaHijas();
                         $gh->setGuiaHija($hija)
                            ->setReserva($entity);
@@ -280,7 +279,7 @@ class ReservaController extends Controller
                 }
             }
 
-          //  return $this->redirect($this->generateUrl('reserva_edit', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('reserva'));
         }
 
       //  return array(

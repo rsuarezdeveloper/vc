@@ -533,12 +533,21 @@ class ReservaController extends Controller
     public function saveHijaAction(Request $request, $id)
     {
 
-           // $em = $this->getDoctrine()->getManager();
-        var_dump($request->get('guiaHija'));
-        //$entity = $em->getRepository('VCReservasBundle:ReservaHijas')->find($id);
+         $em = $this->getDoctrine()->getManager();
+         $entity = $em->getRepository('VCReservasBundle:Reserva')->find($id);
 
-            //$em->persist($entity);
-            //$em->flush();
+        if($request->get('guiaHija')){
+                foreach($request->get('guiaHija') as $k=>$v){
+                    $hija=$v;
+                    if($hija){
+                        $gh=new ReservaHijas();
+                        $gh->setGuiaHija($hija)
+                           ->setReserva($entity);
+                        $em->persist($gh);
+                        $em->flush();
+                    }
+                }
+            }
 
         return new Response(json_encode(
             	array(

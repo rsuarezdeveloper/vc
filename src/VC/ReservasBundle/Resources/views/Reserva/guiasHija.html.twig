@@ -50,7 +50,6 @@
             var hijas = $("input[name='guiaHija[]']").map(function(){return $(this).val();}).get();
    			path= "{{path('guiaHija_save',{id:'__id'})}}".replace('__id',$(el).attr('hija_id'));
    			$.post(path,{ _method:'POST',guiaHija:hijas},function(data){
-   				data = $.parseJSON(data);
    				$("#detalleHija").load("{{path('edit_guiasHija',{ 'id': entity.id })}}");
    			});
    		}

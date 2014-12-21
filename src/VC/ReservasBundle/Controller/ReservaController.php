@@ -279,7 +279,7 @@ class ReservaController extends Controller
                 }
             }
 
-            return $this->redirect($this->generateUrl('reserva_edit', array('id' => $entity->getId())));
+          //  return $this->redirect($this->generateUrl('reserva_edit', array('id' => $entity->getId())));
         }
 
         return array(

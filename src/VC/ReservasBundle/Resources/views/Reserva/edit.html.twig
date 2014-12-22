@@ -18,7 +18,7 @@
                         {{ form_widget(edit_form.cliente) }}
                     {%endif%}
                 	<label>E-mail Contacto:</label>{{ form_widget(edit_form.mailContacto) }}
-                	<div style="display: none"></div>{{ form_widget(edit_form.status) }}
+                	<div style="display:none">{{ form_widget(edit_form.status) }}</div>
                 </td>
                 <td><label>Fecha de Servicio:</label>{{ form_widget(edit_form.fechaServicio) }}
                 	<label>Sucursal Requerida:</label>{{ form_widget(edit_form.sucursal) }}
@@ -42,8 +42,8 @@
                 <td><label>Contacto Cliente:</label>{{ form_widget(edit_form.contactoCliente) }}</td>
             </tr>
             <tr>
-                <td><label>Agencia:</label>{{ form_widget(edit_form.agencia) }}</td>
                 <td><label>Aerolinea:</label>{{ form_widget(edit_form.aerolinea) }}</td>
+                <td><label>Agencia:</label>{{ form_widget(edit_form.agencia) }}</td>
                 <td><label>Notas:</label>{{ form_widget(edit_form.notas) }}</td>
             </tr>
             <tr>

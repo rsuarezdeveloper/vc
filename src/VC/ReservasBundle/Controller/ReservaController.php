@@ -655,6 +655,28 @@ class ReservaController extends Controller
         );
     }
 
+    /**
+     * Lists all Cotizacion entities.
+     *
+     * @Route("/hijas", name="hijas_show")
+     * @Method("POST")
+     * @Template()
+     */
+    public function hijasShowAction(Request $request)
+    {
+
+		$id= $request->get('id');
+        $em = $this->getDoctrine()->getManager();
+        $hijas=0;
+		$entity = $em->getRepository('VCReservasBundle:Reserva')->find($id);
+		$hijas = $em->getRepository('VCReservasBundle:ReservaHijas')->findByReserva($id);
+
+        return array(
+            'entity'=>$entity,
+            'hijas'=>$hijas,
+        );
+    }
+
 
 
     

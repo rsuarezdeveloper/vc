@@ -1,0 +1,14 @@
+ {%if hijas%}
+           <table class="table table-striped" style="padding:2px;">
+            <tr>
+                <th>Nombre</th>
+            </tr>
+            {%for hijas in entity.hijas%}
+            <tr>
+                <td>{{hijas.guiaHija}}</td>
+            </tr>
+            {%endfor%}
+        </table>
+    {%else%}
+        <div class="alert alert-info">No hay Guias Hija asociados</div>
+    {%endif%}

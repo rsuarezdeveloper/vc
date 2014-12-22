@@ -1,6 +1,7 @@
 
 
-        <table class="table table-striped">
+    {%if entity.productos%}
+           <table class="table table-striped" style="padding:2px;">
             <tr>
                 <th>Producto</th>
                 <th>Piezas</th>
@@ -14,3 +15,6 @@
             </tr>
             {%endfor%}
         </table>
+    {%else%}
+        <div class="alert alert-info">No hay productos asociados</div>
+    {%endif%}

@@ -77,6 +77,9 @@
 
     <script type="text/javascript" src="{{asset('css/jquery.jeditable.js')}}"></script>
     <script>
+
+            $("select").select2({placeholder:"Seleccione",width:"230px"})
+
         $(document).ready(function(){
 
         $("#detalleHija").load("{{path('edit_guiasHija',{ 'id': entity.id })}}");

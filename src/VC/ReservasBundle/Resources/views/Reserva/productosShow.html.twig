@@ -1,0 +1,16 @@
+
+
+        <table>
+            <tr>
+                <th>Producto</th>
+                <th>Piezas</th>
+                <th>FBE</th>
+            </tr>
+            {%for producto in entity.productos%}
+            <tr>
+                <td>{{producto.nombreProducto}}</td>
+                <td>{{producto.piezas}}</td>
+                <td>{{producto.fbe}}</td>
+            </tr>
+            {%endfor%}
+        </table>

@@ -633,6 +633,27 @@ class ReservaController extends Controller
         ;
     }
     
+    /**
+     * Lists all Cotizacion entities.
+     *
+     * @Route("/productos", name="productos_show")
+     * @Method("POST")
+     * @Template()
+     */
+    public function productosShowAction(Request $request)
+    {
+
+		$id= $request->get('id');
+        $em = $this->getDoctrine()->getManager();
+		$entity = $em->getRepository('VCReservasBundle:Reserva')->find($id);
+
+        return array(
+            'entity'=>$entity,
+        );
+    }
+
+
+
     
     /**
      * Prints a procesed Reserva Entity

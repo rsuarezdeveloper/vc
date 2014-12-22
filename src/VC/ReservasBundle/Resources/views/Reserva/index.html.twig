@@ -67,6 +67,8 @@
     </div>
     <div id="botoneraTemplate"  style="display:none;"><a id="reserva_confirm__id" rel="tooltip" title="Confirmar Reserva" data-toggle="tooltip" href="javascript:void(0);" data-url="{{path('reserva_confirm',{'id':'__id'})}}" onclick="current_record=__id;$('#modal_confirm').modal();"class="btn btn-success btn-mini tip"><i class="icon-ok icon-white"></i></a><a rel="tooltip" data-toggle="tooltip" title="Editar Reserva" href="{{ path('reserva_edit', {'id': '__id'}) }}" class="btn btn-primary btn-mini tip"><i class="icon-pencil icon-white"></i></a><a href="{{path('reserva_process',{'id':'__id'})}}" data-toggle="modal" data-target="#modal_process" rel="tooltip" title="procesar reserva" class="btn btn-warning btn-mini"><i class="icon-cog icon-white"></i></a><a href="javascript:void(0)" style="color:white" onclick="anular('__id');" rel="tooltip" class="btn btn-mini btn-danger" data-toggle="tooltip" title="Anular"><i class="icon-remove icon-white"></i></a> </div>
 
+    <div id="productosTemplate" style="display:none"> <a href="javascript:void(0)" style="color:white" onclick="mostrarProductos('__id');" rel="tooltip" class="btn btn-mini btn-info" data-toggle="tooltip" title="Mostrar Productos"><i class="icon-search icon-white"></i></a></div>
+
     <div id="anularModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -91,19 +93,19 @@
 			$("#list").jqGrid({
 				url:"{{path('reserva_grid')}}",
 				datatype:"json",
-				colNames:['Cliente','Agencia','Aerol&iacute;nea','Fecha Servicio','Hora Servicio','Gu&iacute;a Master','Temperatura','Notas','Piezas','FBE','Estado','Acciones'],
+				colNames:['Cliente','Agencia','Aerol&iacute;nea','Fecha Servicio','Hora Servicio','Gu&iacute;a Master','Temperatura','Notas','Productos','Gu&iacute;as Hija','Estado','Acciones'],
 				colModel:[
 					{name:'cliente',index:'cliente',width:180,align:"center",search:true},
-					{name:'agencia',width:80,align:"center",search:true},
-					{name:'aerolinea',width:80,align:"center",search:true},
+					{name:'agencia',width:160,align:"center",search:true},
+					{name:'aerolinea',width:160,align:"center",search:true},
 					//{name:'creadoPor',width:100,align:"center",search:false},
-					{name:'fecha_s',width:80,align:"center"},
-					{name:'horaString',width:80,align:"center"},
+					{name:'fecha_s',width:90,align:"center"},
+					{name:'horaString',width:90,align:"center"},
 					{name:'guiam',width:100,align:"center"},
-					{name:'temperatura',width:60,align:"center",search:false},
+					{name:'temperatura',width:90,align:"center",search:false},
 					//{name:'contacto',width:100,align:"center"},
 					{name:'notas',width:100,align:"center"},
-					{name:'piezas',width:80,align:"center"},
+					{name:'piezas',width:50,formatter:productosAction,align:'center'},
 					{name:'fbe',width:50,align:"center"},
 					{name:'status',width:50,formatter:confirmar,search:false,align:'center'},
 					{name:'acciones',width:140,jsonmap:"id",align:'center',formatter:botonera,search:false,sortable:false},
@@ -123,6 +125,11 @@
                 	html=html.replace(/__id/g,cellvalue);
 		        	return html;
 		    }
+            function productossAction(cellvalue, options, rowObject){
+                	var html=$("#productosTemplate").html();
+                	html=html.replace("__id",rowObject.id);
+		        	return html;
+		        }
 			function confirmar(cellvalue,options,rowObject)
 			{
 				if (cellvalue=="Nuevo")
@@ -149,9 +156,25 @@
 			    'margin-left': function () { //Horizontal centering
 			        return -($(this).width() / 2);
 			    }
-			});
- 		});
- 	}
+			   });
+ 		     });
+ 	      }
+        function mostrarProductos(id){
+
+                    $("#productosModal div.modal-body").empty().load("{{path('productos_show')}}",{id:id});
+                    $("#productosModal").modal('show');
+                    $("#productosModal").on('shown', function(){
+                        $(this).css({
+                            'width':'350px',
+                            'margin-top': function () { //vertical centering
+                                return -($(this).height() / 3);
+                            },
+                            'margin-left': function () { //Horizontal centering
+                                return -($(this).width() / 3);
+                            }
+                        });
+                    });
+                }
 	
 	</script>
 {%endblock%}

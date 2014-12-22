@@ -662,7 +662,7 @@ class ReservaController extends Controller
      * @Method("POST")
      * @Template()
      */
-    public function hijasShowAction(Request $request)
+    public function HijasShowAction(Request $request)
     {
 
 		$id= $request->get('id');

@@ -67,7 +67,7 @@
     </div>
     <div id="botoneraTemplate"  style="display:none;"><a id="reserva_confirm__id" rel="tooltip" title="Confirmar Reserva" data-toggle="tooltip" href="javascript:void(0);" data-url="{{path('reserva_confirm',{'id':'__id'})}}" onclick="current_record=__id;$('#modal_confirm').modal();"class="btn btn-success btn-mini tip"><i class="icon-ok icon-white"></i></a><a rel="tooltip" data-toggle="tooltip" title="Editar Reserva" href="{{ path('reserva_edit', {'id': '__id'}) }}" class="btn btn-primary btn-mini tip"><i class="icon-pencil icon-white"></i></a><a href="{{path('reserva_process',{'id':'__id'})}}" data-toggle="modal" data-target="#modal_process" rel="tooltip" title="procesar reserva" class="btn btn-warning btn-mini"><i class="icon-cog icon-white"></i></a><a href="javascript:void(0)" style="color:white" onclick="anular('__id');" rel="tooltip" class="btn btn-mini btn-danger" data-toggle="tooltip" title="Anular"><i class="icon-remove icon-white"></i></a> </div>
 
-    <div id="productosTemplate" style="display:none"> <a href="javascript:void(0)" style="color:white" onclick="mostrarProductos('__id');" rel="tooltip" class="btn btn-mini btn-info" data-toggle="tooltip" title="Mostrar Productos"><i class="icon-search icon-white"></i></a></div>
+    <div id="productosTemplate" style="display:none"> <a href="javascript:void(0)" onclick="mostrarProductos('__id');" rel="tooltip" class="btn btn-mini" data-toggle="tooltip" title="Mostrar Productos"><i class="icon-search"></i></a></div>
 
     <div id="hijasTemplate" style="display:none"> <a href="javascript:void(0)" onclick="mostrarHijas('__id');" rel="tooltip" class="btn btn-mini" data-toggle="tooltip" title="Mostrar Hijas"><i class="icon-search"></i></a></div>
 
@@ -117,8 +117,8 @@
 				colNames:['Cliente','Agencia','Aerol&iacute;nea','Fecha Servicio','Hora Servicio','Gu&iacute;a Master','Gu&iacute;as Hija','Productos','Temperatura','Notas','Estado','Acciones'],
 				colModel:[
 					{name:'cliente',index:'cliente',width:180,align:"center",search:true},
-					{name:'agencia',width:160,align:"center",search:true},
-					{name:'aerolinea',width:160,align:"center",search:true},
+					{name:'agencia',width:155,align:"center",search:true},
+					{name:'aerolinea',width:155,align:"center",search:true},
 					//{name:'creadoPor',width:100,align:"center",search:false},
 					{name:'fecha_s',width:90,align:"center"},
 					{name:'horaString',width:90,align:"center"},
@@ -128,7 +128,7 @@
 					{name:'temperatura',width:90,align:"center",search:false},
 					{name:'notas',width:100,align:"center"},
 					{name:'status',width:50,formatter:confirmar,search:false,align:'center'},
-					{name:'acciones',width:130,jsonmap:"id",align:'center',formatter:botonera,search:false,sortable:false},
+					{name:'acciones',width:120,jsonmap:"id",align:'center',formatter:botonera,search:false,sortable:false},
 				],
 				pager:"#pager",
 				gridview:true,
@@ -137,7 +137,7 @@
 				viewsortcols:[true,'horizontal',true],
 				height:'100%',
                 loadComplete: function() {
-					    $("tr.jqgrow:odd").css("background", "#FCF8F4");
+					    $("tr.jqgrow:odd").css("background", "#AFE0F9");
 					}
                 });
 			$("#list").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false, defaultSearch:'cn'});

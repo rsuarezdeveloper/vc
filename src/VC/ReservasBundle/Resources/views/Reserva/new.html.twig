@@ -136,7 +136,6 @@
             $("#crearContactoModal div.modal-body").prepend('<div class="alert alert-info"><i class="fa fa-refresh fa-spin"></i> Prefacturando...</div>');
 
                 frm = $("#frm-crear-contacto");
-                console.log(frm);
 			$.post("{{path('contacto_create')}}",frm.serialize(),function(data){
                 $("#crearContactoModal").modal('hide');
 			});

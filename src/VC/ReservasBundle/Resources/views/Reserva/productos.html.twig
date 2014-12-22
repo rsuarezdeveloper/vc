@@ -55,7 +55,7 @@
             var piezas = $("input[name='producto_piezas[]']").map(function(){return $(this).val();}).get();
             var cajas = $("input[name='producto_fbe[]']").map(function(){return $(this).val();}).get();
 
-   			path= "{{path('guiaHija_save',{id:'__id'})}}".replace('__id',$(el).attr('producto_id'));
+   			path= "{{path('producto_save',{id:'__id'})}}".replace('__id',$(el).attr('producto_id'));
    			$.post(path,{ _method:'POST',producto_nombre:nombre,producto_piezas:piezas,producto_fbe:cajas},function(data){
                     $("#detalleProducto").load("{{path('edit_producto',{ 'id': entity.id })}}");
    			});

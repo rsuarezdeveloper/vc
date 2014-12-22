@@ -1,5 +1,6 @@
     <h3>Productos</h3>
         <button class="btn btn-small" id="btn-nuevo-producto" type="button"><i class='icon-plus'></i> Agregar Producto</button>
+        <a href="javascript:void(0);" class="btn btn-small btn-primary"  onClick="saveProductos(this);" producto_id="{{entity.id}}" ><i class="fa fa-check-circle"></i>Guardar</a>
         <br  />
         <table id="tbl-productos">
             <tr>
@@ -49,6 +50,17 @@
                 });
         });
 
+          function saveProductos(el){
+            var nombre = $("input[name='producto_nombre[]']").map(function(){return $(this).val();}).get();
+            var piezas = $("input[name='producto_piezas[]']").map(function(){return $(this).val();}).get();
+            var cajas = $("input[name='producto_fbe[]']").map(function(){return $(this).val();}).get();
+
+   			path= "{{path('guiaHija_save',{id:'__id'})}}".replace('__id',$(el).attr('producto_id'));
+   			$.post(path,{ _method:'POST',producto_nombre:nombre,producto_piezas:piezas,producto_fbe:cajas},function(data){
+                    $("#detalleProducto").load("{{path('edit_producto',{ 'id': entity.id })}}");
+   			});
+   		}
+
           function borrarProducto(el){
                 path= "{{path('producto_delete',{id:'__id'})}}".replace('__id',$(el).attr('producto_id'));
                 $.post(path,{ _method:'DELETE'},function(data){
@@ -56,6 +68,8 @@
                     $("#detalleProducto").load("{{path('edit_producto',{ 'id': entity.id })}}");
                 });
    		}
+
+
         </script>
 {%endblock%}
 

@@ -556,6 +556,42 @@ class ReservaController extends Controller
             ));
     }
 
+    /**
+     * Deletes a Reserva entity.
+     *
+     * @Route("/{id}/productoSave", name="producto_save")
+     * @Method("POST")
+     */
+    public function saveProductoAction(Request $request, $id)
+    {
+
+         $em = $this->getDoctrine()->getManager();
+         $entity = $em->getRepository('VCReservasBundle:Reserva')->find($id);
+
+        if($request->get('producto_nombre')){
+                foreach($request->get('producto_nombre') as $k=>$v){
+                    $prod=$v;
+                    $piezas=$request->get("producto_piezas");
+                    $fbe=$request->get("producto_fbe");
+                    if($piezas[$k]>0 || $fbe[$k]>0){
+                        $rp=new ReservaProducto();
+                        $rp->setNombreProducto($prod)
+                           ->setPiezas($piezas[$k])
+                           ->setFbe($fbe[$k])
+                           ->setReserva($entity);
+                        $em->persist($rp);
+                        $em->flush();
+                    }
+                }
+            }
+
+        return new Response(json_encode(
+            	array(
+            		"message" => "Guia Hija"
+            	)
+            ));
+    }
+
 
 
     /**

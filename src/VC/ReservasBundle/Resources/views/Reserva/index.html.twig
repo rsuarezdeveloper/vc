@@ -114,7 +114,7 @@
 			$("#list").jqGrid({
 				url:"{{path('reserva_grid')}}",
 				datatype:"json",
-				colNames:['Cliente','Agencia','Aerol&iacute;nea','Fecha Servicio','Hora Servicio','Gu&iacute;a Master','Temperatura','Notas','Productos','Gu&iacute;as Hija','Estado','Acciones'],
+				colNames:['Cliente','Agencia','Aerol&iacute;nea','Fecha Servicio','Hora Servicio','Gu&iacute;a Master','Gu&iacute;as Hija','Productos','Temperatura','Notas','Estado','Acciones'],
 				colModel:[
 					{name:'cliente',index:'cliente',width:180,align:"center",search:true},
 					{name:'agencia',width:160,align:"center",search:true},
@@ -123,13 +123,12 @@
 					{name:'fecha_s',width:90,align:"center"},
 					{name:'horaString',width:90,align:"center"},
 					{name:'guiam',width:100,align:"center"},
+					{name:'fbe',width:65,formatter:guiasHijaAction,align:'center'},
+					{name:'piezas',width:65,formatter:productosAction,align:'center'},
 					{name:'temperatura',width:90,align:"center",search:false},
-					//{name:'contacto',width:100,align:"center"},
 					{name:'notas',width:100,align:"center"},
-					{name:'piezas',width:50,formatter:productosAction,align:'center'},
-					{name:'fbe',width:50,formatter:guiasHijaAction,align:'center'},
 					{name:'status',width:50,formatter:confirmar,search:false,align:'center'},
-					{name:'acciones',width:140,jsonmap:"id",align:'center',formatter:botonera,search:false,sortable:false},
+					{name:'acciones',width:130,jsonmap:"id",align:'center',formatter:botonera,search:false,sortable:false},
 				],
 				pager:"#pager",
 				gridview:true,
@@ -137,7 +136,10 @@
 				viewrecords:true,
 				viewsortcols:[true,'horizontal',true],
 				height:'100%',
-			});
+                loadComplete: function() {
+					    $("tr.jqgrow:odd").css("background", "#FCF8F4");
+					}
+                });
 			$("#list").jqGrid('filterToolbar',{stringResult: true,searchOnEnter : false, defaultSearch:'cn'});
 			});
 			function botonera(cellvalue, options, rowObject)
@@ -208,7 +210,7 @@
                     $("#hijasModal").modal('show');
                     $("#hijasModal").on('shown', function(){
                         $(this).css({
-                            'width':'350px',
+                            'width':'180px',
                             'margin-top': function () { //vertical centering
                                 return -($(this).height() / 3);
                             },

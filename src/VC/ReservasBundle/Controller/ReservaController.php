@@ -465,7 +465,7 @@ class ReservaController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('reserva_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('reserva'));
         }
 
         return array(

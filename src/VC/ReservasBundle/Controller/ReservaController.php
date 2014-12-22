@@ -645,10 +645,13 @@ class ReservaController extends Controller
 
 		$id= $request->get('id');
         $em = $this->getDoctrine()->getManager();
+        $productos=0;
 		$entity = $em->getRepository('VCReservasBundle:Reserva')->find($id);
+		$productos = $em->getRepository('VCReservasBundle:ReservaProductos')->findByReserva($id);
 
         return array(
             'entity'=>$entity,
+            'productos'=>$productos,
         );
     }
 

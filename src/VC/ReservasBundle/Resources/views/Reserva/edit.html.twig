@@ -81,10 +81,8 @@
     <script>
 
             $("select").select2({placeholder:"Seleccione",width:"230px"});
-            $("#vc_reservasbundle_reservatype_guiaMaster").mask("aaaa-9999999");
-            $("#guiaHija").mask("aaaa-9999999");
-            $("#vc_reservasbundle_reservatype_temperaturaRequerida").mask("99");
-
+           $("#vc_reservasbundle_reservatype_guiaMaster").mask("999-99999999");
+            //$("#vc_reservasbundle_reservatype_temperaturaRequerida").mask("99");
         $(document).ready(function(){
 
         $("#detalleHija").load("{{path('edit_guiasHija',{ 'id': entity.id })}}");

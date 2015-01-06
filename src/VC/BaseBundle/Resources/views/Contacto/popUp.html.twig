@@ -1,3 +1,30 @@
     <form id="frm-crear-contacto" name="frm-crear-contacto" method="post" >
         {{ form_widget(form) }}
     </form>
+
+    <td><button class="btn btn-small" id="btn-nuevo-email" type="button"><i class='icon-plus'></i>Email</button>
+                <table id="tbl-emails">
+
+                </table>
+                </td>
+
+
+
+{%block javascripts%}
+
+<script>
+
+    var tr_hijas='<tr><td><a href="#" class="delete"><i class="icon-trash"></i></a></td><td><input type="text" name="email[]" id="email[]" placeholder="Email"/></td></tr>';
+                $("#tbl-emails").append(tr_hijas);
+                $("#btn-nuevo-email").click(function(){
+                        $("#tbl-emails").append(tr_hijas);
+                });
+
+                $(".delete").live('click', function(event) {
+                        $(this).parent().parent().remove();
+                });
+</script>
+
+{%endblock%}
+
+

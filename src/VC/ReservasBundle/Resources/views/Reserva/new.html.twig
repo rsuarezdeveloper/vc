@@ -51,6 +51,7 @@
 
             <tr>
                 <td><label>Notas:</label>{{ form_widget(form.notas) }}</td>
+                <td><input type="text" id="vc_select" name="vc_select"></td>
             </tr>
         </table>
 
@@ -94,6 +95,13 @@
 {% block javascripts%}
 
     <script>
+
+        var aerolineas=$.parseJSON($.getValues("{{path('aerolineas_ajax')}}"));
+
+             $("#vc_select").select2({placeholder:'Aerolinea',data:aerolineas});
+
+
+
         function crearContacto(){
             $("#crearContactoModal div.modal-body").empty().load("{{path('contacto_popUp')}}");
             $("#crearContactoModal").modal('show');

@@ -18,6 +18,30 @@ use VC\BaseBundle\Form\AerolineaType;
  */
 class AerolineaController extends Controller
 {
+
+    /**
+     * @Route("/ajaxAerolineas",name="aerolineas_ajax", defaults={"_format"="json"})
+     */
+    public function ajaxAerolineasAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $query = $em->createQuery("SELECT 'aerolinea' as tipo,a.id, a.nombre FROM VCBaseBundle:Aerolinea a");
+       //$query->setParameter('tiposervicio',"asesoria");
+       $entities = $query->getResult();
+
+       $response = new Response();
+	   $r=array();
+	   foreach($entities as $row){
+		   $r[]=array(
+            "id"=>$row['id'],
+		   	'text' => $row['nombre']
+
+		   );
+	   }
+       $r=$this->record_sort($r,"text");
+	   $response->setContent(json_encode($r));
+	   return $response;
+    }
 	
 	/**
 	 * Lists all agencia entities JSON format

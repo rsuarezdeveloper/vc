@@ -39,15 +39,14 @@
                 <td><label>Contacto Aerolinea:</label>{{ form_widget(edit_form.contactoAerolinea) }}</td>
                 <td><label>Contacto Agencia:</label>{{ form_widget(edit_form.contactoAgencia) }}</td>
                 <td><label>Contacto Cliente:</label>{{ form_widget(edit_form.contactoCliente) }}</td>
-                <td><label>Contacto Tercero:</label>{{ form_widget(edit_form.contactoTercero) }}</td>
             </tr>
             <tr>
                 <td><label>Aerolinea:</label>{{ form_widget(edit_form.aerolinea) }}</td>
                 <td><label>Agencia:</label>{{ form_widget(edit_form.agencia) }}</td>
-                <td><label>Notas:</label>{{ form_widget(edit_form.notas) }}</td>
+                <td><label>Contacto Tercero:</label>{{ form_widget(edit_form.contactoTercero) }}</td>
             </tr>
             <tr>
-
+                <td><label>Notas:</label>{{ form_widget(edit_form.notas) }}</td>
             </tr>
         </table>
         {{form_rest(edit_form)}}

@@ -58,9 +58,9 @@ class Aerolinea
     
     
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     * @ORM\Column(name="email", type="text",nullable=true)
      */
     private $email;
 

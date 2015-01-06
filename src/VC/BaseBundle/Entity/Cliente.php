@@ -43,9 +43,9 @@ class Cliente
     private $telefono;
 
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="text")
      */
     private $email;
 
@@ -141,29 +141,6 @@ class Cliente
     public function getTelefono()
     {
         return $this->telefono;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     * @return Cliente
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
     }
 
     /**

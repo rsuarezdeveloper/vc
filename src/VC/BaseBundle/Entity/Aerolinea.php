@@ -71,6 +71,13 @@ class Aerolinea
      */
     private $contacto;
 
+     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=true)
+     */
+    private $status;
+
 
 
 }

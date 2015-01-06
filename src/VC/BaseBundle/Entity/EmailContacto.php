@@ -1,6 +1,6 @@
 <?php
 
-namespace VC\ReservasBundle\Entity;
+namespace VC\BaseBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

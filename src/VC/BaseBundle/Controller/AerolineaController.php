@@ -35,7 +35,7 @@ class AerolineaController extends Controller
 		$campos=array('nombre'=>'a.nombre',//el array asociativo reemplaza una switch case para le ordenacion de los datos
 		'email'=>'a.email',
 		'contacto'=>'a.contacto',
-        ->where('a.satus is NULL');
+        //->where('a.satus is NULL');
         );
 
 

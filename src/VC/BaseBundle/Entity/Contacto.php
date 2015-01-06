@@ -31,30 +31,9 @@ class Contacto
     /**
      * @var string
      *
-     * @ORM\Column(name="direccion", type="string", length=255)
-     */
-    private $direccion;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="telefono", type="string", length=255)
-     */
-    private $telefono;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
-
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="observaciones", type="text")
-     */
-    private $observaciones;
 
     /**
 	 *@ORM\OneToMany(targetEntity="VC\BaseBundle\Entity\EmailContacto",mappedBy="contacto",cascade={"persist"})
@@ -96,52 +75,6 @@ class Contacto
     }
 
     /**
-     * Set direccion
-     *
-     * @param string $direccion
-     * @return Contacto
-     */
-    public function setDireccion($direccion)
-    {
-        $this->direccion = $direccion;
-    
-        return $this;
-    }
-
-    /**
-     * Get direccion
-     *
-     * @return string 
-     */
-    public function getDireccion()
-    {
-        return $this->direccion;
-    }
-
-    /**
-     * Set telefono
-     *
-     * @param string $telefono
-     * @return Contacto
-     */
-    public function setTelefono($telefono)
-    {
-        $this->telefono = $telefono;
-    
-        return $this;
-    }
-
-    /**
-     * Get telefono
-     *
-     * @return string 
-     */
-    public function getTelefono()
-    {
-        return $this->telefono;
-    }
-
-    /**
      * Set email
      *
      * @param string $email
@@ -162,28 +95,5 @@ class Contacto
     public function getEmail()
     {
         return $this->email;
-    }
-
-    /**
-     * Set observaciones
-     *
-     * @param string $observaciones
-     * @return Contacto
-     */
-    public function setObservaciones($observaciones)
-    {
-        $this->observaciones = $observaciones;
-    
-        return $this;
-    }
-
-    /**
-     * Get observaciones
-     *
-     * @return string 
-     */
-    public function getObservaciones()
-    {
-        return $this->observaciones;
     }
 }

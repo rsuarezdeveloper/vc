@@ -118,10 +118,7 @@ class ContactoController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('contacto_show', array('id' => $entity->getId())));
-        }
-
-        if($request->get('emailPopUp')){
+            if($request->get('emailPopUp')){
                 foreach($request->get('emailPopUp') as $k=>$v){
                     $email=$v;
                     if($email){
@@ -133,6 +130,10 @@ class ContactoController extends Controller
                     }
                 }
             }
+
+            return $this->redirect($this->generateUrl('contacto_show', array('id' => $entity->getId())));
+        }
+
 
         return array(
             'entity' => $entity,

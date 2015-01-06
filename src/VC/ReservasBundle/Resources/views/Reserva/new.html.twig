@@ -144,12 +144,11 @@
 
                 frm = $("#frm-crear-contacto");
    			var emailPopUp = $("input[name='emailPopUp[]']").map(function(){return $(this).val();}).get();
-			$.post("{{path('contacto_create')}}",frm.serialize(),{emailPopUp:emailPopUp},function(data){
+			$.post("{{path('contacto_create')}}",frm.serialize(), {var:"test",emailPopUp:emailPopUp},function(data){
                 $("#crearContactoModal").modal('hide');
 			});
 
 	});
-
 
 
               $('#vc_reservasbundle_reservatype_horaString').timepicker({

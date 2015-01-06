@@ -27,6 +27,7 @@ class AerolineaController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $query = $em->createQuery("SELECT 'aerolinea' as tipo,a.id, a.nombre FROM VCBaseBundle:Aerolinea a");
        //$query->setParameter('tiposervicio',"asesoria");
+        $query->where('a.status is NULL');
        $entities = $query->getResult();
 
        $response = new Response();

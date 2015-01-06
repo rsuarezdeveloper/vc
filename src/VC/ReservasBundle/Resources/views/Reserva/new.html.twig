@@ -39,20 +39,23 @@
             </tr>
             <tr></tr>
             <tr>
-                <td><a a href="javascript:void(0)" onclick="crearContacto();" rel="tooltip" title="Crear Nuevo Contacto"> <i class="icon-plus-sign"></i></a><label>Contacto Aerolinea:</label>{{ form_widget(form.contactoAerolinea,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
-                <td><label>Contacto Agencia:</label>{{ form_widget(form.contactoAgencia,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
-                <td><label>Contacto Cliente:</label>{{ form_widget(form.contactoCliente,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
-                <td><label>Contacto Tercero:</label>{{ form_widget(form.contactoTercero,{'attr':{'placeholder':'Nombre y numero de celular de la persona de la agencia en el aeropuerto'}}) }}</td>
-            </tr>
-            <tr>
                 <td><label>Agencia:</label>{{ form_widget(form.agencia) }}</td>
                 <td><label>Aerolinea:</label>{{ form_widget(form.aerolinea) }}</td>
-                <td><label>Notas:</label>{{ form_widget(form.notas) }}</td>
+                <td><a a href="javascript:void(0)" onclick="crearContacto();" rel="tooltip" title="Crear Nuevo Contacto"> <i class="icon-plus-sign"></i></a><label>Contacto Aerolinea:</label>{{ form_widget(form.contactoAerolinea) }}</td>
             </tr>
             <tr>
+                <td><a a href="javascript:void(0)" onclick="crearContacto();" rel="tooltip" title="Crear Nuevo Contacto"> <i class="icon-plus-sign"></i></a><label>Contacto Agencia:</label>{{ form_widget(form.contactoAgencia) }}</td>
+                <td><a a href="javascript:void(0)" onclick="crearContacto();" rel="tooltip" title="Crear Nuevo Contacto"> <i class="icon-plus-sign"></i></a><label>Contacto Cliente:</label>{{ form_widget(form.contactoCliente) }}</td>
+                <td><a a href="javascript:void(0)" onclick="crearContacto();" rel="tooltip" title="Crear Nuevo Contacto"> <i class="icon-plus-sign"></i></a><label>Contacto Tercero:</label>{{ form_widget(form.contactoTercero) }}</td>
+            </tr>
 
+            <tr>
+                <td><label>Email Contacto:</label>{{ form_widget(form.emailContacto) }}</td>
+                <td><label>Notas:</label>{{ form_widget(form.notas) }}</td>
             </tr>
         </table>
+
+
         {{form_rest(form)}}
         {{form_errors(form)}}
         <h3>Productos</h3>

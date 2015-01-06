@@ -37,7 +37,7 @@ class AerolineaController extends Controller
 		'contacto'=>'a.contacto',
         //->where('a.satus is NULL');
         );
-        $qb->where('a.satus is NULL');
+        $qb->where('a.status is NULL');
 
 
 		if ($request->get('_search')=='true')

@@ -143,11 +143,14 @@
             $("#crearContactoModal div.modal-body").prepend('<div class="alert alert-info"><i class="fa fa-refresh fa-spin"></i> Prefacturando...</div>');
 
                 frm = $("#frm-crear-contacto");
-			$.post("{{path('contacto_create')}}",frm.serialize(),function(data){
+   			var emailPopUp = $("input[name='emailPopUp[]']").map(function(){return $(this).val();}).get();
+			$.post("{{path('contacto_create')}}",frm.serialize(),{emailPopUp:emailPopUp},function(data){
                 $("#crearContactoModal").modal('hide');
 			});
 
 	});
+
+
 
               $('#vc_reservasbundle_reservatype_horaString').timepicker({
 				  showInputs:false,

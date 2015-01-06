@@ -143,8 +143,7 @@
             $("#crearContactoModal div.modal-body").prepend('<div class="alert alert-info"><i class="fa fa-refresh fa-spin"></i> Prefacturando...</div>');
 
                 frm = $("#frm-crear-contacto");
-   			var emailPopUp = $("input[name='emailPopUp[]']").map(function(){return $(this).val();}).get();
-			$.post("{{path('contacto_create')}}",frm.serialize(), {var:"test",emailPopUp:emailPopUp},function(data){
+			$.post("{{path('contacto_create')}}",frm.serialize(),function(data){
                 $("#crearContactoModal").modal('hide');
 			});
 

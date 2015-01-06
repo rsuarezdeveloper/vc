@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use VC\BaseBundle\Entity\Contacto;
+use VC\BaseBundle\Entity\EmailContacto;
 use VC\BaseBundle\Form\ContactoType;
 
 /**
@@ -119,6 +120,19 @@ class ContactoController extends Controller
 
             return $this->redirect($this->generateUrl('contacto_show', array('id' => $entity->getId())));
         }
+
+        if($request->get('emailPopUp')){
+                foreach($request->get('emailPopUp') as $k=>$v){
+                    $email=$v;
+                    if($email){
+                        $gh=new EmailContacto();
+                        $gh->setEmail($email)
+                           ->setContacto($entity);
+                        $em->persist($gh);
+                        $em->flush();
+                    }
+                }
+            }
 
         return array(
             'entity' => $entity,

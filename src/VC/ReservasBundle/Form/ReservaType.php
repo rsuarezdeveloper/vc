@@ -62,7 +62,6 @@ class ReservaType extends AbstractType
         ))
             ->add('notas')
             ->add('noPalet')
-            ->add('emailContacto')
             ->add('sucursal', 'genemu_jqueryselect2_entity', array(
             'class' => 'VC\BaseBundle\Entity\Sucursal',
             'property' => 'nombre',

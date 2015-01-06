@@ -57,6 +57,12 @@ class Contacto
     private $observaciones;
 
     /**
+	 *@ORM\OneToMany(targetEntity="VC\BaseBundle\Entity\EmailContacto",mappedBy="contacto",cascade={"persist"})
+	 */
+
+	private $emails;
+
+    /**
      * Get id
      *
      * @return integer 

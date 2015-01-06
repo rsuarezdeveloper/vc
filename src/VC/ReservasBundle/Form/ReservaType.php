@@ -54,6 +54,12 @@ class ReservaType extends AbstractType
             'empty_value' => 'Seleccione',
             'configs' => array("placeholder"=>"Contacto Cliente","width"=>"230px")
         ))
+            ->add('contactoTercero', 'genemu_jqueryselect2_entity', array(
+            'class' => 'VC\BaseBundle\Entity\Contacto',
+            'property' => 'nombre',
+            'empty_value' => 'Seleccione',
+            'configs' => array("placeholder"=>"Contacto Cliente","width"=>"230px")
+        ))
             ->add('notas')
             ->add('noPalet')
             ->add('sucursal', 'genemu_jqueryselect2_entity', array(

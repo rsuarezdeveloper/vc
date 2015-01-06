@@ -148,6 +148,12 @@ class Reserva
      */
     private $contactoCliente;
 
+     /**
+     * @ORM\ManyToOne(targetEntity="VC\BaseBundle\Entity\Contacto")
+     * @ORM\JoinColumn(name="contactoTercero", referencedColumnName="id", nullable=true)
+     */
+    private $contactoTercero;
+
 
 	/**
 	 * 

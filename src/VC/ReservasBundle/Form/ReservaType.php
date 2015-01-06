@@ -11,7 +11,6 @@ class ReservaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-			->add('mailContacto')
             //->add('creacion')
             //->add('fechaServicio','text',array(
             //'widget' => 'single_text',

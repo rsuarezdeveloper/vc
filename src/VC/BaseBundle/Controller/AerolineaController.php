@@ -34,8 +34,9 @@ class AerolineaController extends Controller
 		$request=$this->get('request');
 		$campos=array('nombre'=>'a.nombre',//el array asociativo reemplaza una switch case para le ordenacion de los datos
 		'email'=>'a.email',
-		'contacto'=>'a.contacto',
-		);
+		'contacto'=>'a.contacto',);
+        ->where('c.wca is NULL');
+
 		if ($request->get('_search')=='true')
 		{
 			$filters=json_decode($request->get('filters'));

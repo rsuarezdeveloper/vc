@@ -38,7 +38,6 @@ class AerolineaController extends Controller
 
 		   );
 	   }
-       $r=$this->record_sort($r,"text");
 	   $response->setContent(json_encode($r));
 	   return $response;
     }

@@ -31,28 +31,28 @@ class Aerolinea
     /**
      * @var string
      *
-     * @ORM\Column(name="alias", type="string", length=255)
+     * @ORM\Column(name="alias", type="string", length=255, nullable=true)
      */
     private $alias;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="pais", type="string", length=255)
+     * @ORM\Column(name="pais", type="string", length=255, nullable=true)
      */
     private $pais;
 	
 	/**
      * @var string
      *
-     * @ORM\Column(name="iata", type="string", length=255)
+     * @ORM\Column(name="iata", type="string", length=255, nullable=true)
      */
     private $iata;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="icao", type="string", length=255)
+     * @ORM\Column(name="icao", type="string", length=255, nullable=true)
      */
     private $icao;
     
@@ -60,14 +60,14 @@ class Aerolinea
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="contacto", type="string", length=255)
+     * @ORM\Column(name="contacto", type="string", length=255, nullable=true)
      */
     private $contacto;
 

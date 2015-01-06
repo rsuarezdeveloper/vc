@@ -28,10 +28,17 @@ class Contacto
      */
     private $nombre;
 
-    /**
+     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="telefono", type="string", length=255)
+     */
+    private $telefono;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(name="email", type="text")
      */
     private $email;
 

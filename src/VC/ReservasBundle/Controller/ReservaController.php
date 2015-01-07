@@ -466,6 +466,12 @@ class ReservaController extends Controller
         //$all['vc_reservasbundle_reservatype']['fechaServicio']= new \DateTime($all['vc_reservasbundle_reservatype']['fechaServicio']);
         $request->request->replace($all);
         $editForm->bind($request);
+        if($request->get('vc_aerolinea')){
+            $aerolinea=$request->get('vc_aerolinea');
+			$entityAerolinea = $em->getRepository('VCBaseBundle:Aerolinea')->find($aerolinea);
+            $entity->setAerolinea($entityAerolinea);
+
+       }
 
         if ($editForm->isValid()) {
             $em->persist($entity);

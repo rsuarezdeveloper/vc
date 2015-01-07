@@ -35,10 +35,8 @@ class ContactoController extends Controller
 		$qb = $repository->createQueryBuilder('c');
 		$request=$this->get('request');
 		$campos=array('nombre'=>'c.nombre',//el array asociativo reemplaza una switch case para le ordenacion de los datos
-		'direccion'=>'c.direccion',
 		'telefono'=>'c.telefono',
 		'email'=>'c.email',
-		'observaciones'=>'c.observaciones',
 		);
 		if ($request->get('_search')=='true')
 		{
@@ -74,8 +72,8 @@ class ContactoController extends Controller
         $r['rows'] = Array();
 		foreach ($pagination as $entity)
 		{
-			$r['rows'][]=array('nombre'=>$entity->getNombre(),'direccion'=>$entity->getDireccion(),'telefono'=>$entity->getTelefono(),
-			'email'=>$entity->getEmail(),'observaciones'=>$entity->getObservaciones(),'id'=>$entity->getId(),
+			$r['rows'][]=array('nombre'=>$entity->getNombre(),'telefono'=>$entity->getTelefono(),
+			'email'=>$entity->getEmail(),'id'=>$entity->getId(),
 			);
 		}
 		$response->setContent(json_encode($r));

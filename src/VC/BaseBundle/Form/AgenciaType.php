@@ -12,6 +12,7 @@ class AgenciaType extends AbstractType
     {
         $builder
             ->add('nombre')
+            ->add('telefono')
             ->add('email')
             ->add('contacto')
         ;

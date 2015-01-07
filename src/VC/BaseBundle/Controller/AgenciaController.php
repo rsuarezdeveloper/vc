@@ -35,6 +35,7 @@ class AgenciaController extends Controller
 		$campos=array('nombre'=>'a.nombre',//el array asociativo reemplaza una switch case para le ordenacion de los datos
 		'email'=>'a.email',
 		'contacto'=>'a.contacto',
+		'telefono'=>'a.telefono',
 		);
 		if ($request->get('_search')=='true')
 		{
@@ -71,7 +72,7 @@ class AgenciaController extends Controller
 		foreach ($pagination as $entity)
 		{
 			$r['rows'][]=array('nombre'=>$entity->getNombre(),'email'=>$entity->getEmail(),
-			'contacto'=>$entity->getContacto(),'id'=>$entity->getId(),
+			'contacto'=>$entity->getContacto(),'telefono'=>$entity->getTelefono(),'id'=>$entity->getId(),
 			);
 		}
 		$response->setContent(json_encode($r));

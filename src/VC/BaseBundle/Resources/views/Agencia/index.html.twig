@@ -49,11 +49,12 @@
 			$("#list").jqGrid({
 				url:"{{path('agencia_list')}}",
 				datatype:"json",
-				colNames:['Nombre','E-mail','Contacto','Acciones'],
+				colNames:['Nombre','E-mail','Contacto','Telefono','Acciones'],
 				colModel:[
 					{name:'nombre',index:'nombre',width:300,align:"center",search:true},
 					{name:'email',width:300,align:"center",search:false},
 					{name:'contacto',width:300,align:"center"},
+					{name:'telefono',width:300,align:"center"},
 					{name:'acciones',width:160,jsonmap:"id",align:'center',formatter:botonera,search:false,sortable:false},
 				],
 				pager:"#pager",

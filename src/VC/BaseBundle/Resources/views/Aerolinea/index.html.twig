@@ -37,7 +37,7 @@
     </table>
     <div id="pager">
     </div>
-    <div id="botoneraTemplate"  style="display:none;"><a rel="tooltip" title="Editar Aerolinea" href="{{ path('agencia_edit', {'id': '__id'}) }}" class="btn btn-primary btn-mini"><i class="icon-pencil icon-white"></i></a><a href="{{path('agencia_show',{'id': '__id'}) }}" rel="tooltip" class="btn-mini btn btn-success btn-default" data-toggle="tooltip" title="Borrar Aerolinea"><i class="icon-trash icon-white"></i></a></div>    
+    <div id="botoneraTemplate"  style="display:none;"><a rel="tooltip" title="Editar Aerolinea" href="{{ path('aerolinea_edit', {'id': '__id'}) }}" class="btn btn-primary btn-mini"><i class="icon-pencil icon-white"></i></a><a href="{{path('aerolinea_delete',{'id': '__id'}) }}" rel="tooltip" class="btn-mini btn btn-success btn-default" data-toggle="tooltip" title="Borrar Aerolinea"><i class="icon-trash icon-white"></i></a></div>
     {% endblock %}
 {% block javascripts %}
 	<script type="text/javascript" src="{{asset('js/jqgrid/js/jquery.jqGrid.min.js')}}"></script>

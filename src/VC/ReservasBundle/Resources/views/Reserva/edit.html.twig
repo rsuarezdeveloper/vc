@@ -41,7 +41,7 @@
                 <td><label>Contacto Cliente:</label>{{ form_widget(edit_form.contactoCliente) }}</td>
             </tr>
             <tr>
-                <td><label>Aerolinea:</label>{{ form_widget(edit_form.aerolinea) }}</td>
+                <td><label>Aerolinea:</label><input type="text" id="vc_aerolinea" name="vc_aerolinea"></td>
                 <td><label>Agencia:</label>{{ form_widget(edit_form.agencia) }}</td>
                 <td><label>Contacto Tercero:</label>{{ form_widget(edit_form.contactoTercero) }}</td>
             </tr>
@@ -78,6 +78,32 @@
 
     <script type="text/javascript" src="{{asset('css/jquery.jeditable.js')}}"></script>
     <script>
+
+        $("#vc_aerolinea").select2({
+	 		placeholder: "{{entity.Aerolinea.nombre}}",
+	 		width:'230px',
+			//minimumInputLength: 1,
+			ajax: {
+				url: "{{path('aerolineas_ajax')}}",
+				dataType: 'json',
+				quietMillis: 100,
+				width:'300px',
+				data: function (term, page) { // page is the one-based page number tracked by Select2
+				return {
+						q: term,
+						page_limit: 10,
+						page: page,
+					}
+				},
+				results: function (data, page) {
+						var more = (page * 10)
+					 	return {results: data, more: more};
+					 }
+				},
+				escapeMarkup: function (m) { return m; } ,
+				//formatResult: format,
+				//formatSelection: format
+			});
 
             $("select").select2({placeholder:"Seleccione",width:"230px"});
            $("#vc_reservasbundle_reservatype_guiaMaster").mask("999-99999999");

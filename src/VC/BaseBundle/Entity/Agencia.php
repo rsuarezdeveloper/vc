@@ -29,6 +29,13 @@ class Agencia
     private $nombre;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="telefono", type="string", length=255)
+     */
+    private $telefono;
+
+    /**
      * @var text
      *
      * @ORM\Column(name="email", type="text")

@@ -24,7 +24,7 @@ class AerolineaController extends Controller
      */
     public function ajaxAerolineasAction(Request $request)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery("SELECT 'aerolinea' as tipo,a.id, a.nombre FROM VCBaseBundle:Aerolinea a WHERE a.status is NULL");
        //$query->setParameter('tiposervicio',"asesoria");
        $entities = $query->getResult();

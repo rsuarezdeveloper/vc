@@ -240,6 +240,12 @@ class ReservaController extends Controller
         $entity  = new Reserva();
         //print_r($request);
         //exit();
+       if($request->get('vc_aerolinea')){
+            $aerolinea=$request->get('vc_aerolinea');
+			$entityAerolinea = $em->getRepository('VCBaseBundle:Aerolinea')->find($aerolinea);
+            $entity->setAerolinea($entityAerolinea);
+
+       }
         $entity->setCreacion(new \DateTime())
                ->setCreadoPor($user)
                //->setStatus($status)

@@ -114,7 +114,7 @@
 			$("#list").jqGrid({
 				url:"{{path('reserva_grid')}}",
 				datatype:"json",
-				colNames:['Cliente','Agencia','Aerol&iacute;nea','Fecha Servicio','Hora Servicio','Gu&iacute;a Master','Gu&iacute;as Hija','Productos','Temperatura','Notas','Estado','Acciones'],
+				colNames:['Cliente','Agencia','Aerol&iacute;nea','Fecha','Hora','Gu&iacute;a Master','Gu&iacute;as Hija','Productos','Temp','Notas','Estado','Acciones'],
 				colModel:[
 					{name:'cliente',index:'cliente',width:100,align:"center",search:true},
 					{name:'agencia',width:85,align:"center",search:true},
@@ -122,10 +122,10 @@
 					//{name:'creadoPor',width:100,align:"center",search:false},
 					{name:'fecha_s',width:60,align:"center"},
 					{name:'horaString',width:60,align:"center"},
-					{name:'guiam',width:70,align:"center"},
-					{name:'fbe',width:35,formatter:guiasHijaAction,align:'center'},
-					{name:'piezas',width:35,formatter:productosAction,align:'center'},
-					{name:'temperatura',width:50,align:"center",search:false},
+					{name:'guiam',width:80,align:"center"},
+					{name:'fbe',width:45,formatter:guiasHijaAction,align:'center'},
+					{name:'piezas',width:45,formatter:productosAction,align:'center'},
+					{name:'temperatura',width:40,align:"center",search:false},
 					{name:'notas',width:70,align:"center"},
 					{name:'status',width:40,formatter:confirmar,search:false,align:'center'},
 					{name:'acciones',width:110,jsonmap:"id",align:'center',formatter:botonera,search:false,sortable:false},

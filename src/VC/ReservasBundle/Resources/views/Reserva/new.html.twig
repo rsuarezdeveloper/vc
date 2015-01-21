@@ -179,9 +179,13 @@
 
 
               $('#vc_reservasbundle_reservatype_horaString').timepicker({
-				  showInputs:false,
-				  
-				  minuteStep:1
+				  minuteStep: 1,
+                template: 'modal',
+                appendWidgetTo: 'body',
+                showSeconds: true,
+                showMeridian: false,
+                defaultTime: false
+
 				  });
              $('#vc_reservasbundle_reservatype_fechaServicio').val("{{date()|date("Y-m-d")}}");
             var dateToday = new Date();

@@ -52,7 +52,20 @@
         {{form_rest(form)}}
         {{form_errors(form)}}
         <table>
-            <tr><td>
+            <tr>
+                    <td>
+                <h3>Productos</h3>
+                    <button class="btn btn-small" id="btn-nuevo-producto" type="button"><i class='icon-plus'></i> Agregar Producto</button>
+                    <table id="tbl-productos">
+                        <tr>
+                            <th></th>
+                            <th>Producto</th>
+                            <th>Piezas</th>
+                            <th>FBE</th>
+                        </tr>
+                    </table>
+            </td>
+            <td>
                 <h3>Guias</h3>
                     <table>
                          <tr>
@@ -68,18 +81,7 @@
                             </td>
                         </tr>
                     </table></td>
-                    <td>
-                <h3>Productos</h3>
-                    <button class="btn btn-small" id="btn-nuevo-producto" type="button"><i class='icon-plus'></i> Agregar Producto</button>
-                    <table id="tbl-productos">
-                        <tr>
-                            <th></th>
-                            <th>Producto</th>
-                            <th>Piezas</th>
-                            <th>FBE</th>
-                        </tr>
-                    </table>
-            </td></tr>
+            </tr>
         </table>
 
 

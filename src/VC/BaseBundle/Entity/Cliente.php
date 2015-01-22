@@ -188,4 +188,27 @@ class Cliente
     {
         return $this->nit;
     }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Cliente
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
 }

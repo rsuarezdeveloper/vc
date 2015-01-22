@@ -37,4 +37,60 @@ class EmailContacto
      */
     private $contacto;
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return EmailContacto
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set contacto
+     *
+     * @param \VC\BaseBundle\Entity\Contacto $contacto
+     * @return EmailContacto
+     */
+    public function setContacto(\VC\BaseBundle\Entity\Contacto $contacto = null)
+    {
+        $this->contacto = $contacto;
+    
+        return $this;
+    }
+
+    /**
+     * Get contacto
+     *
+     * @return \VC\BaseBundle\Entity\Contacto 
+     */
+    public function getContacto()
+    {
+        return $this->contacto;
+    }
 }

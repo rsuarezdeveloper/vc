@@ -70,4 +70,27 @@ class ReservaHijas
     {
         return $this->guiaHija;
     }
+
+    /**
+     * Set master
+     *
+     * @param \VC\ReservasBundle\Entity\ReservaMaster $master
+     * @return ReservaHijas
+     */
+    public function setMaster(\VC\ReservasBundle\Entity\ReservaMaster $master = null)
+    {
+        $this->master = $master;
+    
+        return $this;
+    }
+
+    /**
+     * Get master
+     *
+     * @return \VC\ReservasBundle\Entity\ReservaMaster 
+     */
+    public function getMaster()
+    {
+        return $this->master;
+    }
 }

@@ -793,4 +793,60 @@ class Reserva
     {
         return $this->fechaServicio;
     }
+
+    /**
+     * Add master
+     *
+     * @param \VC\ReservasBundle\Entity\ReservaMaster $master
+     * @return Reserva
+     */
+    public function addMaster(\VC\ReservasBundle\Entity\ReservaMaster $master)
+    {
+        $this->master[] = $master;
+    
+        return $this;
+    }
+
+    /**
+     * Remove master
+     *
+     * @param \VC\ReservasBundle\Entity\ReservaMaster $master
+     */
+    public function removeMaster(\VC\ReservasBundle\Entity\ReservaMaster $master)
+    {
+        $this->master->removeElement($master);
+    }
+
+    /**
+     * Get master
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMaster()
+    {
+        return $this->master;
+    }
+
+    /**
+     * Set contactoTercero
+     *
+     * @param \VC\BaseBundle\Entity\Contacto $contactoTercero
+     * @return Reserva
+     */
+    public function setContactoTercero(\VC\BaseBundle\Entity\Contacto $contactoTercero = null)
+    {
+        $this->contactoTercero = $contactoTercero;
+    
+        return $this;
+    }
+
+    /**
+     * Get contactoTercero
+     *
+     * @return \VC\BaseBundle\Entity\Contacto 
+     */
+    public function getContactoTercero()
+    {
+        return $this->contactoTercero;
+    }
 }

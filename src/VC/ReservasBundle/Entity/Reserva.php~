@@ -100,10 +100,10 @@ class Reserva
     private $noPalet;
 
     /**
-	 *@ORM\OneToMany(targetEntity="VC\ReservasBundle\Entity\ReservaHijas",mappedBy="reserva",cascade={"persist"})
+	 *@ORM\OneToMany(targetEntity="VC\ReservasBundle\Entity\ReservaMaster",mappedBy="reserva",cascade={"persist"})
 	 */
 
-	private $hijas;
+	private $master;
 
 
     /**
@@ -147,6 +147,12 @@ class Reserva
      * @ORM\JoinColumn(name="contactoCliente", referencedColumnName="id", nullable=true)
      */
     private $contactoCliente;
+
+     /**
+     * @ORM\ManyToOne(targetEntity="VC\BaseBundle\Entity\Contacto")
+     * @ORM\JoinColumn(name="contactoTercero", referencedColumnName="id", nullable=true)
+     */
+    private $contactoTercero;
 
 
 	/**
@@ -696,40 +702,6 @@ class Reserva
     {
         return $this->notaAnulada;
     }
-
-    /**
-     * Add hijas
-     *
-     * @param \VC\ReservasBundle\Entity\ReservaHijas $hijas
-     * @return Reserva
-     */
-    public function addHija(\VC\ReservasBundle\Entity\ReservaHijas $hijas)
-    {
-        $this->hijas[] = $hijas;
-    
-        return $this;
-    }
-
-    /**
-     * Remove hijas
-     *
-     * @param \VC\ReservasBundle\Entity\ReservaHijas $hijas
-     */
-    public function removeHija(\VC\ReservasBundle\Entity\ReservaHijas $hijas)
-    {
-        $this->hijas->removeElement($hijas);
-    }
-
-    /**
-     * Get hijas
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getHijas()
-    {
-        return $this->hijas;
-    }
-
     /**
      * Set contactoAerolinea
      *
@@ -797,5 +769,28 @@ class Reserva
     public function getContactoCliente()
     {
         return $this->contactoCliente;
+    }
+
+    /**
+     * Set fechaServicio
+     *
+     * @param \DateTime $fechaServicio
+     * @return Reserva
+     */
+    public function setFechaServicio($fechaServicio)
+    {
+        $this->fechaServicio = $fechaServicio;
+    
+        return $this;
+    }
+
+    /**
+     * Get fechaServicio
+     *
+     * @return \DateTime 
+     */
+    public function getFechaServicio()
+    {
+        return $this->fechaServicio;
     }
 }

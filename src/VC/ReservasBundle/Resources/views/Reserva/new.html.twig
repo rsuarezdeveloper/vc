@@ -27,21 +27,6 @@
 					 <label>Clasificacion:</label>{{ form_widget(form.clasificacion) }}
 				</td>
             </tr>
-            <tr>
-                <td>
-                <label>Temperatura Requerida:</label>{{ form_widget(form.temperaturaRequerida) }}
-                <label>Numero de Pallet:</label>{{ form_widget(form.noPalet) }}</td>
-                <td><button class="btn btn-small" id="btn-nueva-master" type="button"><i class='icon-plus'></i>Guias Master</button>
-                <table id="tbl-master">
-
-                </table>
-                </td>
-                <td><button class="btn btn-small" id="btn-nueva-hija" type="button"><i class='icon-plus'></i>Guias Hija</button>
-                <table id="tbl-hijas">
-
-                </table>
-                </td>
-            </tr>
             <tr></tr>
             <tr>
                 <td><label>Agencia:</label>{{ form_widget(form.agencia) }}</td>
@@ -54,8 +39,25 @@
                 <td><a a href="javascript:void(0)" onclick="crearContacto();" rel="tooltip" title="Crear Nuevo Contacto"> <i class="icon-plus-sign"></i></a><label>Contacto Tercero:</label>{{ form_widget(form.contactoTercero) }}</td>
             </tr>
 
+             <tr>
+                <td>
+                <label>Temperatura Requerida:</label>{{ form_widget(form.temperaturaRequerida) }}
+                <label>Numero de Pallet:</label>{{ form_widget(form.noPalet) }}
+                <label>Notas:</label>{{ form_widget(form.notas) }}</td>
+
+            </tr>
+
             <tr>
-                <td><label>Notas:</label>{{ form_widget(form.notas) }}</td>
+               <td><button class="btn btn-small" id="btn-nueva-master" type="button"><i class='icon-plus'></i>Guias Master</button>
+                <table id="tbl-master">
+
+                </table>
+                </td>
+                <td><button class="btn btn-small" id="btn-nueva-hija" type="button"><i class='icon-plus'></i>Guias Hija</button>
+                <table id="tbl-hijas">
+
+                </table>
+                </td>
             </tr>
         </table>
 
@@ -193,7 +195,7 @@
 				  minuteStep: 1,
                 template: 'modal',
                 appendWidgetTo: 'body',
-                showSeconds: true,
+                showSeconds: false,
                 showMeridian: false,
                 defaultTime: false
 				  });

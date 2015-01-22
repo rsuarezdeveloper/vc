@@ -28,9 +28,14 @@
 				</td>
             </tr>
             <tr>
-                <td><label>Guia Master:</label>{{ form_widget(form.guiaMaster) }}
+                <td>
                 <label>Temperatura Requerida:</label>{{ form_widget(form.temperaturaRequerida) }}
                 <label>Numero de Pallet:</label>{{ form_widget(form.noPalet) }}</td>
+                <td><button class="btn btn-small" id="btn-nueva-master" type="button"><i class='icon-plus'></i>Guias Master</button>
+                <table id="tbl-master">
+
+                </table>
+                </td>
                 <td><button class="btn btn-small" id="btn-nueva-hija" type="button"><i class='icon-plus'></i>Guias Hija</button>
                 <table id="tbl-hijas">
 
@@ -161,6 +166,12 @@
                 $("#tbl-hijas").append(tr_hijas);
                 $("#btn-nueva-hija").click(function(){
                         $("#tbl-hijas").append(tr_hijas);
+                });
+
+                var tr_master='<tr><td><a href="#" class="delete"><i class="icon-trash"></i></a></td><td><input type="text" name="guiaMaster[]" id="guiaMaster[]" placeholder="Guia Master"/></td></tr>';
+                $("#tbl-master").append(tr_master);
+                $("#btn-nueva-master").click(function(){
+                        $("#tbl-master").append(tr_master);
                 });
                 
                 $(".delete").live('click', function(event) {

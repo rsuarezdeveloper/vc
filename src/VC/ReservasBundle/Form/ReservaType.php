@@ -24,8 +24,6 @@ class ReservaType extends AbstractType
                     //'data'=>date('Y-m-d'),
                     //'configs'=>array('minDate'=> '1', 'dateFormat'=>'yy-mm-dd' )
 		        ))
-
-            ->add('guiaMaster')
             ->add('horaString',null,array(
 		            //'widget' => 'single_text',
                     'attr'=>array('class'=>'timePicker'

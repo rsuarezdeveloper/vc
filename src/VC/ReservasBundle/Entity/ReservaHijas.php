@@ -32,10 +32,10 @@ class ReservaHijas
 	 private $guiaHija;
 
     /**
-     * @ORM\ManyToOne(targetEntity="VC\ReservasBundle\Entity\Reserva" ,inversedBy="hijas")
-     * @ORM\JoinColumn(name="reserva", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="VC\ReservasBundle\Entity\ReservaMaster" ,inversedBy="hijas")
+     * @ORM\JoinColumn(name="master", referencedColumnName="id")
      */
-    private $reserva;
+    private $master;
 
 
     /**
@@ -69,28 +69,5 @@ class ReservaHijas
     public function getGuiaHija()
     {
         return $this->guiaHija;
-    }
-
-    /**
-     * Set reserva
-     *
-     * @param \VC\ReservasBundle\Entity\Reserva $reserva
-     * @return ReservaHijas
-     */
-    public function setReserva(\VC\ReservasBundle\Entity\Reserva $reserva = null)
-    {
-        $this->reserva = $reserva;
-    
-        return $this;
-    }
-
-    /**
-     * Get reserva
-     *
-     * @return \VC\ReservasBundle\Entity\Reserva 
-     */
-    public function getReserva()
-    {
-        return $this->reserva;
     }
 }

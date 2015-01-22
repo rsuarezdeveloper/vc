@@ -40,6 +40,12 @@ class ReservaType extends AbstractType
             'empty_value' => 'Seleccione',
             'configs' => array("placeholder"=>"Contacto Agencia","width"=>"230px")
         ))
+            ->add('contactoAerolinea', 'genemu_jqueryselect2_entity', array(
+            'class' => 'VC\BaseBundle\Entity\Contacto',
+            'property' => 'nombre',
+            'empty_value' => 'Seleccione',
+            'configs' => array("placeholder"=>"Contacto Aerolinea","width"=>"230px")
+        ))
             ->add('contactoCliente', 'genemu_jqueryselect2_entity', array(
             'class' => 'VC\BaseBundle\Entity\Contacto',
             'property' => 'nombre',
@@ -62,12 +68,6 @@ class ReservaType extends AbstractType
         ))
             ->add('agencia', 'genemu_jqueryselect2_entity', array(
             'class' => 'VC\BaseBundle\Entity\Agencia',
-            'property' => 'nombre',
-            'empty_value' => 'Seleccione',
-            'configs' => array("placeholder"=>"Sucursal","width"=>"230px")
-        ))
-            ->add('aerolinea', 'genemu_jqueryselect2_entity', array(
-            'class' => 'VC\BaseBundle\Entity\Aerolinea',
             'property' => 'nombre',
             'empty_value' => 'Seleccione',
             'configs' => array("placeholder"=>"Sucursal","width"=>"230px")
